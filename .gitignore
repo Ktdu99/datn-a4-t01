@@ -15,3 +15,6 @@ results/synth_sta_a_console.log
 
 # Local synthesis reproducibility runs; compact evidence is tracked separately
 results/synthesis_a/SYNTH_A_50MHZ_REPRO_*/
+
+# Raw physical-flow console log
+results/physical_a/*_console.log
