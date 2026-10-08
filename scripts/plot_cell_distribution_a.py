@@ -60,16 +60,14 @@ fig.text(
 
 fig.tight_layout(rect=[0, 0.04, 1, 1])
 
+# Chỉ lưu ảnh PNG để đưa vào báo cáo và GitHub.
 fig.savefig(
     output_dir / "fifo_a_cell_distribution.png",
     dpi=300,
     bbox_inches="tight",
 )
 
-fig.savefig(
-    output_dir / "fifo_a_cell_distribution.pdf",
-    bbox_inches="tight",
-)
-
 print("PASS: đã tạo docs/figures/fifo_a_cell_distribution.png")
-print("PASS: đã tạo docs/figures/fifo_a_cell_distribution.pdf")
+
+# Hiển thị cửa sổ biểu đồ trên màn hình.
+plt.show()
