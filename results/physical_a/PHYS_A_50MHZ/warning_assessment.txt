@@ -1,0 +1,61 @@
+OpenLane physical-flow warning assessment
+=========================================
+
+run_tag=PHYS_A_50MHZ
+architecture=A_count_based
+tool=OpenLane_v1.0.2_ff5509f
+validated_data_width=8
+validated_depth=16
+
+flow_status=PASS
+gds_generated=PASS
+detailed_routing_drc=0
+magic_drc=0
+lvs_total_errors=0
+pin_antenna_violations=0
+net_antenna_violations=0
+postroute_setup=PASS
+postroute_hold=PASS
+
+LINTER WIDTH WARNINGS
+---------------------
+warning_count=2
+warning_type=WIDTHTRUNC
+LAST_ADDRESS_value=15
+LAST_ADDRESS_width=4
+DEPTH_COUNT_value=16
+DEPTH_COUNT_width=5
+assessment=ACCEPTED_FOR_VALIDATED_DEPTH_16
+reason=Both constant values are exactly representable at the declared widths.
+limitation=Other DEPTH parameter values must be linted and verified again.
+
+CLOCK MAX-FANOUT WARNING
+------------------------
+constraint=10
+violation_count=6
+observed_fanout_range=11_to_16
+affected_network=clock_tree_buffers_only
+max_slew_violation_count=0
+max_cap_violation_count=0
+setup_violation_count=0
+hold_violation_count=0
+assessment=ACCEPTED_QOR_WAIVER
+reason=Only CTS clock-buffer outputs exceed the generic fanout constraint; physical slew, capacitance and timing checks pass.
+future_improvement=Evaluate clock-tree clustering or a justified fanout constraint in the architecture comparison stage.
+
+PDN WARNING
+-----------
+message=Core area was small, so the power grid was scaled down.
+assessment=EXPECTED
+reason=FP_PDN_AUTO_ADJUST was enabled and the final layout is DRC/LVS clean.
+
+PHYSICAL-CELL STA WARNINGS
+--------------------------
+affected_cells=tap_decap_fill
+assessment=EXPECTED
+reason=Tap, decap and filler cells are physical-only cells and are blackboxed during STA.
+
+FINAL_DECISION
+--------------
+decision=ACCEPT_BASELINE_WITH_DOCUMENTED_CLOCK_QOR_WAIVER
+stage6_core_signoff=PASS
