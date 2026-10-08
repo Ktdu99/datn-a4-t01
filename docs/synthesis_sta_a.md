@@ -143,6 +143,7 @@ Sau khi có OpenLane run `SYNTH_A_50MHZ`, chạy:
 
 ```bash
 ./scripts/collect_synth_sta_a.sh SYNTH_A_50MHZ
+```
 
 ## 10. Kiểm tra khả năng tái lập
 
@@ -162,6 +163,8 @@ Kết quả hai lần chạy giống nhau:
 
 Hai synthesized netlist có cùng mã SHA-256, chứng minh kết quả tổng hợp có thể tái lập trong cùng môi trường công cụ.
 
-Dữ liệu kiểm tra: `results/synthesis_a/reproducibility_a.txt`.
+Dữ liệu kiểm tra:
+
+`results/synthesis_a/reproducibility_a.txt`
 
 **Trạng thái Chặng 5: PASS.**

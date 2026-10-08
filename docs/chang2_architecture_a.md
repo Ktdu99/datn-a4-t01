@@ -1,47 +1,42 @@
 # Chặng 2 – Kiến trúc FIFO phương án A
 
-**Trạng thái Chặng 2: PASS**
+## 1. Mục tiêu
 
-## Mục tiêu
+Chặng này xây dựng vi kiến trúc FIFO phương án A từ đặc tả Chặng 1.
 
-Xây dựng vi kiến trúc FIFO đồng bộ sử dụng bộ đếm số phần tử, gọi là phương án A hoặc kiến trúc count-based.
+Phương án A sử dụng bộ đếm số phần tử `data_count` để xác định trực tiếp trạng thái `full` và `empty`.
 
-## Thành phần kiến trúc
+Mục tiêu gồm:
 
-- Mảng nhớ lưu dữ liệu FIFO.
-- Con trỏ ghi `wr_ptr`.
-- Con trỏ đọc `rd_ptr`.
-- Bộ đếm số phần tử `count`.
-- Logic xác định `full` và `empty`.
-- Logic chấp nhận hoặc từ chối yêu cầu đọc/ghi.
-- Logic phát hiện `overflow` và `underflow`.
+- Xác định các khối phần cứng của FIFO.
+- Xác định read pointer và write pointer.
+- Xác định kích thước bộ đếm.
+- Xác định phương trình full/empty.
+- Xác định quy tắc cập nhật trạng thái.
+- Xử lý đọc và ghi đồng thời.
+- Xử lý overflow và underflow.
+- Chuẩn bị kiến trúc có khả năng tổng hợp ASIC.
 
-## Nguyên lý chính
+## 2. Cấu hình kiến trúc
 
-- `empty` được kích hoạt khi `count = 0`.
-- `full` được kích hoạt khi `count = DEPTH`.
-- Ghi hợp lệ làm tăng `count`.
-- Đọc hợp lệ làm giảm `count`.
-- Đọc và ghi hợp lệ đồng thời giữ nguyên `count`.
-- Con trỏ đọc và ghi quay vòng khi đến cuối vùng nhớ.
-
-## Bằng chứng
-
-| Nội dung | Đường dẫn |
+| Thuộc tính | Giá trị |
 |---|---|
-| Tài liệu kiến trúc | `docs/architecture_a.md` |
-| RTL hiện thực kiến trúc | `rtl/sync_fifo_count.v` |
-| Commit hoàn thành | `c4ebaa1` |
+| Tên kiến trúc | `A_count_based` |
+| Data width | 8 bit |
+| FIFO depth | 16 phần tử |
+| Dung lượng | 128 bit |
+| Cơ chế full/empty | Bộ đếm `data_count` |
+| Số clock domain | 1 |
+| Bộ nhớ | Register array |
+| SRAM macro | Không sử dụng |
 
-## Tiêu chí hoàn thành
+## 3. Các khối chính
 
-- [x] Xác định memory, read pointer và write pointer.
-- [x] Xác định bộ đếm số phần tử.
-- [x] Xác định điều kiện full/empty.
-- [x] Xử lý đọc và ghi đồng thời.
-- [x] Xử lý overflow/underflow.
-- [x] Có tài liệu mô tả kiến trúc.
+### 3.1 Mảng nhớ
 
-## Kết luận
+Mảng nhớ chứa 16 phần tử, mỗi phần tử rộng 8 bit:
 
-Kiến trúc FIFO A đã được xác định đầy đủ, đủ điều kiện triển khai RTL.
+```text
+memory[0:15]
+
+**Trạng thái Chặng 2: PASS.**

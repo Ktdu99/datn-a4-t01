@@ -1,49 +1,48 @@
-# Chặng 3 – RTL FIFO phương án A
+# Chặng 3 – Hiện thực RTL FIFO phương án A
 
-**Trạng thái Chặng 3: PASS**
+## 1. Mục tiêu
 
-## Mục tiêu
+Chặng này hiện thực kiến trúc FIFO A bằng RTL có khả năng tổng hợp.
 
-Hiện thực kiến trúc FIFO A bằng Verilog/SystemVerilog có khả năng tổng hợp.
+Mục tiêu gồm:
 
-## Cấu hình RTL
+- Hiện thực module `sync_fifo_count`.
+- Tham số hóa độ rộng dữ liệu và độ sâu.
+- Hiện thực mảng nhớ, con trỏ và bộ đếm.
+- Hiện thực full, empty, overflow và underflow.
+- Kiểm tra cú pháp và khả năng elaboration.
+- Kiểm tra RTL bằng Verilator và Yosys.
+- Chuẩn bị DUT cho functional verification.
+
+## 2. Phiên bản thiết kế
 
 | Thuộc tính | Giá trị |
 |---|---|
-| Top module | `sync_fifo_count` |
+| Module top | `sync_fifo_count` |
+| Kiến trúc | `A_count_based` |
 | Data width | 8 bit |
 | FIFO depth | 16 phần tử |
-| Kiến trúc | Count-based |
-| Clock domain | Một clock đồng bộ |
-| Reset | `rst_n`, active-low |
+| Ngôn ngữ | Verilog/SystemVerilog RTL |
+| File nguồn | `rtl/sync_fifo_count.v` |
+| Commit hiện thực | `c4ebaa1` |
+| Snapshot dùng cho verification | `898b96b` |
 
-## Kết quả
+Commit `898b96b` kế thừa RTL từ commit `c4ebaa1` và bổ sung môi trường verification.
 
-- RTL được tham số hóa bằng `DATA_WIDTH` và `DEPTH`.
-- Có mảng nhớ và con trỏ đọc/ghi.
-- Có bộ đếm số phần tử.
-- Có các cờ `full`, `empty`, `overflow`, `underflow`.
-- RTL đã được kiểm tra bằng Verilator.
-- RTL đã được kiểm tra khả năng tổng hợp bằng Yosys.
+## 3. Giao diện RTL
 
-## Bằng chứng
+Module có các cổng:
 
-| Nội dung | Đường dẫn |
-|---|---|
-| Mã nguồn RTL | `rtl/sync_fifo_count.v` |
-| Log Verilator | `results/verilator_count.log` |
-| Log kiểm tra Yosys | `results/yosys_check_count.log` |
-| Commit hoàn thành | `c4ebaa1` |
+```text
+clk
+rst_n
+wr_en
+wr_data[7:0]
+rd_en
+rd_data[7:0]
+full
+empty
+overflow
+underflow
 
-## Tiêu chí hoàn thành
-
-- [x] RTL tồn tại và xác định đúng top module.
-- [x] RTL có thể được phân tích bởi Verilator.
-- [x] RTL có thể được tổng hợp bởi Yosys.
-- [x] Không sử dụng cấu trúc chỉ dành cho mô phỏng trong DUT.
-- [x] Các cổng đúng với đặc tả Chặng 1.
-- [x] Kiến trúc đúng với tài liệu Chặng 2.
-
-## Kết luận
-
-RTL FIFO phương án A đã hoàn thành và đủ điều kiện chuyển sang functional verification.
+**Trạng thái Chặng 3: PASS.**
