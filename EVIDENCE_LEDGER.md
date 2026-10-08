@@ -1,8 +1,10 @@
-# Sổ bằng chứng
 
-> Mọi hình, bảng, con số xuất hiện trong báo cáo phải có một dòng ở đây.
-> Không truy ngược được về dữ liệu thô thì ở Gate 5 coi như **không có bằng chứng**.
 
 | ID | Hình/Bảng | Nói lên điều gì | Dữ liệu thô (đường dẫn) | Script sinh ra | Git commit | Ngày |
 |---|---|---|---|---|---|---|
-| E01 |  |  |  |  |  |  |
+| E01 | Cấu hình synthesis/STA kiến trúc A | Ghi lại PDK, thư viện, tham số FIFO và clock 50 MHz | `openlane/sync_fifo_count/config.json`; `results/synthesis_a/SYNTH_A_50MHZ/resolved_config.tcl` | `openlane/run_synth_sta_a.tcl` | `898b96b` | 2026-10-08 |
+| E02 | Bảng kết quả synthesis kiến trúc A | Netlist có 600 cell, diện tích cell 7130.588800 µm² | `results/synthesis_a/SYNTH_A_50MHZ/reports/1-synthesis.AREA_0.stat.rpt`; `results/synthesis_a/SYNTH_A_50MHZ/key_metrics.txt` | `scripts/collect_synth_sta_a.sh` | `898b96b` | 2026-10-08 |
+| E03 | Bảng kết quả STA kiến trúc A | WNS/TNS bằng 0, setup slack +13.81 ns, hold slack +0.22 ns | `results/synthesis_a/SYNTH_A_50MHZ/logs/2-sta.full.txt`; `results/synthesis_a/SYNTH_A_50MHZ/key_metrics.txt` | `scripts/collect_synth_sta_a.sh` | `898b96b` | 2026-10-08 |
+| E04 | Kiểm tra netlist hậu tổng hợp | Netlist đã map SKY130, có 600 cell và Yosys báo 0 problems | `results/synthesis_a/SYNTH_A_50MHZ/sync_fifo_count.synthesis.v`; `results/synthesis_a/SYNTH_A_50MHZ/reports/netlist_check.txt` | `scripts/collect_synth_sta_a.sh` | `898b96b` | 2026-10-08 |
+| E05 | Phân loại cảnh báo OpenLane | Chứng minh cảnh báo driver là false-positive và không có lỗi chưa phân loại | `results/synthesis_a/SYNTH_A_50MHZ/warning_assessment.txt`; `results/synthesis_a/SYNTH_A_50MHZ/logs/unexpected_errors.txt` | `scripts/collect_synth_sta_a.sh` | `898b96b` | 2026-10-08 |
+| E06 | Kiểm tra khả năng tái lập synthesis A | Hai run có metrics, cấu hình và synthesized netlist giống nhau | `results/synthesis_a/reproducibility_a.txt`; `results/synthesis_a/SYNTH_A_50MHZ_REPRO_20261008/key_metrics.txt` | `diff`, `cmp`, `sha256sum` và `scripts/collect_synth_sta_a.sh` | `898b96bafda2e72642c273ff71418ac405f2ac80` | 2026-10-08 |

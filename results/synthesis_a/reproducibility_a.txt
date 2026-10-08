@@ -1,0 +1,12 @@
+FIFO Architecture A Reproducibility Check
+==========================================
+baseline=SYNTH_A_50MHZ
+reproduction=SYNTH_A_50MHZ_REPRO_20261008
+rtl_commit=898b96bafda2e72642c273ff71418ac405f2ac80
+
+metrics_without_run_tag=IDENTICAL
+synthesized_netlist=IDENTICAL
+configuration=IDENTICAL
+
+e0b571ba1d6681cf3d43912f11dc845b64e39dbf867aa8e776ed735722f77628  results/synthesis_a/SYNTH_A_50MHZ/sync_fifo_count.synthesis.v
+e0b571ba1d6681cf3d43912f11dc845b64e39dbf867aa8e776ed735722f77628  results/synthesis_a/SYNTH_A_50MHZ_REPRO_20261008/sync_fifo_count.synthesis.v

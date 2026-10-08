@@ -1,0 +1,2 @@
+# Preserve generated EDA evidence byte-for-byte.
+results/** -whitespace

@@ -7,3 +7,11 @@ results/synthesis/
 *.vcd
 *.log
 __pycache__/
+# OpenLane generated working directories
+openlane/*/runs/
+
+# Raw terminal capture; curated evidence is stored in synthesis_a
+results/synth_sta_a_console.log
+
+# Local synthesis reproducibility runs; compact evidence is tracked separately
+results/synthesis_a/SYNTH_A_50MHZ_REPRO_*/
