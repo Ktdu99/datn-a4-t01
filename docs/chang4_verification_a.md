@@ -108,4 +108,9 @@ sim/logs/sync_fifo_count_seed_4.log
 sim/logs/sync_fifo_count_seed_5.log
 sim/logs/sync_fifo_count_seed_20260924.log
 
+## Hình dạng sóng mô phỏng
+
+Hình dưới đây thể hiện hoạt động đọc, ghi và cập nhật trạng thái của FIFO kiến trúc A. Dạng sóng được sinh ra từ testbench tự kiểm tra với Icarus Verilog và quan sát bằng GTKWave.
+
+![Dạng sóng verification FIFO A](figures/fifo_a_waveform.png)
 **Trạng thái Chặng 4: PASS.**
