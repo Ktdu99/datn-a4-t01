@@ -1,0 +1,7 @@
+FIFO A/B Physical Configuration Equivalence
+============================================
+result=PASS
+ignored_expected_keys=DESIGN_NAME,VERILOG_FILES
+architecture_a_design=sync_fifo_count
+architecture_b_design=sync_fifo_pointer
+all_other_config_fields=IDENTICAL
