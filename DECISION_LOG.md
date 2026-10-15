@@ -7,3 +7,4 @@
 | 2026-10-08 | 11 | Chấp nhận baseline physical FIFO A với 6 vi phạm max-fanout trên clock tree dưới dạng QoR waiver | Post-route WNS/TNS bằng 0; max slew/cap bằng 0; DRC, LVS và antenna đều PASS. Giữ nguyên RTL đã kiểm chứng và xem tối ưu CTS là hướng nghiên cứu tiếp theo | Khổng Thị Dung |
 | 2026-10-15 | 7 | Chọn kiến trúc B dùng con trỏ mở rộng | Giữ nguyên giao diện FIFO A, loại bỏ bộ đếm occupancy để tạo phương án so sánh PPA công bằng | Sinh viên |
 | 2026-10-15 | 8 | Dùng cùng golden model và cùng tập kiểm thử của kiến trúc A để verification kiến trúc B | Loại bỏ khác biệt do phương pháp verification và bảo đảm so sánh hai kiến trúc công bằng | Sinh viên |
+| 2026-10-16 | 9 | Dùng cùng cấu hình OpenLane của kiến trúc A cho kiến trúc B và chỉ thay top module cùng file RTL | Bảo đảm so sánh PPA công bằng; 6 clock max-fanout violations được giữ dưới dạng documented QoR waiver vì timing, routing, DRC, LVS và antenna đều đạt | Sinh viên |

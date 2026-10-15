@@ -1,0 +1,70 @@
+OpenLane physical implementation warning assessment
+====================================================
+
+run_tag=PHYS_B_50MHZ
+architecture=B_extended_pointer
+clock_period_ns=20.0
+target_frequency_mhz=50.0
+
+1. Linter assessment
+--------------------
+RUN_LINTER=1
+linter_log_exists=YES
+linter_log_size_bytes=0
+linter_warning_count=0
+assessment=PASS_NO_LINTER_MESSAGES
+
+OpenLane created an empty linter.log file. The empty file is interpreted
+as no linter warning or error message being emitted for this RTL.
+
+2. Post-route timing assessment
+-------------------------------
+postroute_wns_ns=0.0
+postroute_tns_ns=0.0
+reported_setup_slack_ns=13.41
+negative_timing_paths=0
+max_slew_violation_count=0
+max_cap_violation_count=0
+unannotated_driver_count=0
+partially_unannotated_driver_count=0
+assessment=TIMING_MET
+
+The reported setup slack is positive and no path with slack below
+-0.01 ns was found. Parasitic annotation is complete.
+
+3. Clock max-fanout assessment
+------------------------------
+clock_max_fanout_violation_count=6
+affected_network=CTS_CLOCK_BUFFERS
+assessment=ACCEPTED_QOR_WAIVER
+
+All six max-fanout violations belong to clock-tree buffers named
+clkbuf_*. No data-path max-fanout violation was reported. The design
+has zero max-slew and zero max-capacitance violations, and timing is met.
+
+This is retained as a documented QoR waiver. It is not hidden and may
+be revisited by tuning the CTS configuration. Architecture A has the
+same max-fanout violation count under the same physical-flow constraint.
+
+4. Physical signoff assessment
+------------------------------
+tritonroute_violations=0
+magic_drc_violations=0
+lvs_total_errors=0
+lvs_result=CIRCUITS_MATCH_UNIQUELY
+pin_antenna_violations=0
+net_antenna_violations=0
+assessment=PHYSICAL_SIGNOFF_CLEAN
+
+5. Power assessment
+-------------------
+power_estimate_status=NOT_USED_WITHOUT_QUALIFIED_SWITCHING_ACTIVITY
+
+Power values from the default OpenLane metrics are not used for the
+formal A/B comparison because no qualified switching-activity stimulus
+was supplied.
+
+6. Overall assessment
+---------------------
+flow_status=FLOW_COMPLETED
+stage9_assessment=PASS_WITH_DOCUMENTED_QOR_WAIVER
