@@ -8,3 +8,4 @@
 | 2026-10-15 | 7 | Chọn kiến trúc B dùng con trỏ mở rộng | Giữ nguyên giao diện FIFO A, loại bỏ bộ đếm occupancy để tạo phương án so sánh PPA công bằng | Sinh viên |
 | 2026-10-15 | 8 | Dùng cùng golden model và cùng tập kiểm thử của kiến trúc A để verification kiến trúc B | Loại bỏ khác biệt do phương pháp verification và bảo đảm so sánh hai kiến trúc công bằng | Sinh viên |
 | 2026-10-16 | 9 | Dùng cùng cấu hình OpenLane của kiến trúc A cho kiến trúc B và chỉ thay top module cùng file RTL | Bảo đảm so sánh PPA công bằng; 6 clock max-fanout violations được giữ dưới dạng documented QoR waiver vì timing, routing, DRC, LVS và antenna đều đạt | Sinh viên |
+| 2026-10-16 | 10 | Ưu tiên kiến trúc B cho báo cáo và demo cuối kỳ | Trong cùng constraint, B giảm 4.5% cell synthesis, 3.5050% core area, 2.8544% die area và 1.2658% critical path; cả hai signoff sạch. Power chưa đủ dữ liệu nên không tuyên bố B thắng đầy đủ PPA | Sinh viên |
