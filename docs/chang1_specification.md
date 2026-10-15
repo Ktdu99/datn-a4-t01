@@ -79,5 +79,6 @@ Một thao tác ghi được chấp nhận khi:
 
 ```text
 wr_en = 1 và full = 0
+```
 
 **Trạng thái Chặng 1: PASS.**

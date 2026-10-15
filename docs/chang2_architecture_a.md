@@ -38,5 +38,6 @@ Mảng nhớ chứa 16 phần tử, mỗi phần tử rộng 8 bit:
 
 ```text
 memory[0:15]
+```
 
 **Trạng thái Chặng 2: PASS.**

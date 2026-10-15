@@ -107,6 +107,7 @@ sim/logs/sync_fifo_count_seed_3.log
 sim/logs/sync_fifo_count_seed_4.log
 sim/logs/sync_fifo_count_seed_5.log
 sim/logs/sync_fifo_count_seed_20260924.log
+```
 
 ## Hình dạng sóng mô phỏng
 

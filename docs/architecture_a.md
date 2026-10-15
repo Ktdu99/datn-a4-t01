@@ -29,3 +29,4 @@ flowchart LR
     RP --> MEM
     MEM --> RD[rd_data]
     CNT --> FLAGS[full / empty]
+```
