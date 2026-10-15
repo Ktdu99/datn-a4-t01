@@ -1,0 +1,21 @@
+FIFO Architecture B Regression
+====================================
+architecture=B_extended_pointer
+top_module=sync_fifo_pointer
+data_width=8
+depth=16
+random_cycles_per_seed=10000
+golden_model=reference_memory_scoreboard
+testbench_reuse_check=PASS
+rtl_sha256=678342f2a6d33ef3a8d1ea7673b362502f31d2e3c2cafb0e0456d3993afa0899
+
+seed         cycles       checks       errors     result  
+1            10168        30508        0          PASS    
+2            10163        30493        0          PASS    
+3            10160        30484        0          PASS    
+4            10169        30511        0          PASS    
+5            10161        30487        0          PASS    
+20260924     10171        30517        0          PASS    
+
+overall_result=PASS
+seed_count=6

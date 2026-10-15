@@ -1,0 +1,46 @@
+--- Architecture_A_testbench
++++ Architecture_B_testbench
+@@ -1,6 +1,6 @@
+ `timescale 1ns/1ps
+ 
+-module tb_sync_fifo_count;
++module tb_sync_fifo_pointer;
+ 
+     parameter integer DATA_WIDTH    = 8;
+     parameter integer DEPTH         = 16;
+@@ -47,9 +47,9 @@
+     integer i;
+ 
+     /*
+-     * Khối DUT: FIFO phương án A.
++     * Khối DUT: FIFO phương án B.
+      */
+-    sync_fifo_count #(
++    sync_fifo_pointer #(
+         .DATA_WIDTH(DATA_WIDTH),
+         .DEPTH(DEPTH)
+     ) dut (
+@@ -491,12 +491,12 @@
+ 
+     initial begin
+         $dumpfile(
+-            "sim/waveforms/sync_fifo_count.vcd"
++            "sim/waveforms/sync_fifo_pointer.vcd"
+         );
+ 
+         $dumpvars(
+             0,
+-            tb_sync_fifo_count
++            tb_sync_fifo_pointer
+         );
+ 
+         rst_n   = 1'b0;
+@@ -549,7 +549,7 @@
+             "============================================================"
+         );
+ 
+-        $display("FIFO ARCHITECTURE A VERIFICATION SUMMARY");
++        $display("FIFO ARCHITECTURE B VERIFICATION SUMMARY");
+         $display("DATA_WIDTH             : %0d", DATA_WIDTH);
+         $display("DEPTH                  : %0d", DEPTH);
+         $display("Random seed            : %0d", seed);

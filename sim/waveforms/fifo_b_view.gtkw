@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.126 (w)1999-2026 BSI
+[*] Thu Oct 15 16:05:41 2026
+[*]
+[dumpfile] "/home/ktdung/ktdu-datn/datn-a4-t01/sim/waveforms/sync_fifo_pointer.vcd"
+[dumpfile_mtime] "Thu Oct 15 15:58:07 2026"
+[dumpfile_size] 2296903
+[savefile] "/home/ktdung/ktdu-datn/datn-a4-t01/sim/waveforms/fifo_b_view.gtkw"
+[timestart] 0
+[size] 1920 985
+[pos] -27 -24
+*-17.000000 590000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_sync_fifo_pointer.
+[sst_width] 297
+[signals_width] 174
+[sst_expanded] 1
+[sst_vpaned_height] 291
+@28
+tb_sync_fifo_pointer.dut.clk
+tb_sync_fifo_pointer.dut.wr_en
+@22
+tb_sync_fifo_pointer.dut.wr_data[7:0]
+@28
+tb_sync_fifo_pointer.dut.rd_en
+@22
+tb_sync_fifo_pointer.dut.rd_data[7:0]
+tb_sync_fifo_pointer.dut.write_pointer[4:0]
+tb_sync_fifo_pointer.dut.read_pointer[4:0]
+@28
+tb_sync_fifo_pointer.dut.same_address
+tb_sync_fifo_pointer.dut.different_phase
+tb_sync_fifo_pointer.dut.full
+tb_sync_fifo_pointer.dut.empty
+tb_sync_fifo_pointer.dut.overflow
+@29
+tb_sync_fifo_pointer.dut.underflow
+[pattern_trace] 1
+[pattern_trace] 0

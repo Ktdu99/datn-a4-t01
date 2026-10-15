@@ -1,0 +1,6 @@
+FIFO A/B Same-Seed Verification Check
+====================================
+seed=20260924
+random_cycles=10000
+metrics=IDENTICAL
+result=PASS
