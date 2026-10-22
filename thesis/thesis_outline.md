@@ -59,7 +59,8 @@ Thiết kế FIFO không chỉ cần đúng chức năng ở RTL mà còn phải
 - Clock mục tiêu 50 MHz.
 - Không sử dụng SRAM macro.
 - Không đánh giá CDC hoặc asynchronous FIFO.
-- Không kết luận power khi chưa có switching activity đủ điều kiện.
+- Đánh giá công suất ước lượng bằng workload streaming, gate-level zero-delay VCD và nominal SPEF tại TT, 25°C, 1.8 V, 50 MHz.
+- Kết quả power chỉ đại diện cho workload và điều kiện phân tích đã chọn; không phải số liệu đo trên silicon hoặc multi-corner sign-off.
 
 ### 1.5 Phương pháp nghiên cứu
 
@@ -152,7 +153,9 @@ Giải thích standard-cell library, Liberty, LEF, GDS và PDK SKY130.
 - Power.
 - Performance.
 - Area.
-- Giới hạn của kết luận khi chưa có dữ liệu power hợp lệ.
+- Giới hạn của kết quả power ước lượng: chỉ sử dụng workload streaming,
+  gate-level zero-delay VCD và nominal SPEF tại TT, 25°C, 1.8 V, 50 MHz;
+  chưa đánh giá nhiều workload, glitch switching đầy đủ hoặc multi-corner PVT.
 
 ### 2.11 DRC, LVS và antenna
 
@@ -227,9 +230,14 @@ Trình bày test cases, regression, waveform và số lỗi.
 
 - 600 standard cells.
 - Cell area 7130.588800 µm².
-- Setup worst slack +13.81 ns.
-- Hold worst slack +0.22 ns.
-- WNS và TNS bằng 0.
+- Kết quả STA ở bước synthesis/implementation ban đầu:
+  setup worst slack +13.81 ns và hold worst slack +0.22 ns.
+- Kết quả STA độc lập sau routing tại TT, 25°C, 1.8 V:
+  setup WNS +13.380897 ns, setup TNS 0;
+  hold WNS +0.340383 ns, hold TNS 0.
+- Minimum clock period được báo cáo: 2.84 ns.
+- Fmax được báo cáo: 352.34 MHz.
+- Đạt yêu cầu clock mục tiêu 50 MHz.
 
 ### 4.3 Physical implementation kiến trúc A
 
@@ -258,6 +266,19 @@ Trình bày test cases, regression, waveform và số lỗi.
 - Critical path 2.34 ns.
 - DRC, LVS và antenna đều sạch.
 
+### 4.6 Kết quả STA độc lập sau routing kiến trúc B
+
+- Điều kiện phân tích: TT, 25°C, 1.8 V, clock 50 MHz.
+- Setup WNS: +13.414628 ns.
+- Setup TNS: 0.
+- Hold WNS: +0.301747 ns.
+- Hold TNS: 0.
+- Minimum clock period được báo cáo: 3.02 ns.
+- Fmax được báo cáo: 331.60 MHz.
+- Đạt yêu cầu clock mục tiêu 50 MHz.
+- Kết quả chỉ áp dụng cho điều kiện STA đã phân tích,
+  không đại diện cho multi-corner sign-off.
+
 ## 7. Chương 5 – So sánh và thảo luận
 
 ### 5.1 Điều kiện so sánh
@@ -275,7 +296,17 @@ Kiến trúc B giảm:
 
 ### 5.3 So sánh performance
 
-Critical path của B giảm 1.2658% tại cùng constraint 50 MHz.
+- Cả FIFO A và FIFO B đều đáp ứng clock mục tiêu 50 MHz.
+- Kết quả STA độc lập sau routing tại TT, 25°C, 1.8 V:
+  - FIFO A: minimum clock period 2.84 ns, Fmax 352.34 MHz.
+  - FIFO B: minimum clock period 3.02 ns, Fmax 331.60 MHz.
+- Fmax được báo cáo của FIFO A cao hơn FIFO B khoảng 6.26%.
+- Báo cáo physical ghi critical_path_ns của A là 2.37 ns,
+  B là 2.34 ns (B thấp hơn khoảng 1.27%).
+- Không đồng nhất critical_path_ns trong báo cáo physical
+  với minimum clock period hoặc dùng riêng chỉ số này để suy ra Fmax.
+- Kết luận performance chỉ áp dụng cho điều kiện STA đã phân tích;
+  chưa thực hiện multi-corner sign-off.
 
 ### 5.4 So sánh routing
 
@@ -284,39 +315,91 @@ Kiến trúc B giảm:
 - Wire length 2.7146%.
 - Via count 6.0347%.
 
-### 5.5 Giới hạn so sánh power
+### 5.5 So sánh công suất ước lượng
 
-Không so sánh power vì chưa có VCD hoặc SAIF đủ điều kiện và chưa
-xây dựng workload power thống nhất.
+- Điều kiện: TT, 25°C, 1.8 V, clock 50 MHz.
+- Workload streaming: 10000 chu kỳ đo cho mỗi kiến trúc.
+- Phương pháp: gate-level zero-delay VCD kết hợp nominal SPEF.
+- FIFO A:
+  - Internal power: 0.4939972 mW.
+  - Switching power: 0.2217526 mW.
+  - Leakage power: 5.460372 nW.
+  - Total power: 0.7157553 mW.
+- FIFO B:
+  - Internal power: 0.4885781 mW.
+  - Switching power: 0.2236671 mW.
+  - Leakage power: 5.384078 nW.
+  - Total power: 0.7122506 mW.
+- Tổng công suất ước lượng của FIFO B thấp hơn FIFO A khoảng 0.49%.
+- Đây là kết quả ước lượng cho một workload streaming;
+  zero-delay VCD không phản ánh đầy đủ glitch switching.
+- Không xem kết quả này là công suất đo trên silicon
+  hoặc kết luận power cho mọi workload và điều kiện PVT.
+- Bằng chứng: `results/power_summary/power_comparison.md`.
 
 ### 5.6 Phân tích nguyên nhân
 
 Phân tích ảnh hưởng của logic `data_count` và logic con trỏ mở rộng
 đến số cell, routing và critical path.
 
-### 5.7 Threats to validity
+### 5.7 Threats to validity – Giới hạn nghiên cứu
 
-- Chỉ khảo sát cấu hình 8 × 16.
-- Chỉ sử dụng một PDK và một standard-cell library.
-- Chỉ khảo sát constraint 50 MHz.
-- Memory được ánh xạ thành flip-flop, không dùng SRAM macro.
-- Chưa đánh giá power động có switching activity.
+- Chỉ khảo sát cấu hình FIFO có DATA_WIDTH=8 và DEPTH=16.
+- Chỉ sử dụng PDK SKY130 và thư viện `sky130_fd_sc_hd`.
+- Hai kiến trúc được triển khai với clock mục tiêu 50 MHz.
+- Memory được ánh xạ thành flip-flop, không sử dụng SRAM macro.
+- STA độc lập sau routing được thực hiện tại TT, 25°C, 1.8 V;
+  chưa có multi-corner sign-off.
+- Công suất được ước lượng từ gate-level zero-delay VCD
+  kết hợp nominal SPEF với một workload streaming 10000 chu kỳ.
+- Zero-delay VCD không phản ánh đầy đủ glitch switching;
+  chưa đánh giá nhiều workload và nhiều điều kiện PVT.
+- Kết quả power là ước lượng bằng công cụ EDA,
+  không phải số liệu đo trên silicon.
+- Mỗi kiến trúc còn 6 clock max-fanout violations
+  được ghi nhận bằng QoR waiver; không coi đây là sign-off sạch
+  đối với mọi kiểm tra timing và thiết kế vật lý.
+- Các kết luận so sánh chỉ áp dụng cho cấu hình,
+  thư viện và điều kiện thí nghiệm đã thực hiện.
 
 ## 8. Chương 6 – Kết luận và hướng phát triển
 
 ### 6.1 Kết luận
 
-Tóm tắt kết quả chức năng, synthesis, timing, physical implementation
-và so sánh hai kiến trúc.
+- Thiết kế và triển khai hai kiến trúc synchronous FIFO 16 × 8:
+  FIFO A dùng bộ đếm và FIFO B dùng con trỏ mở rộng.
+- Verification tổng hợp: 12/12 lượt regression PASS,
+  không phát hiện lỗi trong các workload đã kiểm thử.
+- Cả hai kiến trúc được triển khai đến GDSII bằng ASIC flow
+  mã nguồn mở trên SKY130.
+- Cả hai đáp ứng yêu cầu timing tại clock mục tiêu 50 MHz.
+- FIFO B giảm die area khoảng 2.85% và core area khoảng 3.51%.
+- FIFO B có tổng công suất ước lượng thấp hơn khoảng 0.49%
+  trong workload streaming đã phân tích.
+- FIFO A có Fmax được báo cáo cao hơn FIFO B khoảng 6.26%
+  theo STA độc lập sau routing.
+- Không có kiến trúc thắng tuyệt đối trên tất cả chỉ số PPA.
+- DRC, LVS, antenna và routing không ghi nhận lỗi trong
+  các phép kiểm tra đã thực hiện; mỗi kiến trúc vẫn có
+  6 clock max-fanout violations được ghi nhận bằng QoR waiver.
+- Các kết luận chỉ áp dụng cho cấu hình và điều kiện
+  thực nghiệm đã khảo sát.
 
 ### 6.2 Hướng phát triển
 
-- Thử nghiệm nhiều depth và data width.
+- Thử nghiệm nhiều giá trị DATA_WIDTH và DEPTH.
 - Thử nghiệm nhiều clock constraint.
-- Đánh giá power với VCD hoặc SAIF hợp lệ.
-- Dùng SRAM macro.
-- Phát triển asynchronous FIFO.
-- Thực hiện formal verification.
+- Mở rộng STA sang nhiều process corner, điện áp
+  và nhiệt độ để tiến tới multi-corner sign-off.
+- Đánh giá power với nhiều workload và switching activity
+  phản ánh chính xác hơn ảnh hưởng của glitch.
+- Khảo sát power bằng mô phỏng gate-level có timing
+  thay vì chỉ sử dụng zero-delay VCD.
+- Nghiên cứu khắc phục clock max-fanout violations
+  và đánh giá lại các chỉ số QoR.
+- Khảo sát sử dụng SRAM macro thay cho flip-flop memory.
+- Phát triển asynchronous FIFO và kiểm chứng CDC.
+- Bổ sung formal verification.
 - Tích hợp FIFO vào một hệ thống SoC lớn hơn.
 
 ## 9. Tài liệu tham khảo
