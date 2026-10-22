@@ -53,29 +53,65 @@ vật lý đối với cấu hình FIFO 16x8 đang khảo sát.
 
 ## 4. So sánh thời gian (Performance)
 
+### 4.1. Kết quả từ Physical Design
+
 | Chỉ tiêu | FIFO A | FIFO B |
 |---|---:|---:|
 | Chu kỳ clock mục tiêu (ns) | 20 | 20 |
-| Post-route WNS (ns) | 0.0 | 0.0 |
-| Post-route TNS (ns) | 0.0 | 0.0 |
+| Post-route WNS được báo cáo (ns) | 0.0 | 0.0 |
+| Post-route TNS được báo cáo (ns) | 0.0 | 0.0 |
 | Độ trễ đường được báo cáo (ns) | 2.37 | 2.34 |
 | Số đường setup có slack âm được báo cáo | 0 | 0 |
 
-Nhận xét:
+Các báo cáo Physical Design không ghi nhận setup slack âm.
 
-Cả hai kiến trúc đều không có đường setup mang
-slack âm trong báo cáo kiểm tra sau routing.
+Đường được báo cáo của FIFO A có endpoint `empty`,
+trong khi FIFO B có endpoint `full`.
 
-Đường được báo cáo của FIFO A có endpoint empty,
-trong khi FIFO B có endpoint full.
+Không sử dụng trực tiếp các giá trị 2.37 ns và
+2.34 ns để suy ra Fmax, vì đây không nhất thiết
+là các đường giới hạn chu kỳ clock.
 
-Hai đường này không nhất thiết là đường giới hạn
-tần số clock tối đa của toàn bộ thiết kế.
+### 4.2. Kết quả STA độc lập sau Routing
 
-Do đó, không sử dụng trực tiếp các giá trị
-2.37 ns và 2.34 ns để suy ra Fmax.
+STA được thực hiện bằng OpenROAD/OpenSTA với
+DEF sau Routing, SDC và SPEF nominal.
 
-Bằng chứng hold WNS/TNS độc lập chưa được xác lập.
+Điều kiện phân tích: SKY130A, thư viện
+`sky130_fd_sc_hd`, corner TT, 25°C, 1.8 V.
+
+| Chỉ tiêu | FIFO A | FIFO B |
+|---|---:|---:|
+| Setup worst slack (ns) | +13.380897 | +13.414628 |
+| Setup TNS (ns) | 0.0 | 0.0 |
+| Hold worst slack (ns) | +0.340383 | +0.301747 |
+| Hold TNS (ns) | 0.0 | 0.0 |
+| Minimum clock period báo cáo (ns) | 2.84 | 3.02 |
+| Fmax OpenSTA báo cáo (MHz) | 352.34 | 331.60 |
+| Setup tại 50 MHz | MET | MET |
+| Hold tại 50 MHz | MET | MET |
+
+Worst slack trong bảng STA là giá trị có dấu
+được OpenSTA trả về. WNS bằng 0 trong bảng
+Physical Design thể hiện cách báo cáo không
+có slack âm, không mâu thuẫn với worst slack dương.
+
+FIFO B có Setup worst slack lớn hơn khoảng
+0.033731 ns. FIFO A có Hold worst slack
+lớn hơn khoảng 0.038636 ns.
+
+Theo `report_clock_min_period`, FIFO A có
+Fmax được báo cáo cao hơn FIFO B khoảng 6.26%.
+
+Kết quả Fmax là ước lượng STA trong điều kiện
+đang xét, không phải tần số đo trên silicon.
+
+Cả hai kiến trúc không xuất hiện cảnh báo
+từ `check_setup -verbose`. Tuy nhiên, điều này
+chưa chứng minh đầy đủ độ bao phủ timing.
+
+Chưa thực hiện phân tích đa corner và chưa
+đạt mức xác nhận sign-off STA hoàn chỉnh.
 
 ## 5. So sánh công suất (Power)
 
@@ -160,11 +196,18 @@ lần triển khai đang khảo sát.
 
 Về thời gian:
 
-Cả hai kiến trúc đáp ứng các kiểm tra setup
-được báo cáo tại mục tiêu 50 MHz.
+Cả hai kiến trúc đáp ứng Setup và Hold tại
+mục tiêu 50 MHz trong mô hình STA đã kiểm tra.
 
-Chưa đủ bằng chứng để xác định kiến trúc nào
-có Fmax cao hơn.
+FIFO B có Setup worst slack nhỉnh hơn,
+trong khi FIFO A có Hold worst slack lớn hơn.
+
+Theo kết quả `report_clock_min_period`,
+FIFO A có Fmax STA được báo cáo cao hơn
+FIFO B (352.34 MHz so với 331.60 MHz).
+
+Kết luận này chỉ áp dụng cho corner TT,
+25°C, 1.8 V và SPEF nominal.
 
 Về công suất:
 
@@ -190,11 +233,14 @@ Kiến trúc B cũng có tổng công suất ước tính
 thấp hơn một lượng nhỏ trong workload Streaming.
 
 Cả hai kiến trúc đều vượt qua kiểm thử chức năng,
-DRC, LVS và các kiểm tra setup được báo cáo
-ở mục tiêu clock 50 MHz.
+DRC, LVS và đáp ứng Setup/Hold tại clock 50 MHz
+trong điều kiện STA đã phân tích.
 
-Chưa có đủ bằng chứng để kết luận kiến trúc B
-có tần số tối đa cao hơn hoặc luôn tiêu thụ
+FIFO A có Fmax được OpenSTA báo cáo cao hơn
+FIFO B trong corner TT với SPEF nominal.
+
+Chưa có đủ bằng chứng để kết luận kiến trúc nào
+luôn đạt tần số tối đa cao hơn hoặc luôn tiêu thụ
 ít công suất hơn trong mọi điều kiện.
 
 Kết quả so sánh cần được hiểu trong phạm vi
@@ -211,3 +257,8 @@ thực nghiệm đã sử dụng.
 - results/power_summary/B_power.txt
 - results/verification_summary/verification_summary.md
 - results/verification_summary/regression_summary.txt
+- results/sta_summary/sta_comparison.md
+- results/sta_summary/A_sta.log
+- results/sta_summary/B_sta.log
+- results/sta_summary/A_check_setup.log
+- results/sta_summary/B_check_setup.log
