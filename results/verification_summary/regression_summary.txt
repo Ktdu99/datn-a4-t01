@@ -1,0 +1,17 @@
+FIFO A/B REGRESSION
+
+ARCH  SEED        CYCLES    CHECKS    ERRORS  RESULT
+A     1           10168     30508     0       PASS
+A     2           10163     30493     0       PASS
+A     3           10160     30484     0       PASS
+A     4           10169     30511     0       PASS
+A     5           10161     30487     0       PASS
+A     20260924    10171     30517     0       PASS
+B     1           10168     30508     0       PASS
+B     2           10163     30493     0       PASS
+B     3           10160     30484     0       PASS
+B     4           10169     30511     0       PASS
+B     5           10161     30487     0       PASS
+B     20260924    10171     30517     0       PASS
+
+OVERALL_RESULT=PASS
