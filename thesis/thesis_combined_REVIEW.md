@@ -6797,6 +6797,88 @@ Các kết quả là cơ sở
 giới hạn và hướng phát triển
 trong chương kết luận của luận văn.
 
+## 4.9. Kiểm thử mở rộng tham số và đối chiếu hai kiến trúc
+
+### 4.9.1. Mục tiêu và phương pháp
+
+Sau khi hoàn thành kiểm chứng cấu hình cơ sở FIFO 8 × 16,
+đề tài bổ sung hai nhóm kiểm thử T16 và T17.
+
+T16 kiểm tra độc lập hai kiến trúc FIFO A và FIFO B
+trên bốn cấu hình DATA_WIDTH × DEPTH:
+8 × 8, 8 × 16, 8 × 32 và 16 × 16.
+
+Mỗi cấu hình chạy với hai seed 1 và 20260924,
+bao gồm các directed tests và 2.000 chu kỳ random.
+
+T17 sử dụng một testbench chung để cấp cùng tín hiệu
+đầu vào cho hai kiến trúc tại cùng thời điểm.
+
+Năm đầu ra rd_data, full, empty, overflow và underflow
+được so sánh trực tiếp giữa FIFO A và FIFO B,
+đồng thời đối chiếu với mô hình FIFO tham chiếu.
+
+Các tình huống kiểm tra bao gồm FIFO đầy, FIFO rỗng,
+overflow, underflow, đọc/ghi đồng thời,
+wrap-around và reset khi FIFO đang chứa dữ liệu.
+
+### 4.9.2. Kết quả kiểm thử
+
+**Bảng 4.29. Tổng hợp kết quả kiểm thử mở rộng T16 và T17**
+
+| Chỉ tiêu | T16 | T17 | Tổng |
+|---|---:|---:|---:|
+| Lượt mô phỏng | 16 | 8 | 24 |
+| Chu kỳ mô phỏng | 34.920 | 17.383 | 52.303 |
+| Phép kiểm tra | 104.824 | 260.985 | 365.809 |
+| Lỗi phát hiện | 0 | 0 | 0 |
+| Kết quả | PASS | PASS | PASS |
+
+T16 hoàn thành 16/16 lượt kiểm thử, không phát hiện lỗi.
+Các lượt này bao gồm hai kiến trúc, bốn cấu hình
+và hai seed cho từng cấu hình.
+
+T17 hoàn thành 8/8 lượt mô phỏng, không phát hiện lỗi.
+Trong mỗi lượt, cả hai kiến trúc được kiểm tra đồng thời.
+
+Tổng cộng, hai nhóm thí nghiệm bổ sung thực hiện
+52.303 chu kỳ mô phỏng và 365.809 phép kiểm tra,
+không phát hiện sai lệch trong phạm vi thử nghiệm.
+
+### 4.9.3. Bằng chứng và giới hạn
+
+Script tái lập T16:
+`scripts/run_t16_parameter_matrix.py`.
+
+Script tái lập T17:
+`scripts/run_t17_equivalence_matrix.py`.
+
+Testbench đối chiếu trực tiếp hai kiến trúc:
+`tb/tb_fifo_equivalence.sv`.
+
+Báo cáo kiểm toán:
+`results/verification_summary/T16_T17_INDEPENDENT_AUDIT.md`.
+
+Các manifest, simulation log và waveform
+được lưu tại `results/verification_t16/`
+và `results/verification_t17/`.
+
+Các phép kiểm thử hỗ trợ kết luận hai thiết kế
+hoạt động đúng theo đặc tả trong các cấu hình
+và chuỗi kích thích đã khảo sát.
+
+T17 là kiểm chứng tương đương dựa trên mô phỏng
+và scoreboard, không phải chứng minh
+tương đương hình thức.
+
+Các kết quả này không thay thế STA, DRC, LVS
+hoặc kiểm tra signoff vật lý.
+
+Mặc dù đã kiểm thử chức năng ở bốn cấu hình,
+các kết quả so sánh PPA hiện tại vẫn chỉ áp dụng
+cho cấu hình FIFO 8 × 16 và điều kiện thực nghiệm
+được ghi nhận trong báo cáo vật lý.
+
 # CHƯƠNG 5. SO SÁNH VÀ THẢO LUẬN
 
 ## 5.1. Điều kiện so sánh
@@ -7507,18 +7589,126 @@ FIFO A có lợi thế về Fmax
 giữa hai kiến trúc FIFO
 trong cấu hình đã khảo sát.
 
+### 5.6.6. Đối chiếu ánh xạ cổng logic và đường timing
+
+Để làm rõ hơn sự khác biệt giữa hai kiến trúc,
+đề tài đối chiếu chi tiết các loại standard cell
+trong báo cáo synthesis và các đường setup
+được ghi lại sau routing.
+
+**Đối chiếu ánh xạ cell sau synthesis.**
+
+FIFO A sử dụng 600 standard cell,
+trong khi FIFO B sử dụng 573 cell,
+giảm 27 cell, tương ứng 4,50%.
+
+Các nhóm `dfxtp_2` và `buf_1`
+lần lượt giảm 3 và 5 cell ở FIFO B.
+
+Tuy nhiên, thay đổi không diễn ra đồng đều
+ở tất cả các loại cổng logic tổ hợp.
+
+Cụ thể, `and3_2` giảm từ 12 xuống 3 cell;
+`a21o_2` giảm từ 10 xuống 2 cell.
+
+Ngược lại, `o211a_2` tăng từ 0 lên 11 cell
+và `a211o_2` tăng từ 0 lên 8 cell.
+
+Điều này cho thấy hai mô tả RTL
+được ánh xạ thành các tổ hợp cổng khác nhau.
+Số lượng cell giảm ròng là kết quả
+của nhiều nhóm cell tăng và giảm,
+không phải chỉ do giảm số flip-flop.
+
+Tổng diện tích cell sau synthesis
+giảm từ 7.130,5888 µm² xuống 6.904,1216 µm²,
+tương ứng mức giảm khoảng 3,18%.
+
+Cần phân biệt diện tích cell sau synthesis
+với diện tích core và diện tích die
+trong báo cáo physical design.
+
+**Đối chiếu đường setup được báo cáo.**
+
+Trong báo cáo STA sau routing,
+đường setup đầu tiên của FIFO A
+bắt đầu từ flip-flop `_1045_`
+và kết thúc tại cổng đầu ra `empty`.
+
+Đường này đi qua các cổng logic
+`or4_2` và `nor2_1`
+trước khi tới tầng đệm đầu ra.
+
+Ở FIFO B, đường setup đầu tiên
+bắt đầu từ flip-flop `_984_`
+và kết thúc tại đầu ra `full`.
+
+Đường tương ứng chứa các cổng
+`xor2_1`, `or4_4` và `nor2_2`
+trước tầng đệm đầu ra.
+
+Sự khác biệt về loại cổng trên các đường
+được báo cáo là bằng chứng cho thấy
+logic tạo trạng thái `full` và `empty`
+được hiện thực khác nhau sau ánh xạ
+và tối ưu physical design.
+
+Tuy nhiên, đây là các đường
+register-to-output được in trong báo cáo STA.
+Không thể chỉ dựa vào chúng để xác định
+đường register-to-register giới hạn chu kỳ clock,
+hay khẳng định nguyên nhân trực tiếp
+của chênh lệch Fmax.
+
+Theo chỉ tiêu chu kỳ clock tối thiểu
+được báo cáo riêng, Fmax của FIFO A
+là 352,34 MHz và FIFO B là 331,60 MHz.
+
+Như vậy, FIFO B có Fmax thấp hơn
+khoảng 5,89% trong điều kiện đo đã khảo sát.
+
+**Đánh giá mức độ chứng minh.**
+
+Kết quả tổng hợp và STA xác nhận được
+sự khác biệt về số cell, loại cổng,
+diện tích và hiệu năng thời gian.
+
+Chúng cũng phù hợp với nhận định rằng
+hai cơ chế quản lý trạng thái FIFO
+tạo ra các cấu trúc logic khác nhau.
+
+Tuy nhiên, việc quy từng cell hoặc
+từng mức trễ cho một khối RTL cụ thể
+còn cần thêm truy vết netlist và
+báo cáo timing chuyên biệt.
+
+Vì vậy, đề tài kết luận có sự đánh đổi
+Area–Timing được quan sát bằng thực nghiệm,
+nhưng không khẳng định đã chứng minh
+đầy đủ quan hệ nhân quả ở cấp từng cổng.
+
+Báo cáo đối chiếu chi tiết được lưu tại
+`results/ppa_root_cause/cell_and_timing_comparison.md`.
+
 ## 5.7. Threats to validity – Giới hạn nghiên cứu
 
 Các kết luận của đề tài
 có một số giới hạn thực nghiệm cần làm rõ.
 
-Thứ nhất, chỉ khảo sát một cấu hình FIFO
-với DATA_WIDTH bằng 8
+Thứ nhất, kết quả so sánh PPA chỉ khảo sát
+cấu hình FIFO có DATA_WIDTH bằng 8
 và DEPTH bằng 16.
 
-Kết quả chưa chứng minh
-xu hướng tương tự ở các cấu hình
-có độ rộng hoặc độ sâu lớn hơn.
+Đề tài đã bổ sung kiểm thử chức năng T16/T17
+cho bốn cấu hình 8 × 8, 8 × 16,
+8 × 32 và 16 × 16.
+
+Tuy nhiên, các cấu hình bổ sung này chưa được
+tổng hợp và triển khai vật lý để đánh giá PPA.
+
+Do đó, chưa có đủ bằng chứng khẳng định
+xu hướng khác biệt PPA được duy trì
+khi tăng độ rộng hoặc độ sâu FIFO.
 
 Thứ hai, hai kiến trúc được triển khai
 trên PDK SKY130A
