@@ -1,0 +1,2308 @@
+# CHƯƠNG 3 – PHƯƠNG PHÁP VÀ THIẾT KẾ HỆ THỐNG
+
+**Trạng thái: DRAFT – IN PROGRESS.**
+
+## 3.1. Câu hỏi nghiên cứu
+
+### 3.1.1. Định hướng nghiên cứu
+
+Đề tài tập trung vào quá trình thiết kế, kiểm chứng
+và triển khai vật lý một IP FIFO đồng bộ từ mô tả
+RTL đến dữ liệu layout GDSII bằng công cụ EDA
+mã nguồn mở.
+
+Đối tượng nghiên cứu là FIFO có độ rộng dữ liệu
+8 bit, độ sâu 16 phần tử và sử dụng một miền
+xung nhịp chung cho thao tác đọc và ghi.
+
+Đề tài triển khai hai phương án kiến trúc có cùng
+giao diện và yêu cầu chức năng nhưng khác nhau
+về cách xác định trạng thái full và empty.
+
+Kiến trúc A sử dụng bộ đếm số phần tử hợp lệ
+(count-based), trong khi kiến trúc B sử dụng
+con trỏ mở rộng (extended-pointer).
+
+Việc xây dựng hai kiến trúc nhằm đánh giá
+ảnh hưởng của phương pháp tổ chức logic điều
+khiển đến kết quả triển khai ASIC.
+
+Trên cơ sở đó, đề tài xác định ba câu hỏi
+nghiên cứu chính, ký hiệu RQ1, RQ2 và RQ3.
+
+### 3.1.2. RQ1 – Khả năng đáp ứng đặc tả chức năng
+
+Câu hỏi nghiên cứu thứ nhất được đặt ra:
+
+RQ1: Hai kiến trúc FIFO có đáp ứng đúng
+đặc tả chức năng đã xác định hay không?
+
+Để trả lời câu hỏi này, hai kiến trúc được
+kiểm chứng bằng môi trường testbench tự
+kiểm tra với mô hình tham chiếu.
+
+Các trường hợp kiểm chứng bao gồm ghi dữ
+liệu, đọc dữ liệu, đọc và ghi đồng thời,
+quay vòng con trỏ, reset và các điều kiện
+biên khi FIFO đầy hoặc rỗng.
+
+Bên cạnh các kịch bản có định hướng,
+đề tài sử dụng kiểm thử hồi quy với
+nhiều seed để mở rộng phạm vi kích thích.
+
+Kết quả được đánh giá thông qua trạng
+thái PASS/FAIL, số lỗi được phát hiện
+và sự phù hợp giữa đầu ra RTL với
+mô hình tham chiếu.
+
+Việc kiểm chứng giúp cung cấp bằng chứng
+về tính đúng chức năng trong phạm vi
+các trường hợp đã thực hiện.
+
+### 3.1.3. RQ2 – Khả năng triển khai ASIC
+
+Câu hỏi nghiên cứu thứ hai được đặt ra:
+
+RQ2: Hai kiến trúc FIFO có thể được
+triển khai đến GDSII và đáp ứng
+mục tiêu clock 50 MHz hay không?
+
+Để trả lời, cả hai kiến trúc được đưa
+qua quy trình thiết kế ASIC số sử dụng
+các công cụ EDA mã nguồn mở.
+
+Quy trình bao gồm tổng hợp logic,
+phân tích thời gian, quy hoạch mặt bằng,
+bố trí phần tử, xây dựng mạng clock,
+định tuyến và các bước kiểm tra vật lý.
+
+Công nghệ sử dụng là SKY130A cùng
+thư viện standard cell sky130_fd_sc_hd.
+
+Ràng buộc clock mục tiêu là 50 MHz,
+tương ứng chu kỳ 20 ns.
+
+Kết quả được xem xét thông qua khả năng
+hoàn thành các giai đoạn triển khai,
+báo cáo thời gian sau định tuyến,
+trạng thái DRC, LVS, antenna và
+khả năng tạo dữ liệu GDSII.
+
+Các kết luận về thời gian và kiểm tra
+vật lý được giới hạn trong cấu hình
+công cụ, PDK và điều kiện thực nghiệm
+đã sử dụng, không đồng nghĩa với
+sign-off đầy đủ cho sản xuất.
+
+### 3.1.4. RQ3 – Ảnh hưởng của lựa chọn kiến trúc
+
+Câu hỏi nghiên cứu thứ ba được đặt ra:
+
+RQ3: Phương pháp xác định trạng thái
+full và empty ảnh hưởng như thế nào
+đến diện tích và hiệu năng thời gian
+của hai kiến trúc FIFO?
+
+Để trả lời, đề tài so sánh hai kiến
+trúc trong cùng điều kiện công nghệ,
+thư viện standard cell và ràng buộc
+thiết kế.
+
+Các chỉ số diện tích bao gồm số lượng
+phần tử sau tổng hợp, số lượng phần
+tử sau triển khai và diện tích vật lý
+được báo cáo bởi quy trình ASIC.
+
+Hiệu năng thời gian được đánh giá
+thông qua kết quả STA, bao gồm slack,
+chu kỳ clock tối thiểu và tần số
+tối đa ước tính trong điều kiện
+phân tích đã xác định.
+
+Ngoài hai nhóm chỉ số chính,
+đề tài xem xét công suất ước lượng
+để bổ sung góc nhìn về đánh đổi PPA.
+
+Việc đánh giá công suất được giới hạn
+trong workload streaming và điều kiện
+phân tích danh định đã lựa chọn.
+
+Kết quả so sánh được sử dụng để nhận
+diện ưu điểm, hạn chế và sự đánh đổi
+của từng kiến trúc trong phạm vi
+thực nghiệm, thay vì khẳng định
+một phương án luôn tối ưu.
+
+### 3.1.5. Phương pháp trả lời các câu hỏi nghiên cứu
+
+Ba câu hỏi nghiên cứu được giải quyết
+theo trình tự từ kiểm chứng chức năng
+đến triển khai vật lý và đánh giá
+kết quả thực nghiệm.
+
+Trước hết, RTL của hai kiến trúc cần
+được kiểm chứng theo cùng đặc tả
+để tạo cơ sở so sánh.
+
+Tiếp theo, hai kiến trúc được triển
+khai qua cùng quy trình ASIC để đánh
+giá khả năng đáp ứng các yêu cầu
+thiết kế và kiểm tra vật lý.
+
+Cuối cùng, các báo cáo được tổng hợp
+và đối chiếu để phân tích tác động
+của lựa chọn kiến trúc đến diện tích,
+thời gian và công suất ước lượng.
+
+Cách tiếp cận này giúp phân biệt
+rõ ba nội dung: tính đúng chức năng,
+khả năng triển khai và hiệu quả
+của từng phương án kiến trúc.
+
+## 3.2. Đặc tả FIFO
+
+### 3.2.1. Tổng quan đặc tả thiết kế
+
+IP được thiết kế là FIFO đồng bộ (Synchronous FIFO)
+thực hiện lưu trữ và cung cấp dữ liệu theo nguyên
+tắc vào trước, ra trước (First-In First-Out) [R1].
+
+FIFO sử dụng một tín hiệu clock chung để điều khiển
+các thao tác đọc, ghi và cập nhật trạng thái.
+
+Trong phạm vi thực nghiệm, IP được cấu hình với
+độ rộng dữ liệu 8 bit và độ sâu 16 phần tử,
+tương ứng dung lượng lưu trữ logic 128 bit.
+
+Hai kiến trúc được thiết kế với cùng giao diện
+và cùng quy tắc hoạt động để bảo đảm cơ sở
+so sánh về chức năng và kết quả triển khai ASIC.
+
+Kiến trúc A sử dụng module sync_fifo_count,
+còn kiến trúc B sử dụng module sync_fifo_pointer.
+
+Khác biệt giữa hai kiến trúc nằm chủ yếu ở
+cơ chế theo dõi mức sử dụng FIFO và xác định
+hai trạng thái full và empty.
+
+### 3.2.2. Tham số cấu hình
+
+Hai tham số cấu hình chính của IP bao gồm:
+
+- DATA_WIDTH: độ rộng của mỗi phần tử dữ liệu.
+- DEPTH: số phần tử tối đa được lưu trong FIFO.
+
+Cấu hình được lựa chọn trong đề tài là:
+
+- DATA_WIDTH = 8 bit.
+- DEPTH = 16 phần tử.
+- Dung lượng lưu trữ = 8 x 16 = 128 bit.
+
+Độ rộng địa chỉ được xác định bằng biểu thức:
+
+- PTR_WIDTH = ceil(log2(DEPTH)).
+
+Đối với DEPTH bằng 16, PTR_WIDTH bằng 4 bit,
+cho phép biểu diễn các địa chỉ từ 0 đến 15.
+
+Trong kiến trúc A, bộ đếm số phần tử sử dụng
+độ rộng được xác định theo biểu thức:
+
+- CNT_WIDTH = ceil(log2(DEPTH + 1)).
+
+Do cần biểu diễn các giá trị từ 0 đến 16,
+bộ đếm data_count có độ rộng 5 bit.
+
+Trong kiến trúc B, mỗi con trỏ có thêm một
+bit pha để phân biệt các lần quay vòng:
+
+- EXT_PTR_WIDTH = PTR_WIDTH + 1 = 5 bit.
+
+RTL hiện tại được xây dựng với giả định
+DEPTH là lũy thừa của 2 và không nhỏ hơn 2.
+
+Mặc dù RTL có tham số cấu hình, kết quả kiểm chứng
+và triển khai vật lý trong đề tài tập trung
+vào cấu hình FIFO 16 x 8.
+
+Các giá trị tham số khác không mặc nhiên được
+xem là đã kiểm chứng tương đương.
+
+### 3.2.3. Giao diện tín hiệu
+
+Hai kiến trúc có cùng các tín hiệu vào và ra,
+bao gồm:
+
+- clk: tín hiệu clock đầu vào, độ rộng 1 bit.
+- rst_n: tín hiệu reset mức thấp, độ rộng 1 bit.
+- wr_en: tín hiệu yêu cầu ghi, độ rộng 1 bit.
+- wr_data: dữ liệu ghi đầu vào, rộng DATA_WIDTH bit.
+- rd_en: tín hiệu yêu cầu đọc, độ rộng 1 bit.
+- rd_data: dữ liệu đọc đầu ra, rộng DATA_WIDTH bit.
+- full: cờ thông báo FIFO đầy, độ rộng 1 bit.
+- empty: cờ thông báo FIFO rỗng, độ rộng 1 bit.
+- overflow: cờ báo yêu cầu ghi khi đầy, rộng 1 bit.
+- underflow: cờ báo yêu cầu đọc khi rỗng, rộng 1 bit.
+
+Tín hiệu wr_en và rd_en biểu diễn yêu cầu thao tác,
+không đồng nghĩa với việc thao tác luôn được thực hiện.
+
+Hai tín hiệu full và empty phản ánh trạng thái
+lưu trữ hiện tại, được xác định bằng logic tổ hợp
+từ bộ đếm hoặc các con trỏ tương ứng.
+
+Các tín hiệu rd_data, overflow và underflow
+được cập nhật bằng logic tuần tự tại cạnh lên clock.
+
+### 3.2.4. Cơ chế reset
+
+Cả hai kiến trúc sử dụng reset đồng bộ,
+tác động ở mức thấp thông qua tín hiệu rst_n.
+
+Trong RTL, reset được xử lý bên trong khối
+always @(posedge clk). Vì vậy, trạng thái reset
+được cập nhật tại cạnh lên clock khi rst_n bằng 0.
+
+Khi reset có hiệu lực, các con trỏ ghi và đọc
+được đưa về giá trị 0.
+
+Đối với kiến trúc A, bộ đếm data_count cũng
+được đưa về giá trị 0.
+
+Cả hai kiến trúc đưa thanh ghi rd_data về 0,
+đồng thời xóa hai cờ overflow và underflow.
+
+Sau khi trạng thái được khởi tạo, FIFO rỗng:
+
+- empty = 1.
+- full = 0.
+
+Reset không thực hiện xóa từng phần tử của
+mảng memory trong RTL hiện tại.
+
+Dữ liệu cũ còn tồn tại trong phần tử nhớ
+không được xem là dữ liệu FIFO hợp lệ
+sau khi các con trỏ và trạng thái được reset.
+
+### 3.2.5. Quy tắc ghi dữ liệu
+
+Một yêu cầu ghi được tạo khi wr_en bằng 1.
+
+Thao tác ghi chỉ được chấp nhận khi FIFO
+chưa ở trạng thái đầy.
+
+Điều kiện chấp nhận ghi được biểu diễn:
+
+- write_accept = wr_en && !full.
+
+Khi write_accept bằng 1, dữ liệu wr_data
+được ghi vào vị trí memory tương ứng
+với địa chỉ của con trỏ ghi.
+
+Sau thao tác ghi hợp lệ, con trỏ ghi
+được cập nhật đến vị trí tiếp theo.
+
+Nếu FIFO đang đầy, yêu cầu ghi không được
+chấp nhận và không làm thay đổi nội dung
+mảng nhớ hoặc con trỏ ghi.
+
+Trong trường hợp này, overflow được cập nhật
+tại cạnh lên clock dựa trên wr_en và full.
+
+### 3.2.6. Quy tắc đọc dữ liệu
+
+Một yêu cầu đọc được tạo khi rd_en bằng 1.
+
+Thao tác đọc chỉ được chấp nhận khi FIFO
+không ở trạng thái rỗng.
+
+Điều kiện chấp nhận đọc được biểu diễn:
+
+- read_accept = rd_en && !empty.
+
+Khi read_accept bằng 1, dữ liệu tại vị trí
+memory do con trỏ đọc chỉ định được cập nhật
+vào thanh ghi rd_data tại cạnh lên clock.
+
+Sau thao tác đọc hợp lệ, con trỏ đọc
+được chuyển đến vị trí tiếp theo.
+
+Do rd_data là đầu ra có đăng ký,
+dữ liệu đọc được cập nhật theo cạnh clock,
+không phải đầu ra tổ hợp trực tiếp từ memory.
+
+Nếu FIFO đang rỗng, yêu cầu đọc bị từ chối.
+Con trỏ đọc và rd_data không được cập nhật
+bởi thao tác đọc không hợp lệ.
+
+Khi đó, underflow được cập nhật tại cạnh
+lên clock theo điều kiện rd_en và empty.
+
+### 3.2.7. Xác định trạng thái full và empty
+
+Trong kiến trúc A, trạng thái FIFO được
+xác định từ bộ đếm data_count:
+
+- empty = (data_count == 0).
+- full = (data_count == DEPTH).
+
+Khi chỉ ghi hợp lệ, data_count tăng một đơn vị.
+
+Khi chỉ đọc hợp lệ, data_count giảm một đơn vị.
+
+Nếu cả hai thao tác cùng được chấp nhận
+hoặc không thao tác nào được chấp nhận,
+giá trị data_count được giữ nguyên.
+
+Trong kiến trúc B, trạng thái được xác định
+thông qua quan hệ giữa con trỏ ghi và con trỏ đọc.
+
+Trạng thái empty xuất hiện khi toàn bộ
+hai con trỏ mở rộng bằng nhau.
+
+Trạng thái full xuất hiện khi phần địa chỉ
+của hai con trỏ bằng nhau nhưng bit pha khác nhau.
+
+Các biểu thức tương ứng là:
+
+- empty = (write_pointer == read_pointer).
+- full = same_address && different_phase.
+
+Hai phương pháp được trình bày chi tiết
+trong Mục 3.3 và Mục 3.4.
+
+### 3.2.8. Xử lý yêu cầu đọc và ghi đồng thời
+
+Khi wr_en và rd_en cùng bằng 1,
+các thao tác được xét độc lập dựa trên
+trạng thái FIFO trước cạnh clock.
+
+Nếu FIFO không đầy và không rỗng,
+cả thao tác ghi và đọc đều được chấp nhận.
+
+Trong trường hợp này, con trỏ ghi và con trỏ đọc
+đều được cập nhật, còn số phần tử hợp lệ
+trong FIFO không thay đổi.
+
+Nếu FIFO đang đầy, yêu cầu ghi bị chặn,
+nhưng yêu cầu đọc được chấp nhận.
+
+Thiết kế không thực hiện ghi thay thế
+trong cùng chu kỳ khi FIFO đang đầy.
+
+Nếu FIFO đang rỗng, yêu cầu ghi được
+chấp nhận nhưng yêu cầu đọc bị chặn.
+
+Thiết kế không sử dụng cơ chế bypass
+hoặc fall-through để chuyển trực tiếp
+dữ liệu vừa ghi sang rd_data.
+
+Những quy tắc này được áp dụng giống nhau
+cho cả hai kiến trúc FIFO.
+
+### 3.2.9. Cờ overflow và underflow
+
+Hai cờ overflow và underflow cho biết
+yêu cầu thao tác bị từ chối do trạng thái FIFO.
+
+Các điều kiện cập nhật được mô tả:
+
+- overflow <= wr_en && full.
+- underflow <= rd_en && empty.
+
+Các cờ được cập nhật tại cạnh lên clock,
+và được xóa khi reset có hiệu lực.
+
+Nếu điều kiện tương ứng không còn xuất hiện
+ở cạnh clock tiếp theo, cờ trở về mức thấp.
+
+Ngược lại, nếu yêu cầu không hợp lệ kéo dài
+qua nhiều chu kỳ liên tiếp, cờ tương ứng
+có thể duy trì mức cao trong nhiều chu kỳ.
+
+Do đó, cờ phản ánh yêu cầu không được chấp nhận,
+không có nghĩa dữ liệu đã bị ghi đè hoặc
+trạng thái lưu trữ bị hỏng.
+
+### 3.2.10. Giới hạn của đặc tả thực nghiệm
+
+Đặc tả chức năng được áp dụng cho FIFO đồng bộ,
+sử dụng một miền clock và cấu hình 16 x 8.
+
+Thiết kế không xử lý truyền dữ liệu giữa
+các miền clock độc lập và không triển khai
+kiến trúc asynchronous FIFO.
+
+Mảng dữ liệu được mô tả trong RTL và được
+triển khai bằng các phần tử standard cell,
+không sử dụng SRAM macro chuyên dụng.
+
+Hai kiến trúc được kiểm chứng và triển khai
+trong cùng cấu hình để phục vụ phân tích
+tác động của phương pháp quản lý trạng thái.
+
+Các giới hạn về công nghệ, ràng buộc clock
+và điều kiện thí nghiệm ASIC được trình
+bày trong Mục 3.6 và Mục 3.7.
+
+
+## 3.3. Kiến trúc A – Count based
+
+
+Sơ đồ kiến trúc FIFO A được trình bày ở Hình 3.1. Thiết kế sử dụng bộ nhớ 16 × 8 bit, hai con trỏ địa chỉ 4 bit và bộ đếm `data_count` 5 bit để xác định trạng thái `full` và `empty`. Các đường kết nối trong hình minh họa quan hệ chức năng giữa những khối RTL.
+
+![Hình 3.1. Sơ đồ khối kiến trúc FIFO A sử dụng bộ đếm số phần tử](../docs/figures/fifo_a_architecture.svg)
+
+**Hình 3.1. Sơ đồ khối kiến trúc FIFO A sử dụng bộ đếm số phần tử**
+
+### 3.3.1. Tổng quan kiến trúc A
+
+Kiến trúc A được triển khai bằng module
+sync_fifo_count trong tệp rtl/sync_fifo_count.v.
+
+Đây là phương án FIFO đồng bộ sử dụng một bộ đếm
+để theo dõi trực tiếp số phần tử dữ liệu hợp lệ
+đang được lưu trữ trong bộ đệm.
+
+Khối thiết kế gồm các thành phần chính:
+
+- Mảng nhớ lưu trữ dữ liệu.
+- Con trỏ ghi write_pointer.
+- Con trỏ đọc read_pointer.
+- Bộ đếm số phần tử data_count.
+- Logic xác định trạng thái full và empty.
+- Logic chấp nhận thao tác đọc và ghi.
+- Thanh ghi đầu ra rd_data.
+- Các cờ overflow và underflow.
+
+Tất cả thành phần tuần tự sử dụng cùng tín hiệu
+clk và được cập nhật tại cạnh lên của xung nhịp.
+
+Đối với cấu hình FIFO 16 x 8, kiến trúc sử dụng
+16 phần tử nhớ, mỗi phần tử có độ rộng 8 bit.
+
+Điểm đặc trưng của kiến trúc A là hai trạng thái
+full và empty được suy ra từ data_count,
+không phải từ phép so sánh trực tiếp hai con trỏ.
+
+### 3.3.2. Tổ chức mảng nhớ
+
+Vùng lưu trữ dữ liệu được mô tả trong RTL
+bằng mảng có tên memory.
+
+Cấu trúc khai báo tương ứng là:
+
+- memory [0:DEPTH-1].
+- Mỗi phần tử có độ rộng DATA_WIDTH bit.
+
+Với DATA_WIDTH bằng 8 và DEPTH bằng 16,
+mảng memory chứa 16 từ dữ liệu 8 bit.
+
+Tổng dung lượng lưu trữ logic là 128 bit.
+
+Mỗi vị trí được đánh địa chỉ từ 0 đến 15,
+tương ứng với giá trị của con trỏ đọc
+hoặc con trỏ ghi tại thời điểm thực hiện thao tác.
+
+Khi một yêu cầu ghi được chấp nhận, dữ liệu wr_data
+được lưu vào vị trí do write_pointer xác định.
+
+Khi một yêu cầu đọc được chấp nhận, dữ liệu tại
+vị trí read_pointer được đưa vào thanh ghi rd_data.
+
+Mảng nhớ không được xóa toàn bộ khi reset.
+Việc xác định phần tử nào hợp lệ được thực hiện
+thông qua trạng thái bộ đếm và các con trỏ.
+
+Trong quá trình triển khai ASIC của đề tài,
+vùng lưu trữ này được ánh xạ bằng các phần tử
+standard cell, không sử dụng SRAM macro.
+
+### 3.3.3. Tổ chức con trỏ ghi và con trỏ đọc
+
+Kiến trúc A sử dụng hai con trỏ độc lập,
+bao gồm write_pointer và read_pointer.
+
+Độ rộng của mỗi con trỏ được xác định bởi:
+
+- PTR_WIDTH = ceil(log2(DEPTH)).
+
+Với DEPTH bằng 16, hai con trỏ có độ rộng 4 bit.
+
+Con trỏ ghi xác định địa chỉ lưu dữ liệu mới,
+trong khi con trỏ đọc xác định địa chỉ lấy dữ liệu.
+
+Khi thao tác tương ứng được chấp nhận,
+con trỏ được chuyển đến địa chỉ tiếp theo.
+
+Trong RTL, giới hạn địa chỉ cuối được xác định
+bằng hằng LAST_ADDRESS có giá trị DEPTH - 1.
+
+Nếu con trỏ đang ở địa chỉ cuối, lần tăng hợp lệ
+tiếp theo sẽ đưa con trỏ trở về giá trị 0.
+
+Nếu chưa đạt địa chỉ cuối, con trỏ tăng một đơn vị.
+
+Nhờ cơ chế này, các vị trí lưu trữ được sử dụng
+theo thứ tự tuần hoàn từ 0 đến 15 rồi quay về 0.
+
+Việc quay vòng con trỏ không tự động cho biết
+FIFO đang đầy hay rỗng, vì hai trạng thái này
+được theo dõi bằng bộ đếm data_count.
+
+### 3.3.4. Bộ đếm số phần tử data_count
+
+Bộ đếm data_count là thành phần đặc trưng
+của kiến trúc count-based.
+
+Bộ đếm phản ánh số phần tử dữ liệu hợp lệ
+đang có trong FIFO tại một thời điểm xác định.
+
+Độ rộng của bộ đếm được tính theo công thức:
+
+- CNT_WIDTH = ceil(log2(DEPTH + 1)).
+
+Với DEPTH bằng 16, CNT_WIDTH bằng 5 bit.
+
+Độ rộng này cho phép data_count biểu diễn
+đầy đủ các mức sử dụng từ 0 đến 16.
+
+Giá trị data_count được cập nhật từ hai tín hiệu
+write_accept và read_accept.
+
+Các trường hợp cập nhật bao gồm:
+
+- Chỉ ghi hợp lệ: data_count tăng 1.
+- Chỉ đọc hợp lệ: data_count giảm 1.
+- Cả hai hợp lệ: data_count giữ nguyên.
+- Không thao tác nào hợp lệ: data_count giữ nguyên.
+
+Trong RTL, các trường hợp này được triển khai
+bằng cấu trúc case xét cặp tín hiệu
+{write_accept, read_accept}.
+
+Giá trị 2'b10 tương ứng với chỉ ghi hợp lệ,
+còn giá trị 2'b01 tương ứng với chỉ đọc hợp lệ.
+
+Các trường hợp khác không làm thay đổi
+số phần tử dữ liệu hợp lệ trong FIFO.
+
+Khi reset đồng bộ có hiệu lực,
+data_count được đưa về giá trị 0.
+
+### 3.3.5. Logic xác định full và empty
+
+Trạng thái full và empty được xác định
+bằng logic tổ hợp từ data_count.
+
+Hai biểu thức sử dụng trong RTL là:
+
+- empty = (data_count == 0).
+- full = (data_count == DEPTH).
+
+Khi data_count bằng 0, FIFO không chứa
+phần tử dữ liệu hợp lệ và empty bằng 1.
+
+Khi data_count bằng 16, toàn bộ 16 vị trí
+được sử dụng và full bằng 1.
+
+Khi data_count nằm trong khoảng từ 1 đến 15,
+cả full và empty đều bằng 0.
+
+Phương pháp này cho phép xác định trạng thái
+dựa trên mức sử dụng FIFO một cách trực tiếp.
+
+Đổi lại, thiết kế cần duy trì bộ đếm
+và các phép so sánh với giá trị giới hạn.
+
+Ảnh hưởng cụ thể của logic bộ đếm đến
+diện tích và thời gian được đánh giá
+bằng kết quả triển khai ASIC ở chương sau.
+
+### 3.3.6. Logic chấp nhận thao tác đọc và ghi
+
+Kiến trúc A sử dụng hai tín hiệu nội bộ
+write_accept và read_accept để quyết định
+thao tác thực sự được thực hiện.
+
+Các điều kiện được xác định như sau:
+
+- write_accept = wr_en && !full.
+- read_accept = rd_en && !empty.
+
+Yêu cầu ghi được chấp nhận khi wr_en bằng 1
+và FIFO chưa ở trạng thái đầy.
+
+Yêu cầu đọc được chấp nhận khi rd_en bằng 1
+và FIFO chưa ở trạng thái rỗng.
+
+Hai tín hiệu được xác định từ trạng thái FIFO
+trước cạnh clock đang xét.
+
+Khi FIFO đang hoạt động bình thường,
+việc chấp nhận đồng thời đọc và ghi
+không làm thay đổi data_count.
+
+Khi FIFO đầy, thao tác ghi bị từ chối
+ngay cả khi có yêu cầu đọc trong cùng chu kỳ.
+
+Khi FIFO rỗng, thao tác đọc bị từ chối
+ngay cả khi có yêu cầu ghi trong cùng chu kỳ.
+
+Do đó, kiến trúc A không hỗ trợ ghi thay thế
+ngay khi đầy hoặc đọc dữ liệu vừa ghi
+trực tiếp khi rỗng.
+
+### 3.3.7. Dữ liệu đọc và các cờ trạng thái
+
+Đầu ra rd_data được khai báo dưới dạng
+thanh ghi có độ rộng DATA_WIDTH bit.
+
+Khi read_accept bằng 1, rd_data được cập nhật
+từ phần tử memory tại địa chỉ read_pointer.
+
+Việc cập nhật diễn ra tại cạnh lên clock.
+
+Nếu thao tác đọc không được chấp nhận,
+rd_data giữ nguyên giá trị trước đó,
+trừ trường hợp reset có hiệu lực.
+
+Trong kiến trúc A, hai cờ overflow
+và underflow cũng được cập nhật
+bằng logic tuần tự.
+
+Điều kiện cập nhật tương ứng là:
+
+- overflow <= wr_en && full.
+- underflow <= rd_en && empty.
+
+Khi xuất hiện yêu cầu ghi tại trạng thái đầy,
+overflow được đưa lên mức 1 tại cạnh lên clock.
+
+Tương tự, yêu cầu đọc tại trạng thái rỗng
+làm underflow được đưa lên mức 1.
+
+Nếu điều kiện không hợp lệ tiếp tục tồn tại
+qua nhiều chu kỳ, cờ tương ứng có thể
+duy trì mức cao qua nhiều chu kỳ liên tiếp.
+
+Khi reset có hiệu lực, rd_data cùng hai cờ
+được đưa về giá trị 0.
+
+### 3.3.8. Hoạt động tại các điều kiện biên
+
+Các điều kiện biên là những tình huống
+quan trọng đối với tính đúng đắn của FIFO.
+
+Trường hợp thứ nhất là ghi đến khi đầy.
+
+Bắt đầu từ trạng thái rỗng, các yêu cầu ghi
+hợp lệ làm data_count tăng dần từ 0 đến 16.
+
+Khi đạt giá trị 16, full bằng 1
+và mọi yêu cầu ghi tiếp theo bị chặn.
+
+Trường hợp thứ hai là đọc đến khi rỗng.
+
+Các yêu cầu đọc hợp lệ làm data_count
+giảm dần đến giá trị 0.
+
+Khi data_count bằng 0, empty bằng 1
+và những yêu cầu đọc tiếp theo bị chặn.
+
+Trường hợp thứ ba là đọc và ghi đồng thời
+khi FIFO chưa đầy và chưa rỗng.
+
+Cả hai thao tác được chấp nhận,
+hai con trỏ tiến lên và data_count
+giữ nguyên giá trị.
+
+Trường hợp thứ tư là yêu cầu đồng thời
+khi FIFO đang đầy hoặc đang rỗng.
+
+Ở trạng thái đầy, chỉ thao tác đọc hợp lệ
+được thực hiện; thao tác ghi bị từ chối.
+
+Ở trạng thái rỗng, chỉ thao tác ghi hợp lệ
+được thực hiện; thao tác đọc bị từ chối.
+
+Các tình huống này cần được đối chiếu
+với mô hình tham chiếu trong testbench
+để xác nhận thứ tự dữ liệu và trạng thái FIFO.
+
+### 3.3.9. Đặc điểm triển khai và vai trò so sánh
+
+Kiến trúc count-based cung cấp một cách quản lý
+trạng thái FIFO dựa trên số phần tử hợp lệ.
+
+Ưu điểm về mặt tổ chức là logic full và empty
+được mô tả trực tiếp bằng các phép so sánh
+giá trị của bộ đếm.
+
+Tuy nhiên, bộ đếm cần được cập nhật theo
+các thao tác ghi và đọc hợp lệ, tạo thêm
+đường logic điều khiển trong thiết kế.
+
+Các khối logic này có thể ảnh hưởng đến
+số lượng standard cell, diện tích và
+đường truyền thời gian sau tổng hợp.
+
+Tác động thực tế còn phụ thuộc vào công cụ,
+thư viện công nghệ và cách tối ưu netlist.
+
+Trong đề tài, kiến trúc A được sử dụng
+làm một phương án tham chiếu để so sánh
+với kiến trúc B sử dụng con trỏ mở rộng.
+
+Hai kiến trúc duy trì cùng giao diện,
+dung lượng lưu trữ và chính sách xử lý
+đọc, ghi và các yêu cầu không hợp lệ.
+
+Sự khác biệt trong kết quả triển khai
+được phân tích dựa trên các báo cáo
+thực nghiệm thay vì suy đoán từ RTL.
+
+
+## 3.4. Kiến trúc B – Extended pointer
+
+
+Sơ đồ kiến trúc FIFO B được trình bày ở Hình 3.2. Thiết kế sử dụng hai con trỏ mở rộng 5 bit, trong đó 4 bit thấp xác định địa chỉ bộ nhớ và bit cao nhất biểu diễn thông tin vòng. Trong hình, `wr_ptr` và `rd_ptr` là ký hiệu viết tắt của `write_pointer` và `read_pointer` trong RTL. Đây vẫn là FIFO đồng bộ sử dụng chung một xung nhịp.
+
+![Hình 3.2. Sơ đồ khối kiến trúc FIFO B sử dụng con trỏ mở rộng](../docs/figures/fifo_b_architecture.svg)
+
+**Hình 3.2. Sơ đồ khối kiến trúc FIFO B sử dụng con trỏ mở rộng**
+
+### 3.4.1. Tổng quan kiến trúc B
+
+Kiến trúc B được triển khai bằng module
+sync_fifo_pointer trong tệp rtl/sync_fifo_pointer.v.
+
+Đây là phương án FIFO đồng bộ sử dụng
+con trỏ mở rộng để quản lý trạng thái
+đầy và rỗng của bộ đệm.
+
+Khác với kiến trúc A, kiến trúc B không
+duy trì bộ đếm data_count riêng để
+xác định số phần tử hiện có trong FIFO.
+
+Thay vào đó, thông tin trạng thái được
+suy ra từ quan hệ giữa con trỏ ghi
+và con trỏ đọc.
+
+Các thành phần chính bao gồm:
+
+- Mảng nhớ memory.
+- Con trỏ ghi mở rộng write_pointer.
+- Con trỏ đọc mở rộng read_pointer.
+- Logic so sánh địa chỉ và bit pha.
+- Logic xác định full và empty.
+- Logic chấp nhận đọc và ghi.
+- Thanh ghi dữ liệu đầu ra rd_data.
+- Hai cờ overflow và underflow.
+
+Cả hai kiến trúc sử dụng cùng giao diện,
+cấu hình lưu trữ và quy tắc giao dịch.
+
+Sự khác biệt chủ yếu nằm ở tổ chức logic
+quản lý trạng thái của FIFO.
+
+### 3.4.2. Tổ chức mảng nhớ
+
+Tương tự kiến trúc A, kiến trúc B
+sử dụng mảng memory để lưu dữ liệu.
+
+Trong RTL, mảng được khai báo
+với DEPTH phần tử và mỗi phần tử
+có độ rộng DATA_WIDTH bit.
+
+Với cấu hình được lựa chọn:
+
+- DATA_WIDTH = 8 bit.
+- DEPTH = 16 phần tử.
+- Tổng dung lượng logic = 128 bit.
+
+Các địa chỉ lưu trữ được đánh số
+từ 0 đến 15.
+
+Dữ liệu wr_data được lưu vào memory
+khi yêu cầu ghi được chấp nhận.
+
+Khi đọc hợp lệ, phần tử tại địa chỉ
+con trỏ đọc được cập nhật vào rd_data
+tại cạnh lên clock.
+
+Mảng nhớ không được xóa toàn bộ
+khi reset đồng bộ có hiệu lực.
+
+Trạng thái dữ liệu hợp lệ được quản lý
+thông qua quan hệ giữa các con trỏ,
+không phụ thuộc việc xóa nội dung memory.
+
+Trong quá trình triển khai ASIC,
+mảng lưu trữ không sử dụng SRAM macro.
+
+### 3.4.3. Cấu trúc con trỏ mở rộng
+
+Kiến trúc B sử dụng hai con trỏ mở rộng,
+bao gồm write_pointer và read_pointer.
+
+Mỗi con trỏ có hai thành phần:
+
+- Phần địa chỉ lưu trữ.
+- Một bit pha hoặc bit vòng bổ sung.
+
+Độ rộng địa chỉ được xác định:
+
+- PTR_WIDTH = ceil(log2(DEPTH)).
+
+Độ rộng con trỏ mở rộng là:
+
+- EXT_PTR_WIDTH = PTR_WIDTH + 1.
+
+Với DEPTH bằng 16, mỗi con trỏ
+có tổng độ rộng 5 bit.
+
+Trong đó, 4 bit thấp dùng làm địa chỉ,
+còn bit cao nhất là thông tin pha.
+
+Phần địa chỉ biểu diễn các vị trí
+từ 0 đến 15 trong mảng memory.
+
+Bit pha thay đổi khi con trỏ đi qua
+ranh giới cuối của vùng địa chỉ.
+
+Nhờ bit này, thiết kế có thể phân biệt
+hai con trỏ cùng địa chỉ nhưng
+khác nhau về số vòng đã đi qua.
+
+Cấu trúc con trỏ mở rộng được sử dụng
+để xác định full và empty mà không cần
+bộ đếm số phần tử riêng.
+
+Nguyên lý sử dụng bit pha để phân biệt
+trạng thái đầy và rỗng có liên hệ với
+phương pháp con trỏ được trình bày trong [R7].
+
+Tuy nhiên, [R7] nghiên cứu FIFO bất đồng bộ;
+thiết kế của đề tài vẫn là FIFO đồng bộ
+và không sử dụng cơ chế đồng bộ CDC.
+
+### 3.4.4. Cơ chế cập nhật con trỏ
+
+Trong RTL, hai con trỏ được khai báo
+với độ rộng EXT_PTR_WIDTH.
+
+Giá trị tăng một đơn vị được biểu diễn
+bằng hằng POINTER_ONE.
+
+Khi thao tác ghi hợp lệ, write_pointer
+được tăng thêm một đơn vị.
+
+Khi thao tác đọc hợp lệ, read_pointer
+được tăng thêm một đơn vị.
+
+Với con trỏ 5 bit, phép tăng hoạt động
+theo số học nhị phân và quay vòng
+sau khi đạt giá trị lớn nhất.
+
+Ví dụ, phần địa chỉ của con trỏ
+thay đổi theo trình tự từ 0 đến 15.
+
+Sau bước tăng tiếp theo, phần địa chỉ
+quay lại 0 và bit pha đổi trạng thái.
+
+Sau hai vòng qua không gian 16 địa chỉ,
+con trỏ mở rộng quay về giá trị ban đầu.
+
+Chỉ phần địa chỉ 4 bit thấp được sử dụng
+để truy cập mảng memory.
+
+Bit pha không tham gia lựa chọn
+vị trí dữ liệu trong mảng nhớ.
+
+Hai con trỏ được cập nhật độc lập
+theo các thao tác thực sự được chấp nhận.
+
+### 3.4.5. Xác định trạng thái empty
+
+Trạng thái empty được xác định bằng
+phép so sánh toàn bộ hai con trỏ mở rộng.
+
+Biểu thức RTL tương ứng là:
+
+- empty = (write_pointer == read_pointer).
+
+Khi hai con trỏ bằng nhau hoàn toàn,
+FIFO được xác định là đang rỗng.
+
+Điều kiện này bao gồm việc phần
+địa chỉ và bit pha đều bằng nhau.
+
+Sau reset, cả hai con trỏ được đưa về 0.
+
+Do đó, empty được xác lập sau khi
+trạng thái reset được cập nhật.
+
+Khi chỉ ghi hợp lệ, con trỏ ghi tiến lên
+và FIFO chuyển sang trạng thái không rỗng.
+
+Khi các thao tác đọc làm con trỏ đọc
+đuổi kịp con trỏ ghi, hai con trỏ
+bằng nhau và empty được xác lập.
+
+Logic này không yêu cầu duy trì
+giá trị data_count như kiến trúc A.
+
+### 3.4.6. Xác định trạng thái full
+
+Trạng thái full được xác định bằng
+hai điều kiện xảy ra đồng thời.
+
+Điều kiện thứ nhất là phần địa chỉ
+của con trỏ ghi bằng phần địa chỉ
+của con trỏ đọc.
+
+Điều kiện thứ hai là bit pha
+của hai con trỏ khác nhau.
+
+Các tín hiệu logic nội bộ bao gồm:
+
+- same_address.
+- different_phase.
+
+Điều kiện xác định full là:
+
+- full = same_address && different_phase.
+
+Trong đó, same_address là kết quả
+so sánh các bit địa chỉ của hai con trỏ.
+
+different_phase phản ánh sự khác nhau
+giữa hai bit pha.
+
+Khi cả hai điều kiện đều đúng,
+con trỏ ghi đã đi trước con trỏ đọc
+một vòng dung lượng lưu trữ hợp lệ.
+
+Trong cấu hình DEPTH bằng 16,
+điều này tương ứng FIFO đang chứa
+đầy 16 phần tử dữ liệu.
+
+Việc kết hợp địa chỉ và bit pha
+giúp phân biệt trạng thái đầy
+với trạng thái rỗng.
+
+Cả hai trạng thái đều có thể xuất hiện
+khi phần địa chỉ hai con trỏ bằng nhau.
+
+Tuy nhiên, empty yêu cầu hai bit pha
+bằng nhau, còn full yêu cầu chúng khác nhau.
+
+### 3.4.7. Logic chấp nhận đọc và ghi
+
+Kiến trúc B duy trì cùng chính sách
+chấp nhận giao dịch với kiến trúc A.
+
+Hai tín hiệu nội bộ được xác định:
+
+- write_accept = wr_en && !full.
+- read_accept = rd_en && !empty.
+
+Khi write_accept bằng 1, dữ liệu đầu vào
+được ghi vào địa chỉ do write_pointer
+xác định và con trỏ ghi tiến lên.
+
+Khi read_accept bằng 1, dữ liệu từ memory
+được đưa vào rd_data và con trỏ đọc tiến lên.
+
+Nếu FIFO đầy, thao tác ghi bị chặn.
+
+Nếu FIFO rỗng, thao tác đọc bị chặn.
+
+Khi cả đọc và ghi được yêu cầu
+trong trạng thái không đầy và không rỗng,
+cả hai thao tác đều được chấp nhận.
+
+Khi FIFO đầy và có cả hai yêu cầu,
+chỉ thao tác đọc được thực hiện.
+
+Khi FIFO rỗng và có cả hai yêu cầu,
+chỉ thao tác ghi được thực hiện.
+
+Thiết kế không sử dụng cơ chế bypass
+hoặc fall-through cho dữ liệu vừa ghi.
+
+### 3.4.8. Reset, dữ liệu đọc và cờ trạng thái
+
+Kiến trúc B sử dụng reset đồng bộ mức thấp.
+
+Trong RTL, trạng thái reset được cập nhật
+tại cạnh lên clock khi rst_n bằng 0.
+
+Khi reset có hiệu lực:
+
+- write_pointer được đưa về 0.
+- read_pointer được đưa về 0.
+- rd_data được đưa về 0.
+- overflow được đưa về 0.
+- underflow được đưa về 0.
+
+Sau reset, hai con trỏ bằng nhau,
+do đó empty bằng 1 và full bằng 0.
+
+Mảng memory không bị xóa toàn bộ.
+
+Đầu ra rd_data được cập nhật
+theo thao tác đọc hợp lệ tại cạnh lên clock.
+
+Khi không có thao tác đọc hợp lệ,
+rd_data giữ nguyên giá trị trước đó,
+trừ trường hợp reset.
+
+Hai cờ overflow và underflow
+được cập nhật theo các điều kiện:
+
+- overflow <= wr_en && full.
+- underflow <= rd_en && empty.
+
+Các cờ phản ánh yêu cầu bị từ chối
+tại thời điểm cập nhật tuần tự.
+
+Nếu điều kiện không hợp lệ kéo dài
+qua nhiều chu kỳ liên tiếp,
+cờ tương ứng có thể duy trì mức cao.
+
+Cách xử lý này tương tự kiến trúc A.
+
+### 3.4.9. So sánh tổ chức logic với kiến trúc A
+
+Hai kiến trúc có chung các đặc điểm:
+
+- FIFO đồng bộ một miền clock.
+- Dữ liệu rộng 8 bit.
+- Độ sâu 16 phần tử.
+- Dung lượng logic 128 bit.
+- Giao diện đọc và ghi tương đương.
+- Cùng chính sách xử lý đầy và rỗng.
+- Đầu ra rd_data được đăng ký.
+- Reset đồng bộ mức thấp.
+
+Khác biệt chính nằm ở cơ chế xác định
+trạng thái lưu trữ.
+
+Kiến trúc A sử dụng bộ đếm data_count
+để theo dõi trực tiếp mức sử dụng FIFO.
+
+Trạng thái full và empty của kiến trúc A
+được xác định bằng phép so sánh
+bộ đếm với các giá trị 0 và DEPTH.
+
+Kiến trúc B sử dụng hai con trỏ mở rộng.
+
+Trạng thái empty được xác định
+bằng phép so sánh toàn bộ hai con trỏ.
+
+Trạng thái full được xác định
+bằng phép so sánh phần địa chỉ
+và sự khác nhau giữa hai bit pha.
+
+Vì vậy, kiến trúc B không cần
+một bộ đếm số phần tử riêng
+để xác định hai trạng thái cơ bản.
+
+Tuy nhiên, kiến trúc B cần thêm bit pha
+trong mỗi con trỏ và logic so sánh
+giữa hai con trỏ mở rộng.
+
+Không thể kết luận trước rằng việc
+loại bỏ bộ đếm luôn giúp giảm diện tích,
+giảm công suất hoặc cải thiện thời gian.
+
+Những ảnh hưởng này phụ thuộc vào
+quá trình tổng hợp và triển khai vật lý.
+
+### 3.4.10. Vai trò kiến trúc B trong thí nghiệm
+
+Kiến trúc B được sử dụng làm phương án
+đối chiếu với kiến trúc A để đánh giá
+tác động của cách tổ chức logic trạng thái.
+
+Hai kiến trúc được kiểm chứng theo cùng
+đặc tả và triển khai trên cùng nền tảng
+công nghệ SKY130A.
+
+Cùng cấu hình lưu trữ và ràng buộc clock
+được áp dụng trong quá trình đánh giá.
+
+Các kết quả được xem xét bao gồm
+khả năng đáp ứng chức năng,
+tình trạng triển khai vật lý,
+diện tích và đặc điểm thời gian.
+
+Ngoài ra, kết quả công suất ước lượng
+được sử dụng làm chỉ số bổ sung
+trong đánh giá sự đánh đổi PPA.
+
+Việc so sánh phải dựa trên báo cáo
+thực nghiệm của mỗi kiến trúc
+trong những điều kiện xác định.
+
+Chương kết quả sẽ trình bày các số liệu
+và phân tích cụ thể, thay vì đưa ra
+kết luận tối ưu ngay từ mô tả RTL.
+
+
+## 3.5. Môi trường verification
+
+### 3.5.1. Mục tiêu kiểm chứng chức năng
+
+Kiểm chứng chức năng được thực hiện nhằm đánh giá
+mức độ đáp ứng đặc tả của hai kiến trúc FIFO
+trước khi đưa thiết kế vào quy trình ASIC.
+
+Hai kiến trúc có cùng giao diện và chính sách
+đọc, ghi nhưng khác nhau về cách xác định
+trạng thái full và empty.
+
+Do đó, môi trường kiểm chứng cần xác nhận
+không chỉ dữ liệu đọc ra mà còn cả trạng thái
+và hành vi khi xuất hiện các điều kiện biên.
+
+Các nội dung kiểm chứng chính bao gồm:
+
+- Thứ tự dữ liệu theo nguyên tắc FIFO.
+- Hoạt động đọc và ghi hợp lệ.
+- Trạng thái full và empty.
+- Yêu cầu ghi khi đầy và đọc khi rỗng.
+- Các cờ overflow và underflow.
+- Đọc và ghi đồng thời.
+- Cơ chế quay vòng con trỏ.
+- Reset và khôi phục trạng thái ban đầu.
+
+Phương pháp kiểm chứng kết hợp directed tests
+và random regression để mở rộng phạm vi
+các tình huống hoạt động được kiểm tra.
+
+### 3.5.2. Công cụ và tổ chức testbench
+
+Môi trường mô phỏng chức năng sử dụng
+Icarus Verilog để biên dịch và chạy testbench
+được xây dựng bằng SystemVerilog.
+
+Hai testbench chính của đề tài gồm:
+
+- tb/tb_sync_fifo_count.sv cho kiến trúc A.
+- tb/tb_sync_fifo_pointer.sv cho kiến trúc B.
+
+Mỗi testbench kết nối với một DUT tương ứng
+và sử dụng mô hình FIFO tham chiếu để
+dự đoán các kết quả cần quan sát.
+
+Testbench quản lý các bộ đếm chu kỳ,
+số lần kiểm tra, số lỗi và số sự kiện
+liên quan đến hoạt động đọc, ghi.
+
+Clock mô phỏng có chu kỳ 20 ns,
+tương ứng tần số 50 MHz.
+
+Hai testbench sử dụng cùng phương pháp
+tạo kích thích và đánh giá đầu ra
+để duy trì tính nhất quán giữa A và B.
+
+### 3.5.3. Mô hình tham chiếu và scoreboard
+
+Mô hình tham chiếu được triển khai
+độc lập với logic xác định trạng thái
+bên trong từng kiến trúc DUT.
+
+Các thành phần của mô hình gồm:
+
+- reference_memory: mảng dữ liệu tham chiếu.
+- reference_write_pointer: con trỏ ghi tham chiếu.
+- reference_read_pointer: con trỏ đọc tham chiếu.
+- reference_count: số phần tử hợp lệ tham chiếu.
+
+reference_memory lưu dữ liệu dự kiến
+theo thứ tự mà FIFO cần duy trì.
+
+Hai con trỏ tham chiếu xác định địa chỉ
+ghi và đọc trong mảng dữ liệu mô hình.
+
+reference_count được dùng để theo dõi
+mức sử dụng bộ đệm, từ 0 đến DEPTH.
+
+Trạng thái tham chiếu được xác định:
+
+- expected_empty = (reference_count == 0).
+- expected_full = (reference_count == DEPTH).
+
+Mặc dù kiến trúc B sử dụng con trỏ mở rộng
+thay vì data_count, scoreboard vẫn dùng
+reference_count làm cơ sở xác định
+trạng thái mong đợi.
+
+Cách tổ chức này cho phép đánh giá kết quả
+hai DUT theo cùng một mô hình chức năng
+mà không phụ thuộc vào cấu trúc nội bộ.
+
+### 3.5.4. Trình tự tạo kích thích và kiểm tra
+
+Trong testbench, các tín hiệu kích thích
+được thay đổi tại cạnh xuống của clock.
+
+Trước cạnh lên, mô hình tham chiếu
+xác định trạng thái full và empty hiện tại
+để quyết định thao tác nào được chấp nhận.
+
+Các điều kiện tham chiếu tương ứng là:
+
+- expected_write = wr_en && !expected_full.
+- expected_read = rd_en && !expected_empty.
+
+Khi thao tác ghi hợp lệ, dữ liệu đầu vào
+được bổ sung vào mô hình tham chiếu.
+
+Khi thao tác đọc hợp lệ, dữ liệu mong đợi
+được xác định từ vị trí đọc tham chiếu.
+
+Các con trỏ và reference_count được cập nhật
+theo số thao tác thực sự được chấp nhận.
+
+Sau cạnh lên clock, testbench chờ 1 ns
+trước khi kiểm tra kết quả đầu ra.
+
+Các nội dung được đối chiếu bao gồm
+dữ liệu đọc, full, empty, overflow
+và underflow.
+
+Testbench cũng kiểm tra khả năng giữ
+nguyên rd_data khi không có
+thao tác đọc hợp lệ.
+
+Nếu kết quả DUT khác giá trị dự kiến,
+bộ đếm lỗi tăng và thông tin sai khác
+được ghi vào log mô phỏng.
+
+### 3.5.5. Kiểm thử có định hướng
+
+Directed tests được xây dựng để kiểm tra
+các tình huống chức năng cụ thể
+và các điều kiện biên của FIFO.
+
+Nhóm T01 kiểm tra trạng thái sau reset.
+
+Nhóm T02 đến T04 kiểm tra ghi, đọc
+và thứ tự dữ liệu được lấy ra.
+
+T05 kiểm tra quá trình ghi cho đến
+khi FIFO đạt trạng thái full.
+
+T06 kiểm tra yêu cầu ghi khi đầy
+và khả năng báo cờ overflow.
+
+T07 kiểm tra quá trình đọc đến
+khi FIFO chuyển sang trạng thái empty.
+
+T08 kiểm tra yêu cầu đọc khi rỗng
+và khả năng báo cờ underflow.
+
+T09 kiểm tra hoạt động đọc và ghi
+đồng thời trong điều kiện thông thường.
+
+T10 kiểm tra yêu cầu đọc và ghi đồng thời
+khi FIFO đang ở trạng thái đầy.
+
+T11 kiểm tra yêu cầu đọc và ghi đồng thời
+khi FIFO đang ở trạng thái rỗng.
+
+T12 kiểm tra hoạt động quay vòng con trỏ
+qua nhiều lần sử dụng vùng lưu trữ.
+
+T13 kiểm tra reset khi FIFO đang
+chứa dữ liệu hợp lệ.
+
+Các bài kiểm thử có định hướng được
+thực hiện trước giai đoạn random regression.
+
+### 3.5.6. Kiểm thử ngẫu nhiên và seed
+
+Bên cạnh directed tests, đề tài
+sử dụng random regression để kiểm tra
+nhiều chuỗi yêu cầu đọc và ghi.
+
+Giai đoạn kiểm thử ngẫu nhiên được ký hiệu T14.
+
+Mỗi lượt chạy sử dụng một seed làm đầu vào
+để điều khiển quá trình tạo kích thích.
+
+Testbench hỗ trợ truyền seed thông qua
+tham số mô phỏng SEED.
+
+Danh sách seed được sử dụng gồm:
+
+- 1.
+- 2.
+- 3.
+- 4.
+- 5.
+- 20260924.
+
+Mỗi seed tạo ra 10.000 chu kỳ
+kiểm thử ngẫu nhiên theo cấu hình
+regression của đề tài.
+
+Cùng danh sách seed được áp dụng
+cho hai kiến trúc A và B.
+
+Việc này tạo cơ sở đối chiếu hai phương án
+trên các điều kiện kích thích tương ứng.
+
+Tuy nhiên, random regression không đồng nghĩa
+với việc đã kiểm tra tất cả trạng thái
+hoặc tất cả chuỗi đầu vào có thể xảy ra.
+
+### 3.5.7. Tiêu chí PASS và FAIL
+
+Mỗi lượt mô phỏng được đánh giá dựa trên
+kết quả so sánh DUT với mô hình tham chiếu.
+
+Các kiểm tra bao gồm tính đúng đắn
+của dữ liệu, trạng thái FIFO
+và các cờ báo yêu cầu không hợp lệ.
+
+Testbench sử dụng error_count để ghi nhận
+những sai khác phát hiện trong mô phỏng.
+
+Khi các bài kiểm tra hoàn thành
+mà không ghi nhận lỗi, testbench
+phát thông báo ALL TESTS PASSED.
+
+Ngược lại, khi có sai khác,
+testbench ghi nhận trạng thái thất bại
+và số lỗi tương ứng.
+
+Script regression kiểm tra trạng thái
+kết thúc của trình mô phỏng,
+thông báo PASS và số lỗi bằng 0.
+
+Vì vậy, một lượt được xem là đạt
+khi các tiêu chí kiểm tra do
+môi trường regression quy định
+đều được thỏa mãn.
+
+### 3.5.8. Tổ chức regression và bằng chứng
+
+Script điều phối kiểm thử được lưu tại:
+
+- scripts/run_evidence_regression.py.
+
+Script thực hiện biên dịch RTL và testbench
+cho từng kiến trúc, chạy các seed đã chọn
+và thu thập kết quả mô phỏng.
+
+Các thông tin được tổng hợp bao gồm:
+
+- Số chu kỳ mô phỏng.
+- Số lần kiểm tra.
+- Số lỗi được phát hiện.
+- Trạng thái PASS hoặc FAIL.
+- Log của từng lượt chạy.
+
+Quy trình cũng lưu thông tin SHA256
+của mã nguồn và các tệp liên quan
+để hỗ trợ việc đối chiếu phiên bản.
+
+Các kết quả được tổ chức trong
+thư mục results/verification_summary.
+
+Báo cáo tổng hợp được lưu tại:
+
+- results/verification_summary/verification_summary.md.
+- results/verification_summary/regression_summary.txt.
+
+Việc lưu log, thông tin kiểm tra
+và dấu vết mã nguồn giúp tăng
+khả năng tái lập kết quả thực nghiệm.
+
+### 3.5.9. Phạm vi và giới hạn kiểm chứng
+
+Môi trường verification tập trung vào
+tính đúng chức năng của RTL đối với
+cấu hình FIFO đồng bộ 16 x 8.
+
+Hai kiến trúc được kiểm tra trên
+cùng đặc tả, cùng danh sách seed
+và phương pháp so sánh đầu ra.
+
+Kết quả PASS cho thấy các trường hợp
+được thực hiện không phát hiện sai khác
+so với mô hình tham chiếu.
+
+Điều này không tương đương với việc
+đã chứng minh tính đúng đắn tuyệt đối
+cho mọi tổ hợp dữ liệu và trạng thái.
+
+Kiểm chứng chức năng cũng không thay thế
+cho phân tích thời gian tĩnh,
+kiểm tra DRC, LVS và antenna.
+
+Các kết quả định lượng của regression
+được trình bày trong chương kết quả
+và đánh giá thực nghiệm.
+
+
+## 3.6. Cấu hình ASIC flow
+
+### 3.6.1. Mục tiêu và phạm vi triển khai
+
+Sau khi hoàn thành kiểm chứng chức năng,
+hai kiến trúc FIFO được đưa vào quy trình
+thiết kế ASIC số sử dụng công cụ EDA mã nguồn mở.
+
+Mục tiêu của quy trình là chuyển đổi mô tả RTL
+thành netlist standard cell và tiếp tục triển khai
+đến dữ liệu bố trí vật lý GDSII.
+
+Quá trình thực nghiệm cũng tạo ra các báo cáo
+về diện tích, thời gian và kiểm tra vật lý
+để phục vụ so sánh hai kiến trúc.
+
+Hai thiết kế được triển khai độc lập
+nhưng sử dụng cùng nền tảng công nghệ
+và các thông số cấu hình tương ứng.
+
+Phạm vi thực nghiệm tập trung vào
+cấu hình FIFO đồng bộ 16 x 8,
+với clock mục tiêu 50 MHz.
+
+### 3.6.2. Các công cụ trong quy trình ASIC
+
+OpenLane được sử dụng để điều phối
+các giai đoạn của quy trình thiết kế ASIC.
+
+Cơ sở tổ chức RTL-to-GDSII của OpenLane
+được tham khảo từ tài liệu dự án [R2].
+
+Các công cụ và thành phần liên quan gồm:
+
+- Yosys: tổng hợp logic từ RTL.
+- OpenROAD: triển khai và tối ưu thiết kế vật lý.
+- OpenSTA: phân tích thời gian tĩnh.
+- Magic: xử lý layout và kiểm tra DRC.
+- Netgen: phục vụ đối chiếu LVS.
+- KLayout: xử lý và kiểm tra dữ liệu layout.
+
+Trong quy trình, kết quả của giai đoạn trước
+được sử dụng làm đầu vào cho giai đoạn sau.
+
+Ngoài các bước triển khai trong OpenLane,
+đề tài thực hiện phân tích STA sau định tuyến
+để đánh giá timing với dữ liệu ký sinh
+được trích xuất từ thiết kế vật lý.
+
+Các kết luận thực nghiệm dựa trên báo cáo
+và cấu hình đã sử dụng, không mặc nhiên
+đại diện cho mọi phiên bản công cụ.
+
+### 3.6.3. Công nghệ SKY130A và thư viện standard cell
+
+Công nghệ được lựa chọn là SKY130A.
+
+Thông tin về nền tảng công nghệ và
+các thư viện SKY130 được tham khảo
+từ tài liệu PDK [R3].
+
+Thư viện standard cell được sử dụng
+trong quá trình tổng hợp và triển khai
+là sky130_fd_sc_hd.
+
+Các phần tử logic, thanh ghi và
+mạch điều khiển của FIFO được ánh xạ
+sang những cell phù hợp trong thư viện.
+
+Vùng lưu trữ memory của FIFO được
+triển khai thông qua phần tử standard cell.
+
+Đề tài không sử dụng SRAM macro chuyên dụng
+cho mảng lưu trữ 16 x 8.
+
+Cùng một PDK và thư viện được sử dụng
+cho hai kiến trúc để hạn chế ảnh hưởng
+của khác biệt công nghệ đến kết quả so sánh.
+
+Các kết quả về diện tích và thời gian
+chỉ được diễn giải trong phạm vi
+thư viện và điều kiện phân tích đã chọn.
+
+### 3.6.4. Cấu hình tổng hợp logic
+
+Kiến trúc A sử dụng module sync_fifo_count,
+còn kiến trúc B sử dụng sync_fifo_pointer.
+
+Hai thiết kế sử dụng các tham số tổng hợp:
+
+- DATA_WIDTH = 8.
+- DEPTH = 16.
+
+Tên clock đầu vào là clk.
+
+Chu kỳ clock được cấu hình bằng 20 ns,
+tương ứng tần số mục tiêu 50 MHz.
+
+Chiến lược tổng hợp được lựa chọn là:
+
+- SYNTH_STRATEGY = AREA 0.
+
+Các thông số tổng hợp chung bao gồm:
+
+- SYNTH_CLOCK_UNCERTAINTY = 0.25.
+- SYNTH_CLOCK_TRANSITION = 0.15.
+- SYNTH_TIMING_DERATE = 0.05.
+- IO_PCT = 0.20.
+
+Các giá trị được lấy từ cấu hình OpenLane
+của hai thiết kế triển khai vật lý.
+
+Việc sử dụng cùng thông số tổng hợp
+giúp giảm sự khác biệt do lựa chọn
+ràng buộc và chiến lược công cụ.
+
+Tuy nhiên, netlist sau tổng hợp
+có thể khác nhau do cấu trúc RTL khác nhau.
+
+### 3.6.5. Cấu hình floorplan và placement
+
+Hai kiến trúc được cấu hình floorplan
+theo phương pháp xác định kích thước tương đối.
+
+Các tham số chính bao gồm:
+
+- FP_SIZING = relative.
+- FP_CORE_UTIL = 35.
+- FP_ASPECT_RATIO = 1.0.
+- FP_PDN_AUTO_ADJUST = true.
+- DESIGN_IS_CORE = false.
+
+Mức sử dụng core mục tiêu được đặt
+ở giá trị 35 phần trăm.
+
+Tỷ lệ khung hình mục tiêu bằng 1.0
+nhằm thiết lập dạng bố trí gần vuông.
+
+Các thông số placement chung gồm:
+
+- PL_TARGET_DENSITY = 0.45.
+- PL_TIME_DRIVEN = true.
+- PL_ROUTABILITY_DRIVEN = true.
+
+Placement được cấu hình theo hướng
+xem xét thời gian và khả năng định tuyến.
+
+Dù sử dụng cùng cấu hình mục tiêu,
+kích thước die và core thực tế của
+hai thiết kế có thể khác nhau
+do số lượng và loại cell sau tổng hợp.
+
+Những khác biệt vật lý được đánh giá
+bằng các báo cáo của từng kiến trúc.
+
+### 3.6.6. Các giai đoạn triển khai vật lý
+
+Sau tổng hợp, thiết kế tiếp tục được
+xử lý qua các giai đoạn triển khai vật lý.
+
+Giai đoạn floorplan xác định vùng bố trí,
+cấu trúc nguồn và các tham số liên quan.
+
+Placement thực hiện bố trí standard cell
+vào những vị trí phù hợp trong vùng core.
+
+Clock Tree Synthesis, viết tắt CTS,
+xây dựng mạng phân phối clock
+đến các phần tử tuần tự.
+
+Giai đoạn routing tạo các kết nối
+vật lý giữa những phần tử trong mạch.
+
+Sau routing, dữ liệu ký sinh đường dây
+có thể được trích xuất để phục vụ
+phân tích thời gian sau định tuyến.
+
+Quy trình cũng tạo các dữ liệu
+trung gian như netlist, DEF
+và những báo cáo triển khai.
+
+Kết quả cuối của nhánh thiết kế vật lý
+bao gồm dữ liệu layout GDSII
+và các tài liệu kiểm tra liên quan.
+
+### 3.6.7. Phân tích thời gian sau định tuyến
+
+Phân tích thời gian tĩnh được sử dụng
+để đánh giá khả năng đáp ứng
+ràng buộc clock của thiết kế.
+
+Cơ sở phương pháp STA và sử dụng
+dữ liệu ký sinh được tham khảo
+từ tài liệu OpenSTA [R4].
+
+Chu kỳ clock mục tiêu là 20 ns.
+
+Đề tài có bước phân tích STA sau định tuyến
+với netlist và dữ liệu ký sinh
+được tạo trong quá trình triển khai vật lý.
+
+Các báo cáo được tổng hợp trong thư mục:
+
+- results/sta_summary.
+
+Những chỉ tiêu timing được xem xét gồm:
+
+- Setup Worst Negative Slack, WNS.
+- Setup Total Negative Slack, TNS.
+- Hold WNS và Hold TNS.
+- Chu kỳ clock tối thiểu ước tính.
+- Tần số hoạt động tối đa ước tính.
+
+Phân tích sau định tuyến sử dụng
+điều kiện danh định TT, 25 độ C
+và điện áp 1.8 V.
+
+Dữ liệu ký sinh danh định được
+sử dụng để xét ảnh hưởng của kết nối vật lý.
+
+Cần phân biệt chỉ tiêu critical path
+được trích từ báo cáo physical flow
+với chu kỳ tối thiểu và Fmax
+được xác định trong phân tích STA riêng.
+
+Các kết quả không được xem là
+chứng nhận timing sign-off đa góc
+cho một chip sản xuất thực tế.
+
+### 3.6.8. Kiểm tra DRC, LVS và antenna
+
+Sau khi triển khai vật lý,
+thiết kế được kiểm tra nhằm đánh giá
+các điều kiện liên quan đến layout.
+
+DRC được sử dụng để kiểm tra
+sự tuân thủ những quy tắc thiết kế
+được áp dụng bởi công nghệ.
+
+Bộ quy tắc thiết kế của công nghệ
+SKY130 được tham khảo từ [R5].
+
+LVS đối chiếu kết nối của layout
+với biểu diễn mạch tham chiếu.
+
+Kiểm tra antenna đánh giá các điều kiện
+liên quan đến hiệu ứng tích điện
+trong một số công đoạn chế tạo.
+
+Cấu hình triển khai bật các tùy chọn:
+
+- RUN_MAGIC = true.
+- RUN_MAGIC_DRC = true.
+- RUN_KLAYOUT = true.
+- RUN_KLAYOUT_XOR = true.
+- RUN_LVS = true.
+
+Hai cấu hình cũng đặt:
+
+- RUN_IRDROP_REPORT = false.
+- RUN_CVC = false.
+
+Việc bật tùy chọn không tự động
+chứng minh một kiểm tra đã hoàn tất
+hoặc đã đạt tất cả tiêu chí.
+
+Trạng thái thực tế cần được đánh giá
+từ log và báo cáo của từng lần chạy.
+
+Các báo cáo của đề tài ghi nhận
+kết quả DRC, LVS và antenna,
+đồng thời có những trường hợp
+clock max-fanout được chấp nhận
+dưới dạng QoR waiver.
+
+Do đó, cần trình bày rõ
+các ngoại lệ được chấp nhận,
+thay vì khẳng định không tồn tại
+bất kỳ vấn đề nào trong toàn bộ thiết kế.
+
+**Kiểm tra KLayout DRC độc lập sau triển khai**
+
+Ngoài kiểm tra DRC bằng Magic trong OpenLane,
+đề tài thực hiện thêm KLayout DRC độc lập
+trên dữ liệu GDSII sau triển khai vật lý.
+
+Trong hai run OpenLane gốc,
+RUN_KLAYOUT và RUN_KLAYOUT_XOR
+được kích hoạt.
+
+Tuy nhiên, biến RUN_KLAYOUT_DRC
+trong cấu hình run có giá trị 0.
+
+Vì vậy, trường klayout_violations
+trong metrics.csv có giá trị -1.
+
+Giá trị này không được diễn giải
+là một vi phạm DRC,
+cũng không phải bằng chứng KLayout PASS.
+
+Để bổ sung kiểm tra vật lý,
+đề tài sử dụng KLayout phiên bản 0.30.0
+chạy độc lập trên GDSII
+của từng kiến trúc FIFO.
+
+Bộ quy tắc được sử dụng là:
+
+- sky130A_mr.drc thuộc PDK SKY130A.
+
+Các tùy chọn được truyền khi chạy:
+
+- feol = 1.
+- beol = 1.
+- offgrid = 1.
+- seal = 1.
+- floating_metal = 0.
+
+Trong đó, FEOL và BEOL
+tương ứng với hai nhóm kiểm tra
+ở các giai đoạn công nghệ khác nhau.
+
+OFFGRID phục vụ kiểm tra
+các ràng buộc liên quan
+đến lưới hình học chế tạo.
+
+SEAL kích hoạt nhóm kiểm tra
+liên quan đến seal ring.
+
+Tùy chọn floating_metal được giữ bằng 0
+theo cấu hình DRC đã ghi nhận.
+
+Đầu vào kiểm tra là hai tệp:
+
+- results/final/gds/sync_fifo_count.gds
+  của run PHYS_A_50MHZ.
+- results/final/gds/sync_fifo_pointer.gds
+  của run PHYS_B_50MHZ.
+
+Các đường dẫn trên được tính
+tương đối từ thư mục run tương ứng.
+
+KLayout chạy ở chế độ batch,
+đọc GDSII và xuất báo cáo DRC
+dưới định dạng .lydrc.
+
+Báo cáo được kiểm tra
+bằng cách phân tích cấu trúc XML,
+xác nhận top cell,
+số nhóm quy tắc được báo cáo
+và số phần tử vi phạm.
+
+Log được kiểm tra để phát hiện
+lỗi thực thi hoặc lỗi ghi báo cáo.
+
+Bằng chứng độc lập được lưu tại:
+
+- results/klayout_drc_validation/.
+
+Phương pháp này không chỉnh sửa
+RTL, netlist, DEF hoặc GDSII
+của các run triển khai đã hoàn thành.
+
+Các chỉ tiêu trong metrics.csv gốc
+cũng được giữ nguyên để bảo toàn
+khả năng truy vết thực nghiệm.
+
+Kết quả KLayout DRC độc lập
+được phân biệt với Magic DRC
+và các kết quả LVS, antenna.
+
+Các số liệu DRC của hai kiến trúc
+được trình bày trong Chương 4.
+
+Việc không phát hiện vi phạm
+trong bộ quy tắc đã chạy
+không đồng nghĩa với
+sign-off đầy đủ cho sản xuất.
+
+### 3.6.9. Tổ chức cấu hình cho hai kiến trúc
+
+Hai cấu hình triển khai vật lý
+được lưu tại những đường dẫn riêng:
+
+- openlane/sync_fifo_count_phys/config.json.
+- openlane/sync_fifo_pointer_phys/config.json.
+
+Các thư mục này tương ứng
+với module RTL của từng kiến trúc.
+
+Các lần chạy thực nghiệm vật lý
+được ghi nhận với định danh:
+
+- PHYS_A_50MHZ.
+- PHYS_B_50MHZ.
+
+Trong dự án còn có các lần chạy
+tổng hợp riêng và chạy tái lập.
+
+Khi đối chiếu kết quả vật lý A/B,
+đề tài sử dụng cấu hình triển khai
+vật lý tương ứng của hai kiến trúc.
+
+Không sử dụng giá trị mặc định
+trong một lần chạy tổng hợp riêng
+để thay thế cho thông số của
+lần chạy physical implementation.
+
+Việc lưu cấu hình và định danh run
+hỗ trợ truy vết các điều kiện
+được áp dụng cho từng thiết kế.
+
+### 3.6.10. Phạm vi và giới hạn kết quả ASIC flow
+
+Quy trình ASIC trong đề tài phục vụ
+nghiên cứu và đánh giá một IP FIFO số
+bằng các công cụ mã nguồn mở.
+
+Các kết quả được sử dụng bao gồm
+netlist tổng hợp, báo cáo vật lý,
+dữ liệu layout và phân tích timing.
+
+Các chỉ tiêu PPA được đánh giá
+trong phạm vi cấu hình công nghệ,
+ràng buộc và workload đã lựa chọn.
+
+Kết quả công suất được xem là ước lượng
+theo điều kiện thực nghiệm,
+không phải số liệu đo trên silicon.
+
+Việc đạt các tiêu chí kiểm tra
+trong flow hiện tại không đồng nghĩa
+với sign-off đầy đủ cho sản xuất.
+
+Những giới hạn về đa góc công nghệ,
+điều kiện vận hành và QoR waiver
+cần được nêu rõ khi đưa ra kết luận.
+
+Mục tiếp theo trình bày cách tổ chức
+thí nghiệm nhằm so sánh công bằng
+hai kiến trúc FIFO A và B.
+
+
+## 3.7. Thiết kế thí nghiệm công bằng
+
+### 3.7.1. Mục tiêu so sánh hai kiến trúc
+
+Mục tiêu của thí nghiệm là đánh giá
+ảnh hưởng của phương pháp tổ chức logic
+quản lý trạng thái đến kết quả thiết kế ASIC.
+
+Hai đối tượng được so sánh gồm:
+
+- Kiến trúc A: Count-based FIFO.
+- Kiến trúc B: Extended-pointer FIFO.
+
+Kiến trúc A sử dụng bộ đếm data_count
+để xác định trạng thái full và empty.
+
+Kiến trúc B sử dụng hai con trỏ mở rộng,
+bao gồm phần địa chỉ và bit pha.
+
+Để kết quả có ý nghĩa, hai thiết kế
+cần được kiểm chứng và triển khai
+trên những điều kiện thực nghiệm tương ứng.
+
+Cách tiếp cận của đề tài là
+giữ cố định các tham số chức năng,
+công nghệ và ràng buộc chính.
+
+Biến được khảo sát là cách tổ chức
+logic xác định trạng thái FIFO.
+
+Sau đó, các chỉ tiêu diện tích,
+thời gian và công suất ước lượng
+được thu thập để đánh giá sự khác biệt.
+
+### 3.7.2. Các tham số chức năng được giữ cố định
+
+Hai kiến trúc sử dụng cùng đặc tả FIFO
+và cùng phạm vi chức năng cần thực hiện.
+
+Các thông số chung bao gồm:
+
+- Loại thiết kế: Synchronous FIFO.
+- Số miền clock: 1.
+- DATA_WIDTH = 8.
+- DEPTH = 16.
+- Dung lượng logic = 128 bit.
+- Clock mục tiêu = 50 MHz.
+- Chu kỳ clock = 20 ns.
+- Reset đồng bộ, tác động mức thấp.
+
+Hai thiết kế có cùng giao diện đầu vào,
+đầu ra và các cờ báo trạng thái.
+
+Chính sách chấp nhận thao tác được
+giữ giống nhau ở cả hai kiến trúc.
+
+Cụ thể, thao tác ghi chỉ được chấp nhận
+khi FIFO chưa đầy.
+
+Thao tác đọc chỉ được chấp nhận
+khi FIFO chưa rỗng.
+
+Khi đồng thời có yêu cầu đọc và ghi
+ở trạng thái đầy, chỉ đọc được chấp nhận.
+
+Khi đồng thời có yêu cầu đọc và ghi
+ở trạng thái rỗng, chỉ ghi được chấp nhận.
+
+Cả hai kiến trúc sử dụng rd_data
+dạng đầu ra có đăng ký.
+
+Không kiến trúc nào sử dụng cơ chế
+bypass hoặc fall-through.
+
+Việc duy trì chính sách giống nhau
+giúp hạn chế khác biệt chức năng
+khi đối chiếu các chỉ số triển khai.
+
+### 3.7.3. Biến độc lập trong thí nghiệm
+
+Biến độc lập chính của thí nghiệm
+là phương pháp xác định trạng thái
+full và empty của FIFO.
+
+Đối với kiến trúc A, hai trạng thái
+được xác định từ bộ đếm data_count.
+
+Bộ đếm được cập nhật dựa trên
+các thao tác ghi và đọc hợp lệ.
+
+Đối với kiến trúc B, hai trạng thái
+được xác định từ quan hệ giữa
+write_pointer và read_pointer.
+
+Kiến trúc B không cần duy trì
+bộ đếm số phần tử riêng.
+
+Do hai phương án có cấu trúc logic khác nhau,
+quá trình tổng hợp có thể tạo ra
+các mạng cell và đường truyền khác nhau.
+
+Những khác biệt về số lượng phần tử,
+diện tích hoặc thời gian được phân tích
+từ dữ liệu thực nghiệm.
+
+Việc thiết kế chỉ khảo sát hai phương án
+không đủ để khẳng định một kiến trúc
+tối ưu cho tất cả cấu hình FIFO.
+
+### 3.7.4. Điều kiện tổng hợp và triển khai vật lý
+
+Hai kiến trúc được triển khai
+trên cùng công nghệ SKY130A.
+
+Thư viện standard cell được lựa chọn
+là sky130_fd_sc_hd.
+
+Các cấu hình tổng hợp chính được giữ chung:
+
+- SYNTH_PARAMETERS = DATA_WIDTH=8 DEPTH=16.
+- SYNTH_STRATEGY = AREA 0.
+- CLOCK_PERIOD = 20.0.
+- SYNTH_CLOCK_UNCERTAINTY = 0.25.
+- SYNTH_CLOCK_TRANSITION = 0.15.
+- SYNTH_TIMING_DERATE = 0.05.
+- IO_PCT = 0.20.
+
+Các thông số floorplan và placement
+cũng được cấu hình tương ứng:
+
+- FP_SIZING = relative.
+- FP_CORE_UTIL = 35.
+- FP_ASPECT_RATIO = 1.0.
+- FP_PDN_AUTO_ADJUST = true.
+- DESIGN_IS_CORE = false.
+- PL_TARGET_DENSITY = 0.45.
+- PL_TIME_DRIVEN = true.
+- PL_ROUTABILITY_DRIVEN = true.
+
+Hai thiết kế không sử dụng SRAM macro.
+
+Các cấu hình triển khai vật lý
+được lưu trong những tệp riêng
+để thuận tiện cho việc truy vết.
+
+Cần phân biệt các tham số mục tiêu
+với giá trị thực tế sau triển khai.
+
+Ví dụ, sử dụng cùng FP_CORE_UTIL
+không có nghĩa diện tích core
+của hai thiết kế sẽ bằng nhau.
+
+Kết quả thực tế phụ thuộc vào
+netlist, số lượng cell và quá trình
+bố trí, tối ưu của công cụ.
+
+### 3.7.5. Điều kiện kiểm chứng chức năng
+
+Trước khi phân tích PPA,
+hai kiến trúc được kiểm chứng
+theo cùng một đặc tả chức năng.
+
+Mỗi kiến trúc có testbench SystemVerilog
+với phương pháp kiểm tra tương ứng.
+
+Hai testbench sử dụng mô hình FIFO
+tham chiếu gồm mảng nhớ, con trỏ
+và bộ đếm số phần tử hợp lệ.
+
+Các bài directed tests được tổ chức
+theo cùng nhóm trường hợp T01 đến T13.
+
+Giai đoạn random regression T14
+sử dụng cùng danh sách seed:
+
+- 1, 2, 3, 4, 5 và 20260924.
+
+Mỗi lượt regression sử dụng
+10.000 chu kỳ kiểm thử ngẫu nhiên.
+
+Các chỉ tiêu được ghi nhận gồm
+số chu kỳ, số checks, số lỗi
+và trạng thái PASS hoặc FAIL.
+
+Sử dụng cùng seed và phương pháp
+tạo kích thích giúp tăng khả năng
+đối chiếu kết quả kiểm chứng A/B.
+
+Tuy nhiên, kết quả PASS chỉ chứng minh
+không phát hiện sai khác trong những
+trường hợp kiểm thử đã thực hiện.
+
+### 3.7.6. Chỉ tiêu đánh giá diện tích và thời gian
+
+Nhóm chỉ tiêu diện tích được
+thu thập từ các báo cáo tổng hợp
+và triển khai vật lý.
+
+Những thông số được xem xét gồm:
+
+- Số lượng cell sau tổng hợp.
+- Số lượng cell sau triển khai vật lý.
+- Diện tích core.
+- Diện tích die.
+- Tổng chiều dài dây kết nối.
+- Số lượng via trong thiết kế vật lý.
+
+Các thông số được đối chiếu
+theo cùng loại báo cáo và giai đoạn.
+
+Không so sánh trực tiếp số cell
+sau tổng hợp của kiến trúc này
+với số cell sau layout của kiến trúc khác.
+
+Nhóm chỉ tiêu thời gian được
+đánh giá thông qua kết quả STA
+sau định tuyến của mỗi kiến trúc.
+
+Các thông số bao gồm:
+
+- Setup WNS và TNS.
+- Hold WNS và TNS.
+- Chu kỳ clock tối thiểu ước tính.
+- Fmax ước tính.
+
+Hai thiết kế được đánh giá
+theo cùng chu kỳ mục tiêu 20 ns.
+
+Kết quả STA riêng sử dụng
+điều kiện danh định TT, 25 độ C
+và điện áp nguồn 1.8 V.
+
+Việc đáp ứng 50 MHz được xét
+trong phạm vi điều kiện phân tích
+và ràng buộc timing đã sử dụng.
+
+Không sử dụng một chỉ tiêu critical path
+trong báo cáo physical flow để thay thế
+cho giá trị Fmax từ STA riêng.
+
+### 3.7.7. Phương pháp so sánh công suất
+
+Ngoài diện tích và thời gian,
+đề tài đánh giá công suất ước lượng
+để bổ sung phân tích PPA.
+
+Hai kiến trúc được kiểm tra
+bằng workload streaming tương ứng.
+
+Workload được thiết kế nhằm tạo
+hoạt động đọc và ghi liên tục
+trong phạm vi mô phỏng đã lựa chọn.
+
+Hoạt động của mạch được ghi lại
+bằng tệp VCD từ mô phỏng gate-level.
+
+Dữ liệu VCD được kết hợp với
+netlist và dữ liệu SPEF danh định
+để phục vụ phân tích công suất.
+
+Phương pháp sử dụng hoạt động chuyển mạch
+và mô hình công suất được tham khảo
+từ tài liệu OpenSTA [R6].
+
+Điều kiện đánh giá bao gồm:
+
+- Công nghệ SKY130A.
+- Thư viện sky130_fd_sc_hd.
+- Clock 50 MHz.
+- Điện áp 1.8 V.
+- Góc công nghệ TT.
+- Nhiệt độ 25 độ C.
+- Workload streaming 10.000 chu kỳ đo.
+
+Mô phỏng gate-level sử dụng
+mô hình zero-delay để ghi nhận
+hoạt động chuyển trạng thái.
+
+Các thành phần công suất gồm:
+
+- Internal power.
+- Switching power.
+- Leakage power.
+- Total power.
+
+So sánh công suất chỉ được thực hiện
+giữa các kết quả có cùng phương pháp
+và điều kiện đánh giá tương ứng.
+
+Dữ liệu công suất là kết quả ước lượng,
+không phải phép đo trực tiếp
+trên chip đã được chế tạo.
+
+Một workload không đại diện
+cho mọi mô hình sử dụng thực tế.
+
+### 3.7.8. Phương pháp tổng hợp và đối chiếu kết quả
+
+Kết quả kiểm chứng, tổng hợp,
+STA và triển khai vật lý được
+thu thập theo từng kiến trúc.
+
+Các nhóm báo cáo chính gồm:
+
+- results/verification_summary.
+- results/ppa_summary.
+- results/sta_summary.
+- results/power_summary.
+- results/power_streaming.
+
+Riêng dữ liệu hoạt động chuyển mạch
+cho phép ước lượng công suất
+được lưu trong results/power_streaming.
+
+Thư mục này chứa log mô phỏng
+và các tệp VCD của hai kiến trúc
+với workload streaming.
+
+Hai lượt mô phỏng đều ghi nhận
+10000 chu kỳ đo, không có lỗi
+và trạng thái POWER_WORKLOAD_PASS.
+
+Các kết quả công suất ước lượng
+được đối chiếu với báo cáo
+trong results/power_summary
+và results/ppa_summary.
+
+Việc lưu riêng log và VCD
+giúp truy vết nguồn hoạt động
+chuyển mạch được sử dụng
+trong quá trình đánh giá Power.
+
+Trước khi so sánh, dữ liệu cần
+được kiểm tra về nguồn gốc,
+đơn vị và điều kiện thực nghiệm.
+
+Các đại lượng cùng loại được
+trình bày trong bảng so sánh A/B.
+
+Với những chỉ tiêu có thể so sánh
+theo phần trăm, mức chênh lệch
+được xác định dựa trên giá trị A.
+
+Biểu thức tính được sử dụng:
+
+- Delta_percent = (B - A) / A x 100%.
+
+Trong biểu thức này, A là giá trị
+của kiến trúc count-based.
+
+B là giá trị của kiến trúc
+extended-pointer.
+
+Chỉ tính tỷ lệ khi A khác 0
+và hai giá trị sử dụng cùng đơn vị.
+
+Dấu âm biểu thị B có giá trị nhỏ hơn A,
+không tự động đồng nghĩa với cải thiện.
+
+Ví dụ, giảm diện tích thường có lợi,
+nhưng giảm Fmax có thể là bất lợi.
+
+Vì vậy, mỗi chỉ tiêu phải được
+diễn giải theo ý nghĩa kỹ thuật
+và mục tiêu của thiết kế.
+
+Kết luận được đưa ra từ tập hợp
+các chỉ số, không chỉ dựa
+trên một số liệu riêng lẻ.
+
+### 3.7.9. Giới hạn tính công bằng và phạm vi kết luận
+
+Việc sử dụng cùng tham số cấu hình
+giúp xây dựng cơ sở so sánh tương ứng
+giữa hai kiến trúc FIFO.
+
+Tuy nhiên, công bằng về cấu hình
+không đồng nghĩa với việc hai thiết kế
+được ánh xạ thành các netlist giống nhau.
+
+Sự khác biệt của logic RTL có thể
+ảnh hưởng đến lựa chọn cell,
+đường truyền và kết quả tối ưu.
+
+Các số liệu được ghi nhận trong
+môi trường công cụ, PDK và thư viện
+đã lựa chọn tại thời điểm thực nghiệm.
+
+Kết quả timing sau định tuyến
+được giới hạn trong điều kiện STA
+danh định được sử dụng.
+
+Đề tài không thực hiện đánh giá
+đầy đủ mọi góc công nghệ
+và điều kiện vận hành.
+
+Các kết quả kiểm tra vật lý
+cần được báo cáo cùng những
+QoR waiver đã được chấp nhận.
+
+Công suất chỉ được ước lượng
+trong workload streaming đã chọn.
+
+Vì vậy, kết luận của thí nghiệm
+tập trung vào đánh đổi giữa
+hai kiến trúc đối với FIFO 16 x 8
+trong điều kiện triển khai cụ thể.
+
+Không suy rộng kết quả thành
+khẳng định một kiến trúc luôn
+tốt hơn ở mọi kích thước FIFO,
+mọi công nghệ hoặc mọi workload.
+

@@ -1,0 +1,5 @@
+Warning: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count_phys/runs/PHYS_A_50MHZ/results/routing/sync_fifo_count.nl.v line 2895, module sky130_fd_sc_hd__tapvpwrvgnd_1 not found. Creating black box for TAP_104.
+Warning: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count_phys/runs/PHYS_A_50MHZ/results/routing/sync_fifo_count.nl.v line 3527, module sky130_ef_sc_hd__decap_12 not found. Creating black box for FILLER_0_0_9.
+Warning: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count_phys/runs/PHYS_A_50MHZ/results/routing/sync_fifo_count.nl.v line 3529, module sky130_fd_sc_hd__fill_1 not found. Creating black box for FILLER_0_0_27.
+Warning: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count_phys/runs/PHYS_A_50MHZ/results/routing/sync_fifo_count.nl.v line 3574, module sky130_fd_sc_hd__fill_2 not found. Creating black box for FILLER_0_1_101.
+[WARNING] Did not save OpenROAD database!

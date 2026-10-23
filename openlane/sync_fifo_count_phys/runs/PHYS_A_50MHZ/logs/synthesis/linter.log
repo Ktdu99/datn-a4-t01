@@ -1,0 +1,10 @@
+%Warning-WIDTHTRUNC: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count_phys/../../rtl/sync_fifo_count.v:34:32: Operator VAR 'LAST_ADDRESS' expects 4 bits on the Initial value, but Initial value's SUB generates 32 bits.
+                                                                                                                       : ... In instance sync_fifo_count
+   34 |     localparam [PTR_WIDTH-1:0] LAST_ADDRESS =
+      |                                ^~~~~~~~~~~~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.009
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count_phys/../../rtl/sync_fifo_count.v:37:32: Operator VAR 'DEPTH_COUNT' expects 5 bits on the Initial value, but Initial value's VARREF 'DEPTH' generates 32 bits.
+                                                                                                                       : ... In instance sync_fifo_count
+   37 |     localparam [CNT_WIDTH-1:0] DEPTH_COUNT =
+      |                                ^~~~~~~~~~~

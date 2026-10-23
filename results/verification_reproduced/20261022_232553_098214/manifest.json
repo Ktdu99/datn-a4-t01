@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "random_cycles_per_seed": 10000,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    20260924
+  ],
+  "source_sha256": {
+    "rtl/sync_fifo_count.v": "3eabfd780a007e2c39fb4e67e2785d5dad3d40a0584c18ea42fc77d636ba2e74",
+    "tb/tb_sync_fifo_count.sv": "6ead5816972fc700657360c515187a4c33651213c2ee7c628cc2ed8fd97b5746",
+    "rtl/sync_fifo_pointer.v": "678342f2a6d33ef3a8d1ea7673b362502f31d2e3c2cafb0e0456d3993afa0899",
+    "tb/tb_sync_fifo_pointer.sv": "9988bac0f2af09aa621104c7f38d4b890410d01fe9bb8006d4cd928d81f29c11"
+  },
+  "runs": [
+    {
+      "architecture": "A",
+      "seed": 1,
+      "cycles": 10168,
+      "checks": 30508,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "A_seed_1.txt"
+    },
+    {
+      "architecture": "A",
+      "seed": 2,
+      "cycles": 10163,
+      "checks": 30493,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "A_seed_2.txt"
+    },
+    {
+      "architecture": "A",
+      "seed": 3,
+      "cycles": 10160,
+      "checks": 30484,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "A_seed_3.txt"
+    },
+    {
+      "architecture": "A",
+      "seed": 4,
+      "cycles": 10169,
+      "checks": 30511,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "A_seed_4.txt"
+    },
+    {
+      "architecture": "A",
+      "seed": 5,
+      "cycles": 10161,
+      "checks": 30487,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "A_seed_5.txt"
+    },
+    {
+      "architecture": "A",
+      "seed": 20260924,
+      "cycles": 10171,
+      "checks": 30517,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "A_seed_20260924.txt"
+    },
+    {
+      "architecture": "B",
+      "seed": 1,
+      "cycles": 10168,
+      "checks": 30508,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "B_seed_1.txt"
+    },
+    {
+      "architecture": "B",
+      "seed": 2,
+      "cycles": 10163,
+      "checks": 30493,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "B_seed_2.txt"
+    },
+    {
+      "architecture": "B",
+      "seed": 3,
+      "cycles": 10160,
+      "checks": 30484,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "B_seed_3.txt"
+    },
+    {
+      "architecture": "B",
+      "seed": 4,
+      "cycles": 10169,
+      "checks": 30511,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "B_seed_4.txt"
+    },
+    {
+      "architecture": "B",
+      "seed": 5,
+      "cycles": 10161,
+      "checks": 30487,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "B_seed_5.txt"
+    },
+    {
+      "architecture": "B",
+      "seed": 20260924,
+      "cycles": 10171,
+      "checks": 30517,
+      "errors": 0,
+      "result": "PASS",
+      "log_file": "B_seed_20260924.txt"
+    }
+  ]
+}

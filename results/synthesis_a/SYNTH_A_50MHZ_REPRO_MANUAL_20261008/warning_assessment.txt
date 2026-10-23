@@ -1,0 +1,9 @@
+OpenLane synthesis warning assessment
+=====================================
+undriven_output_warning=FALSE_POSITIVE
+postmap_full_liberty_check=PASS
+postmap_yosys_problems=0
+abc_combinational_retime_message=KNOWN_NON_FATAL
+sta_database_not_saved=EXPECTED_FOR_SYNTHESIS_ONLY_RUN
+reference_issue=https://github.com/The-OpenROAD-Project/OpenLane/issues/2098
+reference_fix=https://github.com/The-OpenROAD-Project/OpenLane/pull/2099

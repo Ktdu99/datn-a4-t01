@@ -1,0 +1,13 @@
+%Warning-WIDTHTRUNC: rtl/sync_fifo_count.v:34:32: Operator VAR 'LAST_ADDRESS' expects 4 bits on the Initial value, but Initial value's SUB generates 32 bits.
+                                                : ... note: In instance 'sync_fifo_count'
+   34 |     localparam [PTR_WIDTH-1:0] LAST_ADDRESS =
+      |                                ^~~~~~~~~~~~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.032
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: rtl/sync_fifo_count.v:37:32: Operator VAR 'DEPTH_COUNT' expects 5 bits on the Initial value, but Initial value's VARREF 'DEPTH' generates 32 bits.
+                                                : ... note: In instance 'sync_fifo_count'
+   37 |     localparam [CNT_WIDTH-1:0] DEPTH_COUNT =
+      |                                ^~~~~~~~~~~
+- V e r i l a t i o n   R e p o r t: Verilator 5.032 2025-01-01 rev (Debian 5.032-1)
+- Verilator: Built from 0.024 MB sources in 2 modules, into 0.022 MB in 5 C++ files needing 0.000 MB
+- Verilator: Walltime 0.009 s (elab=0.000, cvt=0.002, bld=0.000); cpu 0.006 s on 1 threads; alloced 7.945 MB

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1430" viewBox="0 0 1500 1430">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#61758b"/></marker></defs>
+<rect width="1500" height="1430" fill="#f4f7fb"/>
+<text x="750" y="60" font-size="31" fill="#214d7b" text-anchor="middle" font-weight="bold">QUY TRÌNH THIẾT KẾ ASIC TỪ RTL ĐẾN GDSII</text>
+<text x="750" y="96" font-size="20" fill="#52657b" text-anchor="middle">Quy trình áp dụng cho hai kiến trúc FIFO trên SKY130A</text>
+<rect x="320" y="145" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="176" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">1. Đặc tả và thiết kế RTL</text>
+<text x="715.0" y="205" font-size="17" fill="#40536b" text-anchor="middle">FIFO 16 × 8 | Verilog | DATA_WIDTH / DEPTH</text>
+<path d="M715.0 228 L715.0 256" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="261" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="292" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">2. Kiểm chứng chức năng</text>
+<text x="715.0" y="321" font-size="17" fill="#40536b" text-anchor="middle">Icarus Verilog | Testbench | VCD / GTKWave</text>
+<path d="M715.0 344 L715.0 372" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="377" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="408" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">3. Tổng hợp logic</text>
+<text x="715.0" y="437" font-size="17" fill="#40536b" text-anchor="middle">Yosys | Ánh xạ standard cell SKY130</text>
+<path d="M715.0 460 L715.0 488" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="493" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="524" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">4. Floorplan</text>
+<text x="715.0" y="553" font-size="17" fill="#40536b" text-anchor="middle">Die / Core | Bố trí vùng thiết kế</text>
+<path d="M715.0 576 L715.0 604" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="609" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="640" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">5. Placement</text>
+<text x="715.0" y="669" font-size="17" fill="#40536b" text-anchor="middle">Sắp xếp standard cell</text>
+<path d="M715.0 692 L715.0 720" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="725" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="756" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">6. Clock Tree Synthesis (CTS)</text>
+<text x="715.0" y="785" font-size="17" fill="#40536b" text-anchor="middle">Triển khai mạng phân phối xung nhịp</text>
+<path d="M715.0 808 L715.0 836" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="841" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="872" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">7. Routing</text>
+<text x="715.0" y="901" font-size="17" fill="#40536b" text-anchor="middle">Định tuyến và kết nối vật lý</text>
+<path d="M715.0 924 L715.0 952" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="957" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="988" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">8. Ký sinh và STA sau routing</text>
+<text x="715.0" y="1017" font-size="17" fill="#40536b" text-anchor="middle">SPEF | OpenSTA | Setup / Hold | Fmax</text>
+<path d="M715.0 1040 L715.0 1068" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="1073" width="790" height="80" rx="12" fill="white" stroke="#285a91" stroke-width="2.5"/>
+<text x="715.0" y="1104" font-size="22" fill="#285a91" text-anchor="middle" font-weight="bold">9. Kiểm tra vật lý</text>
+<text x="715.0" y="1133" font-size="17" fill="#40536b" text-anchor="middle">DRC | LVS | Antenna | Đánh giá các waiver</text>
+<path d="M715.0 1156 L715.0 1184" fill="none" stroke="#61758b" stroke-width="2.8" marker-end="url(#arrow)"/>
+<rect x="320" y="1189" width="790" height="80" rx="12" fill="white" stroke="#087c74" stroke-width="2.5"/>
+<text x="715.0" y="1220" font-size="22" fill="#087c74" text-anchor="middle" font-weight="bold">10. Tạo GDSII</text>
+<text x="715.0" y="1249" font-size="17" fill="#40536b" text-anchor="middle">Kết quả bố trí vật lý cuối cùng</text>
+<rect x="18" y="255" width="280" height="108" rx="12" fill="white" stroke="#a16527" stroke-width="2.5"/>
+<text x="158.0" y="286" font-size="22" fill="#a16527" text-anchor="middle" font-weight="bold">Nếu verification FAIL</text>
+<text x="158.0" y="315" font-size="17" fill="#40536b" text-anchor="middle">Sửa RTL và mô phỏng lại</text>
+<path d="M320 301 L298 301" fill="none" stroke="#61758b" stroke-width="2.8" stroke-dasharray="8 5" marker-end="url(#arrow)"/>
+<rect x="1130" y="925" width="350" height="115" rx="12" fill="white" stroke="#087c74" stroke-width="2.5"/>
+<text x="1305.0" y="956" font-size="22" fill="#087c74" text-anchor="middle" font-weight="bold">Ước lượng công suất</text>
+<text x="1305.0" y="985" font-size="17" fill="#40536b" text-anchor="middle">SPEF + VCD | OpenSTA Power</text>
+<path d="M1110 997 L1130 997" fill="none" stroke="#61758b" stroke-width="2.8" stroke-dasharray="8 5" marker-end="url(#arrow)"/>
+<rect x="1130" y="1180" width="350" height="115" rx="12" fill="white" stroke="#087c74" stroke-width="2.5"/>
+<text x="1305.0" y="1211" font-size="22" fill="#087c74" text-anchor="middle" font-weight="bold">KLayout DRC độc lập</text>
+<text x="1305.0" y="1240" font-size="17" fill="#40536b" text-anchor="middle">Kiểm tra trên GDSII đã lưu</text>
+<path d="M1110 1228 L1130 1228" fill="none" stroke="#61758b" stroke-width="2.8" stroke-dasharray="8 5" marker-end="url(#arrow)"/>
+<rect x="50" y="1342" width="1400" height="58" rx="10" fill="#e5edf6"/>
+<text x="750" y="1365" font-size="17" fill="#32465d" text-anchor="middle">Mũi tên liền: chuỗi triển khai chính | Mũi tên nét đứt: hoạt động hỗ trợ / kiểm tra</text>
+<text x="750" y="1387" font-size="16" fill="#52657b" text-anchor="middle">Hình mô tả quy trình nghiên cứu, không đại diện cho chứng nhận sign-off sản xuất.</text>
+</svg>

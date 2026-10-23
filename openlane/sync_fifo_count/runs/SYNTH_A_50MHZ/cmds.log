@@ -1,0 +1,34 @@
+Thu Oct 08 07:09:04 UTC 2026 - Executing "openroad -exit -no_init -python /openlane/scripts/odbpy/lefutil.py get_metal_layers -o /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/layers.list /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef"
+
+Thu Oct 08 07:09:04 UTC 2026 - Executing "/openlane/scripts/mergeLef.py -o /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/merged.nom.lef -i /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef {/home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef} |& tee /dev/null"
+
+Thu Oct 08 07:09:05 UTC 2026 - Executing "/openlane/scripts/mergeLef.py -o /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/merged.min.lef -i /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__min.tlef {/home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef} |& tee /dev/null"
+
+Thu Oct 08 07:09:05 UTC 2026 - Executing "/openlane/scripts/mergeLef.py -o /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/merged.max.lef -i /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__max.tlef {/home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef} |& tee /dev/null"
+
+Thu Oct 08 07:09:05 UTC 2026 - Executing "python3 /openlane/scripts/mergeLib.py --output /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/synthesis/merged.lib --name sky130A_merged /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
+
+Thu Oct 08 07:09:05 UTC 2026 - Executing "python3 /openlane/scripts/libtrim.py --cell-file /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/synthesis/trimmed.lib.exclude.list --output /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/synthesis/trimmed.lib /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/synthesis/merged.lib"
+
+Thu Oct 08 07:09:05 UTC 2026 - Executing "python3 /openlane/scripts/libtrim.py --cell-file /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/cts/cts.lib.exclude.list --output /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/cts/cts.lib /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
+
+Thu Oct 08 07:09:06 UTC 2026 - Executing "python3 /openlane/scripts/libtrim.py --cell-file /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/cts/cts-fastest.lib.exclude.list --output /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/cts/cts-fastest.lib /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib"
+
+Thu Oct 08 07:09:06 UTC 2026 - Executing "python3 /openlane/scripts/libtrim.py --cell-file /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/cts/cts-slowest.lib.exclude.list --output /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/cts/cts-slowest.lib /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib"
+
+Thu Oct 08 07:09:06 UTC 2026 - Executing "python3 /openlane/scripts/new_tracks.py -i /home/ktdung/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tracks.info -o /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/routing/config.tracks"
+
+Thu Oct 08 07:09:06 UTC 2026 - Executing "echo {OpenLane ff5509f65b17bfa4068d5336495ab1718987ff69} > /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/OPENLANE_COMMIT"
+
+Thu Oct 08 07:09:07 UTC 2026 - Executing "sed -E {s/^([[:space:]]+)pg_pin(.*)/\1pin\2\n\1    direction : "inout";/g} /home/ktdung/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib > /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/synthesis/1-sky130_fd_sc_hd__tt_025C_1v80.no_pg.lib"
+
+Thu Oct 08 07:09:07 UTC 2026 - Executing "sed -E {s/^([[:space:]]+)pg_pin(.*)/\1pin\2\n\1    direction : "inout";/g} /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/synthesis/trimmed.lib > /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/tmp/synthesis/1-trimmed.no_pg.lib"
+
+Thu Oct 08 07:09:07 UTC 2026 - Executing "yosys -c /openlane/scripts/yosys/synth.tcl |& tee /dev/null /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/logs/synthesis/1-synthesis.log"
+
+Thu Oct 08 07:09:08 UTC 2026 - Executing "sed -i.bak -e {s/\(set ::env(CURRENT_NETLIST)\).*/\1 \/home\/ktdung\/ktdu-datn\/datn-a4-t01\/openlane\/sync_fifo_count\/runs\/SYNTH_A_50MHZ\/results\/synthesis\/sync_fifo_count.v/} /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/config.tcl"
+
+Thu Oct 08 07:09:08 UTC 2026 - Executing "sed -i.bak /defparam/d /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/results/synthesis/sync_fifo_count.v"
+
+Thu Oct 08 07:09:09 UTC 2026 - Executing "sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ/logs/synthesis/2-sta.log"
+

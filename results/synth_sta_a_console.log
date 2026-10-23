@@ -1,0 +1,22 @@
+OpenLane v1.0.2 (ff5509f65b17bfa4068d5336495ab1718987ff69)
+All rights reserved. (c) 2020-2025 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+Design directory: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count
+Run tag: SYNTH_A_50MHZ_REPRO_MANUAL_20261008
+[36m[INFO]: Using configuration in '../home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/config.json'...[39m
+[36m[INFO]: PDK Root: /home/ktdung/.ciel[39m
+[36m[INFO]: Process Design Kit: sky130A[39m
+[36m[INFO]: Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Optimization Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Run Directory: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ_REPRO_MANUAL_20261008[39m
+[36m[INFO]: Saving runtime environment...[39m
+[36m[INFO]: Preparing LEF files for the nom corner...[39m
+[36m[INFO]: Preparing LEF files for the min corner...[39m
+[36m[INFO]: Preparing LEF files for the max corner...[39m
+[STEP 1]
+[36m[INFO]: Running Synthesis (log: ../home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ_REPRO_MANUAL_20261008/logs/synthesis/1-synthesis.log)...[39m
+[STEP 2]
+[36m[INFO]: Running Single-Corner Static Timing Analysis (log: ../home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ_REPRO_MANUAL_20261008/logs/synthesis/2-sta.log)...[39m
+[PASS] Synthesis and STA A completed
+RUN_DIR=/home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_count/runs/SYNTH_A_50MHZ_REPRO_MANUAL_20261008

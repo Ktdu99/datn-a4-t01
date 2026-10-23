@@ -1,0 +1,9 @@
+- status: 0 - openlane design prep
+  runtime_s: 4.31
+  runtime_ts: 0h0m4s314ms
+- status: 1 - synthesis - yosys
+  runtime_s: 2.03
+  runtime_ts: 0h0m2s31ms
+- status: 2 - sta - openroad
+  runtime_s: 0.5
+  runtime_ts: 0h0m0s496ms

@@ -1,0 +1,18 @@
+{
+  "DESIGN_NAME": "sync_fifo_count",
+  "VERILOG_FILES": "dir::../../rtl/sync_fifo_count.v",
+
+  "CLOCK_PORT": "clk",
+  "CLOCK_NET": "clk",
+  "CLOCK_PERIOD": 20.0,
+
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+
+  "SYNTH_PARAMETERS": "DATA_WIDTH=8 DEPTH=16",
+  "SYNTH_STRATEGY": "AREA 0",
+  "SYNTH_CLOCK_UNCERTAINTY": 0.25,
+  "SYNTH_CLOCK_TRANSITION": 0.15,
+  "SYNTH_TIMING_DERATE": 0.05,
+  "IO_PCT": 0.20
+}

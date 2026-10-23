@@ -1,0 +1,8 @@
+VCD info: dumpfile /home/ktdung/ktdu-datn/datn-a4-t01/results/power_streaming/run_gLsoCYD1/A_streaming.vcd opened for output.
+WORKLOAD=streaming
+MEASURED_CYCLES=10000
+WRITES=10000
+READS=10000
+ERRORS=0
+POWER_WORKLOAD_PASS
+tb/tb_fifo_power.sv:193: $finish called at 200891000 (1ps)

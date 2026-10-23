@@ -1,0 +1,30 @@
+OpenROAD 41a51eaf4ca2171c92ff38afb91eb37bbd3f36da 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+=== POWER COMMAND CHECK ===
+AVAILABLE: read_liberty
+read_liberty [-corner corner] [-min] [-max] [-no_latch_infer] filename
+AVAILABLE: read_verilog
+read_verilog filename
+AVAILABLE: link_design
+link_design [top_cell_name]
+AVAILABLE: read_sdc
+read_sdc [-echo] filename
+AVAILABLE: read_spef
+read_spef [-corner corner] [-min] [-max] [-path path] [-pin_cap_included]
+   [-keep_capacitive_coupling] [-coupling_reduction_factor factor]
+   [-reduce_to pi_elmore|pi_pole_residue2] [-delete_after_reduce] [-quiet]
+   [-save] filename
+MISSING: read_vcd
+AVAILABLE: read_power_activities
+read_power_activities [-scope scope] -vcd filename
+MISSING: report_activity_annotation
+AVAILABLE: report_parasitic_annotation
+report_parasitic_annotation -report_unannotated
+MISSING: report_parasitics_annotation
+AVAILABLE: report_power
+report_power [-instances instances] [-corner corner] [-digits digits]
+   [> filename] [>> filename]
+AVAILABLE: report_units
+report_units
+=== CHECK COMPLETED ===

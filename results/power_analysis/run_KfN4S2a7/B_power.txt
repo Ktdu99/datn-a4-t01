@@ -1,0 +1,66 @@
+OpenROAD 41a51eaf4ca2171c92ff38afb91eb37bbd3f36da 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+=== EXPERIMENT ===
+Architecture: B
+Top: sync_fifo_pointer
+Corner: TT / 25 C / 1.80 V
+Parasitics: nominal
+Activity: streaming, gate-level zero-delay
+VCD: /work/results/power_analysis/run_KfN4S2a7/B_streaming_zero.vcd
+=== READ TECHNOLOGY ===
+[INFO ODB-0222] Reading LEF file: /pdk/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
+[INFO ODB-0223]     Created 14 technology layers
+[INFO ODB-0224]     Created 25 technology vias
+[INFO ODB-0226] Finished LEF file:  /pdk/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
+[INFO ODB-0222] Reading LEF file: /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef at line 2.
+
+[INFO ODB-0225]     Created 437 library cells
+[INFO ODB-0226] Finished LEF file:  /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef
+[INFO ODB-0222] Reading LEF file: /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef at line 2.
+
+[INFO ODB-0225]     Created 4 library cells
+[INFO ODB-0226] Finished LEF file:  /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef
+=== READ LIBERTY ===
+=== READ DESIGN ===
+[INFO ODB-0127] Reading DEF file: /work/results/physical_b/PHYS_B_50MHZ/final/def/sync_fifo_pointer.def
+[INFO ODB-0128] Design: sync_fifo_pointer
+[INFO ODB-0130]     Created 26 pins.
+[INFO ODB-0131]     Created 2345 components and 11122 component-terminals.
+[INFO ODB-0132]     Created 2 special nets and 8850 connections.
+[INFO ODB-0133]     Created 765 nets and 2272 connections.
+[INFO ODB-0134] Finished DEF file: /work/results/physical_b/PHYS_B_50MHZ/final/def/sync_fifo_pointer.def
+=== READ CONSTRAINTS ===
+=== READ PARASITICS ===
+Found 0 unannotated drivers.
+Found 0 partially unannotated drivers.
+=== READ ACTIVITY ===
+Annotated 3795 pin activities.
+=== UNITS ===
+ time 1ns
+ capacitance 1pF
+ resistance 1kohm
+ voltage 1v
+ current 1mA
+ power 1nW
+ distance 1um
+=== POWER ===
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           3.090020e-04 1.216071e-05 1.249291e-09 3.211640e-04  45.1%
+Combinational        1.795763e-04 2.115064e-04 4.134794e-09 3.910869e-04  54.9%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.885781e-04 2.236671e-04 5.384078e-09 7.122506e-04 100.0%
+                            68.6%        31.4%         0.0%
+=== LIMITATIONS ===
+No report_activity_annotation command in this build.
+Zero-delay activity does not fully model timing glitches.
+Result requires review before use in PPA conclusions.
+POWER_REPORT_COMPLETED

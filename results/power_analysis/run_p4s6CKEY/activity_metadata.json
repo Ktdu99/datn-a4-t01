@@ -1,0 +1,25 @@
+{
+  "workload": "streaming",
+  "activity_model": "gate_level_zero_delay",
+  "qualification": "REVIEW_REQUIRED",
+  "files": [
+    {
+      "architecture": "A",
+      "source": "/home/ktdung/ktdu-datn/datn-a4-t01/results/power_streaming/run_gLsoCYD1/A_streaming.vcd",
+      "source_sha256": "14ac7066eac6ce5a0040123f14adf8de93a105cfd5b7da662b012858a8ab688c",
+      "normalized_file": "A_streaming_zero.vcd",
+      "first_timestamp": 891000,
+      "last_timestamp": 200891000,
+      "duration_ticks": 200000000
+    },
+    {
+      "architecture": "B",
+      "source": "/home/ktdung/ktdu-datn/datn-a4-t01/results/power_streaming/run_gLsoCYD1/B_streaming.vcd",
+      "source_sha256": "eada89061db023708a310b845926f54a4c6d82a81755a47837302cd1df3d01b8",
+      "normalized_file": "B_streaming_zero.vcd",
+      "first_timestamp": 891000,
+      "last_timestamp": 200891000,
+      "duration_ticks": 200000000
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+
+55. Printing statistics.
+
+=== sync_fifo_pointer ===
+
+   Number of wires:                370
+   Number of wire bits:            527
+   Number of public wires:          30
+   Number of public wire bits:     164
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                505
+     $_ANDNOT_                      22
+     $_AND_                          7
+     $_MUX_                        286
+     $_NAND_                         4
+     $_NOR_                          2
+     $_NOT_                          3
+     $_ORNOT_                        4
+     $_OR_                          17
+     $_XNOR_                         2
+     $_XOR_                         10
+     sky130_fd_sc_hd__dfxtp_2      148
+

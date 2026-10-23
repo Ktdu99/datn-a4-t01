@@ -1,0 +1,16 @@
+
+62. Executing CHECK pass (checking for obvious problems).
+Checking module sync_fifo_pointer...
+Warning: Wire sync_fifo_pointer.\underflow is used but has no driver.
+Warning: Wire sync_fifo_pointer.\rd_data [7] is used but has no driver.
+Warning: Wire sync_fifo_pointer.\rd_data [6] is used but has no driver.
+Warning: Wire sync_fifo_pointer.\rd_data [5] is used but has no driver.
+Warning: Wire sync_fifo_pointer.\rd_data [4] is used but has no driver.
+Warning: Wire sync_fifo_pointer.\rd_data [3] is used but has no driver.
+Warning: Wire sync_fifo_pointer.\rd_data [2] is used but has no driver.
+Warning: Wire sync_fifo_pointer.\rd_data [1] is used but has no driver.
+Warning: Wire sync_fifo_pointer.\rd_data [0] is used but has no driver.
+Warning: Wire sync_fifo_pointer.\overflow is used but has no driver.
+Warning: Wire sync_fifo_pointer.\full is used but has no driver.
+Warning: Wire sync_fifo_pointer.\empty is used but has no driver.
+Found and reported 12 problems.

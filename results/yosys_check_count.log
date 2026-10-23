@@ -1,0 +1,221 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+
+-- Running command `
+read_verilog -sv rtl/sync_fifo_count.v
+hierarchy -check -top sync_fifo_count
+proc
+opt
+check
+stat
+' --
+
+1. Executing Verilog-2005 frontend: rtl/sync_fifo_count.v
+Parsing SystemVerilog input from `rtl/sync_fifo_count.v' to AST representation.
+Generating RTLIL representation for module `\sync_fifo_count'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \sync_fifo_count
+
+2.2. Analyzing design hierarchy..
+Top module:  \sync_fifo_count
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 5 switch rules as full_case in process $proc$rtl/sync_fifo_count.v:56$8 in module sync_fifo_count.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 3 redundant assignments.
+Promoted 3 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~6 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+     1/12: $2$memwr$\memory$rtl/sync_fifo_count.v:75$1_EN[7:0]$20
+     2/12: $2$memwr$\memory$rtl/sync_fifo_count.v:75$1_DATA[7:0]$19
+     3/12: $2$memwr$\memory$rtl/sync_fifo_count.v:75$1_ADDR[3:0]$18
+     4/12: $0\underflow[0:0]
+     5/12: $0\overflow[0:0]
+     6/12: $0\data_count[4:0]
+     7/12: $1$memwr$\memory$rtl/sync_fifo_count.v:75$1_EN[7:0]$15
+     8/12: $1$memwr$\memory$rtl/sync_fifo_count.v:75$1_DATA[7:0]$14
+     9/12: $1$memwr$\memory$rtl/sync_fifo_count.v:75$1_ADDR[3:0]$13
+    10/12: $0\read_pointer[3:0]
+    11/12: $0\write_pointer[3:0]
+    12/12: $0\rd_data[7:0]
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\sync_fifo_count.\rd_data' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$90' with positive edge clock.
+Creating register for signal `\sync_fifo_count.\overflow' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$91' with positive edge clock.
+Creating register for signal `\sync_fifo_count.\underflow' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$92' with positive edge clock.
+Creating register for signal `\sync_fifo_count.\write_pointer' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$93' with positive edge clock.
+Creating register for signal `\sync_fifo_count.\read_pointer' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$94' with positive edge clock.
+Creating register for signal `\sync_fifo_count.\data_count' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$95' with positive edge clock.
+Creating register for signal `\sync_fifo_count.$memwr$\memory$rtl/sync_fifo_count.v:75$1_ADDR' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$96' with positive edge clock.
+Creating register for signal `\sync_fifo_count.$memwr$\memory$rtl/sync_fifo_count.v:75$1_DATA' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$97' with positive edge clock.
+Creating register for signal `\sync_fifo_count.$memwr$\memory$rtl/sync_fifo_count.v:75$1_EN' using process `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+  created $dff cell `$procdff$98' with positive edge clock.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 6 empty switches in `\sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+Removing empty process `sync_fifo_count.$proc$rtl/sync_fifo_count.v:56$8'.
+Cleaned up 6 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sync_fifo_count.
+<suppressed ~13 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sync_fifo_count.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sync_fifo_count'.
+Removed a total of 0 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sync_fifo_count..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$44.
+    dead port 2/2 on $mux $procmux$38.
+    dead port 2/2 on $mux $procmux$32.
+Removed 3 multiplexer ports.
+<suppressed ~9 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sync_fifo_count.
+    Consolidated identical input bits for $mux cell $procmux$29:
+      Old ports: A=8'00000000, B=8'11111111, Y=$procmux$29_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$29_Y [0]
+      New connections: $procmux$29_Y [7:1] = { $procmux$29_Y [0] $procmux$29_Y [0] $procmux$29_Y [0] $procmux$29_Y [0] $procmux$29_Y [0] $procmux$29_Y [0] $procmux$29_Y [0] }
+  Optimizing cells in module \sync_fifo_count.
+    Consolidated identical input bits for $mux cell $procmux$60:
+      Old ports: A=8'00000000, B=$2$memwr$\memory$rtl/sync_fifo_count.v:75$1_EN[7:0]$20, Y=$procmux$60_Y
+      New ports: A=1'0, B=$procmux$29_Y [0], Y=$procmux$60_Y [0]
+      New connections: $procmux$60_Y [7:1] = { $procmux$60_Y [0] $procmux$60_Y [0] $procmux$60_Y [0] $procmux$60_Y [0] $procmux$60_Y [0] $procmux$60_Y [0] $procmux$60_Y [0] }
+  Optimizing cells in module \sync_fifo_count.
+Performed a total of 2 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sync_fifo_count'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$90 ($dff) from module sync_fifo_count (D = $procmux$85_Y, Q = \rd_data, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$100 ($sdff) from module sync_fifo_count (D = $memrd$\memory$rtl/sync_fifo_count.v:88$23_DATA, Q = \rd_data).
+Adding SRST signal on $procdff$91 ($dff) from module sync_fifo_count (D = $logic_and$rtl/sync_fifo_count.v:68$16_Y, Q = \overflow, rval = 1'0).
+Adding SRST signal on $procdff$92 ($dff) from module sync_fifo_count (D = $logic_and$rtl/sync_fifo_count.v:69$17_Y, Q = \underflow, rval = 1'0).
+Adding SRST signal on $procdff$93 ($dff) from module sync_fifo_count (D = $procmux$80_Y, Q = \write_pointer, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$104 ($sdff) from module sync_fifo_count (D = $procmux$78_Y, Q = \write_pointer).
+Adding SRST signal on $procdff$94 ($dff) from module sync_fifo_count (D = $procmux$71_Y, Q = \read_pointer, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$106 ($sdff) from module sync_fifo_count (D = $procmux$69_Y, Q = \read_pointer).
+Adding SRST signal on $procdff$95 ($dff) from module sync_fifo_count (D = $procmux$53_Y, Q = \data_count, rval = 5'00000).
+Adding EN signal on $auto$ff.cc:266:slice$108 ($sdff) from module sync_fifo_count (D = $procmux$53_Y, Q = \data_count).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sync_fifo_count..
+Removed 13 unused cells and 55 unused wires.
+<suppressed ~14 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sync_fifo_count.
+<suppressed ~1 debug messages>
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sync_fifo_count..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sync_fifo_count.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sync_fifo_count'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sync_fifo_count..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sync_fifo_count.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module sync_fifo_count...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== sync_fifo_count ===
+
+   Number of wires:                 38
+   Number of wire bits:            127
+   Number of public wires:          15
+   Number of public wire bits:      39
+   Number of ports:                 10
+   Number of port bits:             24
+   Number of memories:               1
+   Number of memory bits:          128
+   Number of processes:              0
+   Number of cells:                 34
+     $add                            3
+     $eq                             5
+     $logic_and                      4
+     $logic_not                      3
+     $memrd                          1
+     $memwr_v2                       1
+     $mux                            8
+     $pmux                           1
+     $reduce_bool                    1
+     $sdff                           2
+     $sdffe                          4
+     $sub                            1
+
+End of script. Logfile hash: 6c8d5a7559, CPU: user 0.02s system 0.02s, MEM: 14.27 MB peak
+Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+Time spent: 29% 4x opt_expr (0 sec), 19% 2x read_verilog (0 sec), ...

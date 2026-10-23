@@ -1,0 +1,19 @@
+Design Name: sync_fifo_pointer
+Run Directory: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_pointer_phys/runs/PHYS_B_50MHZ
+----------------------------------------
+
+Magic DRC Summary:
+Source: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_pointer_phys/runs/PHYS_B_50MHZ/reports/signoff/drc.rpt
+Total Magic DRC violations is 0
+----------------------------------------
+
+LVS Summary:
+Source: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_pointer_phys/runs/PHYS_B_50MHZ/logs/signoff/38-sync_fifo_pointer.lef.lvs.log
+Number of nets: 767                        |Number of nets: 767                        
+Design is LVS clean.
+----------------------------------------
+
+Antenna Summary:
+Source: /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_pointer_phys/runs/PHYS_B_50MHZ/logs/signoff/40-arc.log
+Pin violations: 0
+Net violations: 0

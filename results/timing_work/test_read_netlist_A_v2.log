@@ -1,0 +1,30 @@
+OpenROAD 41a51eaf4ca2171c92ff38afb91eb37bbd3f36da 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+===== READ TECHNOLOGY LEF =====
+[INFO ODB-0222] Reading LEF file: /pdk/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
+[INFO ODB-0223]     Created 14 technology layers
+[INFO ODB-0224]     Created 25 technology vias
+[INFO ODB-0226] Finished LEF file:  /pdk/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
+===== READ STANDARD CELL LEF =====
+[INFO ODB-0222] Reading LEF file: /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef at line 2.
+
+[INFO ODB-0225]     Created 437 library cells
+[INFO ODB-0226] Finished LEF file:  /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef
+===== READ EF STANDARD CELL LEF =====
+[INFO ODB-0222] Reading LEF file: /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef at line 2.
+
+[INFO ODB-0225]     Created 4 library cells
+[INFO ODB-0226] Finished LEF file:  /pdk/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef
+===== READ LIBERTY =====
+===== READ NETLIST =====
+===== LINK DESIGN =====
+[WARNING ORD-1011] LEF master sky130_fd_sc_hd__fill_1 has no liberty cell.
+[WARNING ORD-1011] LEF master sky130_ef_sc_hd__decap_12 has no liberty cell.
+[WARNING ORD-1011] LEF master sky130_fd_sc_hd__fill_2 has no liberty cell.
+[WARNING ORD-1011] LEF master sky130_fd_sc_hd__tapvpwrvgnd_1 has no liberty cell.
+===== DESIGN LINKED =====
