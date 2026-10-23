@@ -1,6 +1,5 @@
 # CHƯƠNG 3 – PHƯƠNG PHÁP VÀ THIẾT KẾ HỆ THỐNG
 
-**Trạng thái: DRAFT – IN PROGRESS.**
 
 ## 3.1. Câu hỏi nghiên cứu
 
@@ -881,9 +880,9 @@ bộ đếm số phần tử riêng.
 
 Nguyên lý sử dụng bit pha để phân biệt
 trạng thái đầy và rỗng có liên hệ với
-phương pháp con trỏ được trình bày trong [2].
+phương pháp con trỏ được trình bày trong [4].
 
-Tuy nhiên, [2] nghiên cứu FIFO bất đồng bộ;
+Tuy nhiên, [4] nghiên cứu FIFO bất đồng bộ;
 thiết kế của đề tài vẫn là FIFO đồng bộ
 và không sử dụng cơ chế đồng bộ CDC.
 
@@ -1481,7 +1480,7 @@ OpenLane được sử dụng để điều phối
 các giai đoạn của quy trình thiết kế ASIC.
 
 Cơ sở tổ chức RTL-to-GDSII của OpenLane
-được tham khảo từ tài liệu dự án [3].
+được tham khảo từ tài liệu dự án [2].
 
 Các công cụ và thành phần liên quan gồm:
 
@@ -1510,7 +1509,7 @@ Công nghệ được lựa chọn là SKY130A.
 
 Thông tin về nền tảng công nghệ và
 các thư viện SKY130 được tham khảo
-từ tài liệu PDK [6].
+từ tài liệu PDK [5].
 
 Thư viện standard cell được sử dụng
 trong quá trình tổng hợp và triển khai
@@ -1644,7 +1643,7 @@ ràng buộc clock của thiết kế.
 
 Cơ sở phương pháp STA và sử dụng
 dữ liệu ký sinh được tham khảo
-từ tài liệu OpenSTA [4].
+từ tài liệu OpenSTA [3].
 
 Chu kỳ clock mục tiêu là 20 ns.
 
@@ -1691,7 +1690,7 @@ sự tuân thủ những quy tắc thiết kế
 được áp dụng bởi công nghệ.
 
 Bộ quy tắc thiết kế của công nghệ
-SKY130 được tham khảo từ [7].
+SKY130 được tham khảo từ [6].
 
 LVS đối chiếu kết nối của layout
 với biểu diễn mạch tham chiếu.
@@ -2155,7 +2154,7 @@ netlist và dữ liệu SPEF danh định
 
 Phương pháp sử dụng hoạt động chuyển mạch
 và mô hình công suất được tham khảo
-từ tài liệu OpenSTA [5].
+từ tài liệu OpenSTA [7].
 
 Điều kiện đánh giá bao gồm:
 

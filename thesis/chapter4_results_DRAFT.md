@@ -1,6 +1,5 @@
 # CHƯƠNG 4 – KẾT QUẢ THỰC NGHIỆM VÀ ĐÁNH GIÁ
 
-Trạng thái: DRAFT – đang hoàn thiện.
 
 Chương này trình bày kết quả thực nghiệm của
 hai kiến trúc FIFO đồng bộ 16 x 8 đã mô tả

@@ -1,5 +1,5 @@
-> **BẢN GHÉP ĐỂ RÀ SOÁT – CHƯA PHẢI BẢN NỘP.**
-> Cần kiểm tra mẫu trình bày của trường, chất lượng hình và nguồn tham khảo [2].
+> **BẢN ĐÃ CHUẨN HÓA TRÍCH DẪN – CHƯA PHẢI BẢN NỘP.**
+> Cần kiểm tra hình thức, nguồn tham khảo và kết quả dàn trang trước khi nộp.
 
 # CHƯƠNG 1. TỔNG QUAN ĐỀ TÀI
 
@@ -30,7 +30,7 @@ thiết kế vật lý như floorplan, placement, clock tree synthesis và
 routing. Bên cạnh tính đúng đắn chức năng, các chỉ số về công suất tiêu
 thụ (Power), hiệu năng thời gian (Performance) và diện tích (Area),
 gọi chung là PPA, có vai trò quan trọng trong việc đánh giá chất lượng
-thiết kế [R2, R4].
+thiết kế [2], [3].
 
 Đối với cùng một chức năng FIFO, việc lựa chọn kiến trúc điều khiển có
 thể ảnh hưởng đến tài nguyên logic, đường truyền tín hiệu và các chỉ số
@@ -38,7 +38,7 @@ PPA sau khi triển khai. Chẳng hạn, một phương án thiết kế sử d�
 bộ đếm số phần tử để theo dõi mức sử dụng FIFO và xác định trạng thái
 đầy, rỗng [1].
 Một phương án khác sử dụng các con trỏ đọc, ghi mở rộng để phân biệt
-trạng thái đầy và rỗng [2]. Hai phương pháp có cùng mục tiêu chức năng
+trạng thái đầy và rỗng [4]. Hai phương pháp có cùng mục tiêu chức năng
 nhưng khác nhau về tổ chức logic điều khiển. Vì vậy, việc xây dựng và so sánh hai
 kiến trúc trong cùng điều kiện công nghệ và ràng buộc thời gian có ý
 nghĩa trong việc tìm hiểu mối liên hệ giữa lựa chọn kiến trúc RTL và
@@ -49,7 +49,7 @@ Bên cạnh đó, sự phát triển của các công cụ thiết kế điện 
 nghiên cứu và thực hành quy trình thiết kế ASIC từ RTL đến GDSII. Khi
 kết hợp với bộ công nghệ SKY130A, các công cụ này cho phép thực hiện
 những bước cơ bản của quy trình thiết kế vi mạch số, thu thập báo cáo
-kỹ thuật và phân tích kết quả mà không yêu cầu chế tạo chip thực tế [R2, R3].
+kỹ thuật và phân tích kết quả mà không yêu cầu chế tạo chip thực tế [2], [5].
 
 Xuất phát từ những cơ sở trên, đề tài “Thiết kế và đánh giá một IP FIFO
 số từ RTL đến GDSII bằng quy trình EDA mã nguồn mở” được lựa chọn nhằm
@@ -72,7 +72,7 @@ hợp, ràng buộc thời gian, tài nguyên phần cứng và tính hợp lệ
 quả thiết kế vật lý. Do đó, bài toán đặt ra không chỉ là xây dựng một
 bộ đệm FIFO hoạt động đúng nguyên tắc First-In, First-Out mà còn phải
 đánh giá được chất lượng của thiết kế sau khi trải qua các công đoạn
-từ RTL đến GDSII [3].
+từ RTL đến GDSII [2].
 
 Trước hết, về mặt chức năng, FIFO phải bảo đảm dữ liệu được đọc ra theo
 đúng thứ tự đã ghi vào. Các thao tác ghi, đọc, ghi và đọc đồng thời,
@@ -101,16 +101,16 @@ nhịp và định tuyến. Kết quả thiết kế cần được kiểm tra b
 pháp như Design Rule Checking (DRC), Layout Versus Schematic (LVS) và
 kiểm tra antenna. Các báo cáo sau triển khai phải cung cấp được thông
 tin phục vụ đánh giá thời gian, diện tích, tài nguyên định tuyến và các
-vấn đề chất lượng thiết kế còn tồn tại [R2, R5].
+vấn đề chất lượng thiết kế còn tồn tại [2], [6].
 
 Một vấn đề quan trọng khác là đánh giá các chỉ số Power, Performance
 và Area (PPA) một cách có cơ sở. Việc so sánh hai kiến trúc cần dựa
 trên cùng bộ công nghệ, thư viện standard cell, cấu hình FIFO và ràng
 buộc xung nhịp. Các số liệu về thời gian phải được phân biệt rõ giữa
 báo cáo thiết kế vật lý và kết quả phân tích thời gian tĩnh sau định
-tuyến [4]. Đối với công suất, kết quả ước lượng phụ thuộc vào hoạt động
+tuyến [3]. Đối với công suất, kết quả ước lượng phụ thuộc vào hoạt động
 chuyển mạch và điều kiện phân tích nên cần xác định rõ phạm vi áp dụng,
-tránh đồng nhất kết quả mô phỏng với công suất đo được trên chip thực tế [5].
+tránh đồng nhất kết quả mô phỏng với công suất đo được trên chip thực tế [7].
 
 Từ những vấn đề trên, đề tài tập trung giải quyết bài toán thiết kế,
 kiểm chứng và triển khai hai kiến trúc FIFO đồng bộ 16×8 trên công nghệ
@@ -472,8 +472,6 @@ trình tự từ cơ sở lý thuyết, thiết kế, kiểm chứng đến tri�
 lý và phân tích kết quả, giúp người đọc theo dõi được toàn bộ quá
 trình thực hiện đề tài.
 
-**Trạng thái: DRAFT – IN PROGRESS.**
-
 # CHƯƠNG 2. CƠ SỞ LÝ THUYẾT
 
 ## 2.1. Khái niệm FIFO
@@ -553,7 +551,7 @@ phía ghi và phía đọc có thể sử dụng hai xung nhịp độc lập.
 FIFO bất đồng bộ vì vậy cần có phương pháp trao đổi và đồng
 bộ thông tin trạng thái giữa các miền xung nhịp để hạn chế
 những vấn đề liên quan đến truyền tín hiệu qua ranh giới
-clock domain [2].
+clock domain [4].
 
 Việc sử dụng một xung nhịp chung giúp đơn giản hóa bài toán
 điều khiển và kiểm chứng so với trường hợp có nhiều miền
@@ -650,7 +648,7 @@ Thông tin này cho phép phân biệt trường hợp hai con trỏ
 cùng vị trí do FIFO rỗng với trường hợp cùng vị trí sau
 khi phía ghi đã đi trước phía đọc một vòng lưu trữ.
 Nguyên tắc sử dụng thông tin vòng cũng xuất hiện trong
-các phương pháp quản lý con trỏ FIFO [2].
+các phương pháp quản lý con trỏ FIFO [4].
 
 Đối với FIFO đồng bộ của đề tài, các con trỏ hoạt động
 trong cùng một miền xung nhịp. Vì vậy, bit vòng được
@@ -741,7 +739,7 @@ Có thể biểu diễn các điều kiện như sau:
 
 Nguyên tắc phân biệt trạng thái bằng thông tin con trỏ
 và bit vòng cũng được trình bày trong các nghiên cứu
-về kỹ thuật FIFO [2]. Trong đề tài này, nguyên tắc
+về kỹ thuật FIFO [4]. Trong đề tài này, nguyên tắc
 được áp dụng cho FIFO đồng bộ, không sử dụng cơ chế
 đồng bộ con trỏ giữa các miền xung nhịp khác nhau.
 
@@ -1165,7 +1163,7 @@ chế tạo chip thực tế hoặc xác nhận sign-off
 Quy trình RTL đến GDSII được hỗ trợ bởi các công
 cụ EDA mã nguồn mở, trong đó OpenLane cung cấp
 một môi trường tích hợp cho nhiều giai đoạn
-triển khai thiết kế số [3].
+triển khai thiết kế số [2].
 
 ## 2.8. Standard cell và PDK
 
@@ -1206,7 +1204,7 @@ tuyến và thực hiện các phép kiểm tra công nghệ.
 Trong đề tài, SKY130A được sử dụng làm nền tảng
 công nghệ cho quá trình triển khai hai kiến trúc
 FIFO. SKY130 là bộ công nghệ mở có tài liệu
-và dữ liệu phục vụ thiết kế vi mạch [6].
+và dữ liệu phục vụ thiết kế vi mạch [5].
 
 ### 2.8.3. Thư viện Liberty
 
@@ -1296,7 +1294,7 @@ FIFO sử dụng SRAM macro.
 
 Các đặc tính công nghệ và quy tắc thiết
 kế của SKY130 được công bố trong tài
-liệu PDK tương ứng [6].
+liệu PDK tương ứng [5].
 
 ## 2.9. Phân tích thời gian tĩnh (STA)
 
@@ -1314,7 +1312,7 @@ hiệu dựa trên mô hình thời gian của phần tử logic,
 
 STA được sử dụng trong nhiều giai đoạn của quy trình
 ASIC nhằm phát hiện các đường truyền có nguy cơ
-không đáp ứng yêu cầu thời gian [4].
+không đáp ứng yêu cầu thời gian [3].
 
 ### 2.9.2. Đường truyền thời gian và critical path
 
@@ -1488,7 +1486,7 @@ chỉ áp dụng cho cấu hình STA đã sử dụng.
 
 OpenSTA là công cụ phân tích thời gian tĩnh
 được sử dụng trong hệ sinh thái thiết kế
-ASIC mã nguồn mở [4].
+ASIC mã nguồn mở [3].
 
 ## 2.10. Các chỉ số PPA
 
@@ -1614,7 +1612,7 @@ công suất ở điều kiện đã lựa chọn.
 
 Phương pháp phân tích dựa trên dữ liệu
 hoạt động được hỗ trợ trong hệ sinh
-thái OpenSTA và OpenROAD [5].
+thái OpenSTA và OpenROAD [7].
 
 Kết quả này là ước tính dựa trên mô hình
 và dữ liệu mô phỏng, không phải kết quả
@@ -1744,7 +1742,7 @@ hoặc toàn bộ yêu cầu chế tạo đã được
 xác nhận đầy đủ.
 
 Các quy tắc thiết kế SKY130 được trình
-bày trong tài liệu công nghệ tương ứng [7].
+bày trong tài liệu công nghệ tương ứng [6].
 
 ### 2.11.3. Layout Versus Schematic
 
@@ -1877,11 +1875,8 @@ phạm vi công cụ,
 bộ quy tắc và điều
 kiện đã thực hiện.
 
-**Trạng thái: DRAFT – IN PROGRESS.**
-
 # CHƯƠNG 3 – PHƯƠNG PHÁP VÀ THIẾT KẾ HỆ THỐNG
 
-**Trạng thái: DRAFT – IN PROGRESS.**
 
 ## 3.1. Câu hỏi nghiên cứu
 
@@ -2762,9 +2757,9 @@ bộ đếm số phần tử riêng.
 
 Nguyên lý sử dụng bit pha để phân biệt
 trạng thái đầy và rỗng có liên hệ với
-phương pháp con trỏ được trình bày trong [2].
+phương pháp con trỏ được trình bày trong [4].
 
-Tuy nhiên, [2] nghiên cứu FIFO bất đồng bộ;
+Tuy nhiên, [4] nghiên cứu FIFO bất đồng bộ;
 thiết kế của đề tài vẫn là FIFO đồng bộ
 và không sử dụng cơ chế đồng bộ CDC.
 
@@ -3362,7 +3357,7 @@ OpenLane được sử dụng để điều phối
 các giai đoạn của quy trình thiết kế ASIC.
 
 Cơ sở tổ chức RTL-to-GDSII của OpenLane
-được tham khảo từ tài liệu dự án [3].
+được tham khảo từ tài liệu dự án [2].
 
 Các công cụ và thành phần liên quan gồm:
 
@@ -3391,7 +3386,7 @@ Công nghệ được lựa chọn là SKY130A.
 
 Thông tin về nền tảng công nghệ và
 các thư viện SKY130 được tham khảo
-từ tài liệu PDK [6].
+từ tài liệu PDK [5].
 
 Thư viện standard cell được sử dụng
 trong quá trình tổng hợp và triển khai
@@ -3525,7 +3520,7 @@ ràng buộc clock của thiết kế.
 
 Cơ sở phương pháp STA và sử dụng
 dữ liệu ký sinh được tham khảo
-từ tài liệu OpenSTA [4].
+từ tài liệu OpenSTA [3].
 
 Chu kỳ clock mục tiêu là 20 ns.
 
@@ -3572,7 +3567,7 @@ sự tuân thủ những quy tắc thiết kế
 được áp dụng bởi công nghệ.
 
 Bộ quy tắc thiết kế của công nghệ
-SKY130 được tham khảo từ [7].
+SKY130 được tham khảo từ [6].
 
 LVS đối chiếu kết nối của layout
 với biểu diễn mạch tham chiếu.
@@ -4036,7 +4031,7 @@ netlist và dữ liệu SPEF danh định
 
 Phương pháp sử dụng hoạt động chuyển mạch
 và mô hình công suất được tham khảo
-từ tài liệu OpenSTA [5].
+từ tài liệu OpenSTA [7].
 
 Điều kiện đánh giá bao gồm:
 
@@ -4189,7 +4184,6 @@ mọi công nghệ hoặc mọi workload.
 
 # CHƯƠNG 4 – KẾT QUẢ THỰC NGHIỆM VÀ ĐÁNH GIÁ
 
-Trạng thái: DRAFT – đang hoàn thiện.
 
 Chương này trình bày kết quả thực nghiệm của
 hai kiến trúc FIFO đồng bộ 16 x 8 đã mô tả
@@ -8129,14 +8123,14 @@ với nhiều ràng buộc và mục tiêu khác nhau.
 
 [1] AMD, "FIFO Generator v13.2," Product Guide PG057, Oct. 4, 2017. [Online]. Available: https://docs.amd.com/v/u/en-US/pg057-fifo-generator
 
-[2] C. E. Cummings, "Simulation and Synthesis Techniques for Asynchronous FIFO Design," SNUG San Jose, 2002. [Online]. Bản sao để đối chiếu: https://github.com/dadongshangu/async_FIFO/blob/master/CummingsSNUG2002SJ_FIFO1.pdf
+[2] The OpenROAD Project, "OpenLane," GitHub repository. [Online]. Available: https://github.com/The-OpenROAD-Project/OpenLane
 
-[3] The OpenROAD Project, "OpenLane," GitHub repository. [Online]. Available: https://github.com/The-OpenROAD-Project/OpenLane
+[3] The OpenROAD Project, "Parallax Static Timing Analyzer," OpenROAD Documentation. [Online]. Available: https://openroad.readthedocs.io/en/latest/main/src/sta/README.html
 
-[4] The OpenROAD Project, "Parallax Static Timing Analyzer," OpenROAD Documentation. [Online]. Available: https://openroad.readthedocs.io/en/latest/main/src/sta/README.html
+[4] C. E. Cummings, "Simulation and Synthesis Techniques for Asynchronous FIFO Design," SNUG San Jose, 2002. [Online]. Bản sao để đối chiếu: https://github.com/dadongshangu/async_FIFO/blob/master/CummingsSNUG2002SJ_FIFO1.pdf
 
-[5] The OpenROAD Project, "Examples: Power Analysis," OpenROAD Documentation. [Online]. Available: https://openroad.readthedocs.io/en/latest/main/src/sta/doc/Examples.html
+[5] SkyWater Technology and FOSSi Foundation, "SkyWater SKY130 PDK Documentation." [Online]. Available: https://skywater-pdk.readthedocs.io/en/main/
 
-[6] SkyWater Technology and FOSSi Foundation, "SkyWater SKY130 PDK Documentation." [Online]. Available: https://skywater-pdk.readthedocs.io/en/main/
+[6] SkyWater Technology and FOSSi Foundation, "SkyWater SKY130 Process Design Rules." [Online]. Available: https://skywater-pdk.readthedocs.io/en/main/rules.html
 
-[7] SkyWater Technology and FOSSi Foundation, "SkyWater SKY130 Process Design Rules." [Online]. Available: https://skywater-pdk.readthedocs.io/en/main/rules.html
+[7] The OpenROAD Project, "Examples: Power Analysis," OpenROAD Documentation. [Online]. Available: https://openroad.readthedocs.io/en/latest/main/src/sta/doc/Examples.html
