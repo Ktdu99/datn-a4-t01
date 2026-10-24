@@ -131,6 +131,42 @@ Các báo cáo chính:
 
 Các script phân tích Power cần môi trường và dữ liệu hoạt động chuyển mạch tương ứng. Kết quả Power là ước lượng từ mô hình công cụ, không phải phép đo trên chip chế tạo thực tế.
 
+
+### 4.8. Kiểm thử mở rộng T16 và T17
+
+Ngoài regression cơ sở, dự án có hai nhóm kiểm thử mở rộng.
+
+**T16 – Parameter matrix**
+
+Lệnh chạy: `python3 scripts/run_t16_parameter_matrix.py`
+
+- Cấu hình: (8,8), (8,16), (8,32), (16,16).
+- Hai seed: 1 và 20260924.
+- Kết quả: 16/16 PASS.
+- Tổng số chu kỳ: 34.920.
+- Tổng phép kiểm tra: 104.824.
+- Errors: 0.
+
+**T17 – Simulation-based equivalence**
+
+Lệnh chạy: `python3 scripts/run_t17_equivalence_matrix.py`
+
+- So sánh FIFO A và FIFO B dưới cùng kích thích.
+- Đối chiếu với mô hình FIFO tham chiếu.
+- Kết quả: 8/8 PASS.
+- Tổng số chu kỳ: 17.383.
+- Tổng phép kiểm tra: 260.985.
+- Errors: 0.
+
+Tổng hợp T16/T17: 24/24 lượt PASS,
+52.303 chu kỳ, 365.809 phép kiểm tra, 0 lỗi.
+
+Báo cáo:
+`results/verification_summary/T16_T17_INDEPENDENT_AUDIT.md`
+
+Lưu ý: T17 là kiểm chứng tương đương dựa trên mô phỏng,
+không phải formal equivalence verification.
+
 ## 5. Kết quả chính
 
 ### 5.1. Functional verification
@@ -189,6 +225,58 @@ FIFO B giảm khoảng 0,49% tổng công suất ước lượng so với FIFO A
 FIFO B có lợi thế về diện tích và tổng công suất ước lượng. FIFO A có Fmax báo cáo cao hơn trong phép phân tích Post-route STA.
 
 Do đó, không có một kiến trúc vượt trội tuyệt đối trên tất cả các chỉ số PPA. Việc lựa chọn kiến trúc phụ thuộc vào mục tiêu tối ưu của ứng dụng.
+
+
+### 5.6. Verification mở rộng và phân tích PPA
+
+Kết quả kiểm thử mở rộng:
+
+| Chỉ số | T16 | T17 | Tổng |
+|---|---:|---:|---:|
+| Số lượt PASS | 16 | 8 | 24 |
+| Chu kỳ mô phỏng | 34.920 | 17.383 | 52.303 |
+| Phép kiểm tra | 104.824 | 260.985 | 365.809 |
+| Errors | 0 | 0 | 0 |
+
+Bằng chứng:
+`results/verification_summary/T16_T17_INDEPENDENT_AUDIT.md`
+
+So sánh FIFO 8×16: diện tích và số cell sau synthesis, Fmax từ STA:
+
+| Chỉ số | FIFO A | FIFO B |
+|---|---:|---:|
+| Standard cells | 600 | 573 |
+| Synthesis mapped area (µm²) | 7130.5888 | 6904.1216 |
+| Fmax từ STA (MHz) | 352.34 | 331.60 |
+
+FIFO B giảm 27 standard cell và khoảng 3,18%
+diện tích mapped area, nhưng Fmax thấp hơn khoảng
+5,89% so với FIFO A.
+
+Báo cáo phân tích logic và timing:
+`results/ppa_root_cause/cell_and_timing_comparison.md`
+
+Cần phân biệt đường setup được báo cáo đầu tiên
+với đường quyết định Fmax; không suy diễn rằng
+hai đường này luôn giống nhau.
+
+T17 là equivalence dựa trên mô phỏng,
+không phải chứng minh hình thức.
+
+Kết quả PPA chỉ áp dụng cho cấu hình 8x16;
+các cấu hình T16/T17 khác mới được kiểm chứng
+ở mức chức năng.
+
+Hồ sơ luận văn:
+
+- `thesis/thesis_combined_REVIEW.md`
+- `thesis/export/thesis_fifo_LAYOUT_APPROVED_REVIEW.docx`
+- `results/thesis_finalization/THESIS_MARKDOWN_FINAL_AUDIT.md`
+- `results/thesis_finalization/LAYOUT_VISUAL_REVIEW.md`
+
+Bản Word REVIEW có 144 trang, 36 bảng, 9 hình;
+đã được người thực hiện kiểm tra dàn trang.
+Phần trang đầu cần hoàn thiện theo mẫu trường.
 
 ## 6. Cấu trúc repository và hồ sơ bằng chứng
 
