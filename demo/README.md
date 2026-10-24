@@ -72,7 +72,39 @@ Các số liệu Area, Timing và Power phải được
 đối chiếu với báo cáo EDA, không suy ra chỉ
 từ hình ảnh layout.
 
+## Kịch bản demo bảo vệ
+
+Kịch bản trình diễn ba phần trong khoảng 5 phút:
+
+`demo/DEFENSE_RUNBOOK.md`
+
+Thứ tự:
+1. Chạy Functional Verification cho FIFO A/B.
+2. Hiển thị waveform và các điều kiện full/empty.
+3. Mở GDSII FIFO A/B và trình bày kết quả PPA.
+
+Tài liệu cũng ghi rõ các giới hạn thực nghiệm
+và phương án dự phòng khi demo trực tiếp.
+
+## Ảnh dự phòng
+
+Các ảnh được chụp từ GTKWave và KLayout:
+
+- `demo/screenshots/01_gtkwave_fifo_ab.png`:
+  waveform so sánh FIFO A/B.
+- `demo/screenshots/02_klayout_fifo_a.png`:
+  layout FIFO A, top cell `sync_fifo_count`.
+- `demo/screenshots/03_klayout_fifo_b.png`:
+  layout FIFO B, top cell `sync_fifo_pointer`.
+
+Sử dụng khi phần mềm đồ họa không mở được
+trong buổi bảo vệ.
+
+Ảnh chụp không thay thế log verification,
+báo cáo STA, PPA hoặc kết quả DRC/LVS.
+
 ## Công việc còn lại
 
-- Kiểm toán và lưu bộ Demo 3 lên GitHub.
-- Kịch bản thuyết minh và phương án dự phòng.
+- Chuẩn bị ảnh dự phòng cho GTKWave và KLayout.
+- Kiểm toán và lưu kịch bản bảo vệ lên GitHub.
+- Chuẩn bị slide và câu hỏi phản biện.
