@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.126 (w)1999-2026 BSI
+[*] Sat Oct 24 07:10:38 2026
+[*]
+[dumpfile] "results/verification_t17/matrix_20261023_163641_700949/W8_D16/seed_1/t17.vcd"
+[dumpfile_mtime] "Fri Oct 23 09:36:42 2026"
+[dumpfile_size] 502872
+[savefile] "demo/fifo_t17_w8_d16.gtkw"
+[timestart] 0
+[size] 1920 985
+[pos] -27 -24
+*-17.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_fifo_equivalence.
+[sst_width] 297
+[signals_width] 126
+[sst_expanded] 1
+[sst_vpaned_height] 291
+@28
+tb_fifo_equivalence.clk
+tb_fifo_equivalence.rst_n
+tb_fifo_equivalence.wr_en
+tb_fifo_equivalence.rd_en
+@22
+tb_fifo_equivalence.wr_data[7:0]
+tb_fifo_equivalence.a_data[7:0]
+tb_fifo_equivalence.b_data[7:0]
+@28
+tb_fifo_equivalence.a_full
+tb_fifo_equivalence.b_full
+tb_fifo_equivalence.a_empty
+tb_fifo_equivalence.b_empty
+tb_fifo_equivalence.a_overflow
+tb_fifo_equivalence.b_overflow
+tb_fifo_equivalence.a_underflow
+tb_fifo_equivalence.b_underflow
+@421
+tb_fifo_equivalence.model_count
+[pattern_trace] 1
+[pattern_trace] 0
