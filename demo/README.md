@@ -12,7 +12,7 @@ Nội dung dự kiến:
 - Cách hiển thị kết quả so sánh PPA.
 - Phương án dự phòng khi OpenLane hoặc GUI không hoạt động.
 
-Trạng thái: Demo 1 và Demo 2 đã kiểm tra; Demo 3 đang chuẩn bị.
+Trạng thái: Demo 1 và 2 đã kiểm tra; Demo 3 đã có layout và tài liệu PPA.
 
 ## Demo 1 - Functional Verification
 
@@ -50,7 +50,29 @@ Chạy lệnh từ thư mục gốc repository.
 Sau khi sao chép sang máy khác, cần kiểm tra
 GTKWave tải đúng VCD và các tín hiệu.
 
+
+## Demo 3 - ASIC Layout and PPA
+
+Tài liệu hướng dẫn và số liệu:
+
+`demo/DEMO3_LAYOUT_PPA.md`
+
+Mở layout FIFO A:
+
+`klayout results/physical_a/PHYS_A_50MHZ/final/gds/sync_fifo_count.gds`
+
+Mở layout FIFO B:
+
+`klayout results/physical_b/PHYS_B_50MHZ/final/gds/sync_fifo_pointer.gds`
+
+Cả hai GDSII đã được mở và kiểm tra trực quan
+bằng KLayout 0.30.0.
+
+Các số liệu Area, Timing và Power phải được
+đối chiếu với báo cáo EDA, không suy ra chỉ
+từ hình ảnh layout.
+
 ## Công việc còn lại
 
-- Demo 3: layout GDSII và kết quả PPA.
+- Kiểm toán và lưu bộ Demo 3 lên GitHub.
 - Kịch bản thuyết minh và phương án dự phòng.
