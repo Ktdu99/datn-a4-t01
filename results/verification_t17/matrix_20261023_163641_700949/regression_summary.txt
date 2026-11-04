@@ -1,0 +1,15 @@
+T17 FIFO EQUIVALENCE MATRIX
+
+Width Depth Seed Cycles Checks Errors Result
+8     8     1        2079   31215   0      PASS
+8     8     20260924 2078   31200   0      PASS
+8     16    1        2151   32295   0      PASS
+8     16    20260924 2154   32340   0      PASS
+8     32    1        2302   34560   0      PASS
+8     32    20260924 2314   34740   0      PASS
+16    16    1        2151   32295   0      PASS
+16    16    20260924 2154   32340   0      PASS
+
+OVERALL_RESULT=PASS
+TOTAL_RUNS=8
+TOTAL_CHECKS=260985

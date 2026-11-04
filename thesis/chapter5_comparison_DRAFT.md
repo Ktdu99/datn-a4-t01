@@ -708,18 +708,126 @@ FIFO A có lợi thế về Fmax
 giữa hai kiến trúc FIFO
 trong cấu hình đã khảo sát.
 
+### 5.6.6. Đối chiếu ánh xạ cổng logic và đường timing
+
+Để làm rõ hơn sự khác biệt giữa hai kiến trúc,
+đề tài đối chiếu chi tiết các loại standard cell
+trong báo cáo synthesis và các đường setup
+được ghi lại sau routing.
+
+**Đối chiếu ánh xạ cell sau synthesis.**
+
+FIFO A sử dụng 600 standard cell,
+trong khi FIFO B sử dụng 573 cell,
+giảm 27 cell, tương ứng 4,50%.
+
+Các nhóm `dfxtp_2` và `buf_1`
+lần lượt giảm 3 và 5 cell ở FIFO B.
+
+Tuy nhiên, thay đổi không diễn ra đồng đều
+ở tất cả các loại cổng logic tổ hợp.
+
+Cụ thể, `and3_2` giảm từ 12 xuống 3 cell;
+`a21o_2` giảm từ 10 xuống 2 cell.
+
+Ngược lại, `o211a_2` tăng từ 0 lên 11 cell
+và `a211o_2` tăng từ 0 lên 8 cell.
+
+Điều này cho thấy hai mô tả RTL
+được ánh xạ thành các tổ hợp cổng khác nhau.
+Số lượng cell giảm ròng là kết quả
+của nhiều nhóm cell tăng và giảm,
+không phải chỉ do giảm số flip-flop.
+
+Tổng diện tích cell sau synthesis
+giảm từ 7.130,5888 µm² xuống 6.904,1216 µm²,
+tương ứng mức giảm khoảng 3,18%.
+
+Cần phân biệt diện tích cell sau synthesis
+với diện tích core và diện tích die
+trong báo cáo physical design.
+
+**Đối chiếu đường setup được báo cáo.**
+
+Trong báo cáo STA sau routing,
+đường setup đầu tiên của FIFO A
+bắt đầu từ flip-flop `_1045_`
+và kết thúc tại cổng đầu ra `empty`.
+
+Đường này đi qua các cổng logic
+`or4_2` và `nor2_1`
+trước khi tới tầng đệm đầu ra.
+
+Ở FIFO B, đường setup đầu tiên
+bắt đầu từ flip-flop `_984_`
+và kết thúc tại đầu ra `full`.
+
+Đường tương ứng chứa các cổng
+`xor2_1`, `or4_4` và `nor2_2`
+trước tầng đệm đầu ra.
+
+Sự khác biệt về loại cổng trên các đường
+được báo cáo là bằng chứng cho thấy
+logic tạo trạng thái `full` và `empty`
+được hiện thực khác nhau sau ánh xạ
+và tối ưu physical design.
+
+Tuy nhiên, đây là các đường
+register-to-output được in trong báo cáo STA.
+Không thể chỉ dựa vào chúng để xác định
+đường register-to-register giới hạn chu kỳ clock,
+hay khẳng định nguyên nhân trực tiếp
+của chênh lệch Fmax.
+
+Theo chỉ tiêu chu kỳ clock tối thiểu
+được báo cáo riêng, Fmax của FIFO A
+là 352,34 MHz và FIFO B là 331,60 MHz.
+
+Như vậy, FIFO B có Fmax thấp hơn
+khoảng 5,89% trong điều kiện đo đã khảo sát.
+
+**Đánh giá mức độ chứng minh.**
+
+Kết quả tổng hợp và STA xác nhận được
+sự khác biệt về số cell, loại cổng,
+diện tích và hiệu năng thời gian.
+
+Chúng cũng phù hợp với nhận định rằng
+hai cơ chế quản lý trạng thái FIFO
+tạo ra các cấu trúc logic khác nhau.
+
+Tuy nhiên, việc quy từng cell hoặc
+từng mức trễ cho một khối RTL cụ thể
+còn cần thêm truy vết netlist và
+báo cáo timing chuyên biệt.
+
+Vì vậy, đề tài kết luận có sự đánh đổi
+Area–Timing được quan sát bằng thực nghiệm,
+nhưng không khẳng định đã chứng minh
+đầy đủ quan hệ nhân quả ở cấp từng cổng.
+
+Báo cáo đối chiếu chi tiết được lưu tại
+`results/ppa_root_cause/cell_and_timing_comparison.md`.
+
 ## 5.7. Threats to validity – Giới hạn nghiên cứu
 
 Các kết luận của đề tài
 có một số giới hạn thực nghiệm cần làm rõ.
 
-Thứ nhất, chỉ khảo sát một cấu hình FIFO
-với DATA_WIDTH bằng 8
+Thứ nhất, kết quả so sánh PPA chỉ khảo sát
+cấu hình FIFO có DATA_WIDTH bằng 8
 và DEPTH bằng 16.
 
-Kết quả chưa chứng minh
-xu hướng tương tự ở các cấu hình
-có độ rộng hoặc độ sâu lớn hơn.
+Đề tài đã bổ sung kiểm thử chức năng T16/T17
+cho bốn cấu hình 8 × 8, 8 × 16,
+8 × 32 và 16 × 16.
+
+Tuy nhiên, các cấu hình bổ sung này chưa được
+tổng hợp và triển khai vật lý để đánh giá PPA.
+
+Do đó, chưa có đủ bằng chứng khẳng định
+xu hướng khác biệt PPA được duy trì
+khi tăng độ rộng hoặc độ sâu FIFO.
 
 Thứ hai, hai kiến trúc được triển khai
 trên PDK SKY130A

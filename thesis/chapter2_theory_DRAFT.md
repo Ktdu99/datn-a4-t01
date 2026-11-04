@@ -77,7 +77,7 @@ phía ghi và phía đọc có thể sử dụng hai xung nhịp độc lập.
 FIFO bất đồng bộ vì vậy cần có phương pháp trao đổi và đồng
 bộ thông tin trạng thái giữa các miền xung nhịp để hạn chế
 những vấn đề liên quan đến truyền tín hiệu qua ranh giới
-clock domain [2].
+clock domain [4].
 
 Việc sử dụng một xung nhịp chung giúp đơn giản hóa bài toán
 điều khiển và kiểm chứng so với trường hợp có nhiều miền
@@ -174,7 +174,7 @@ Thông tin này cho phép phân biệt trường hợp hai con trỏ
 cùng vị trí do FIFO rỗng với trường hợp cùng vị trí sau
 khi phía ghi đã đi trước phía đọc một vòng lưu trữ.
 Nguyên tắc sử dụng thông tin vòng cũng xuất hiện trong
-các phương pháp quản lý con trỏ FIFO [2].
+các phương pháp quản lý con trỏ FIFO [4].
 
 Đối với FIFO đồng bộ của đề tài, các con trỏ hoạt động
 trong cùng một miền xung nhịp. Vì vậy, bit vòng được
@@ -265,7 +265,7 @@ Có thể biểu diễn các điều kiện như sau:
 
 Nguyên tắc phân biệt trạng thái bằng thông tin con trỏ
 và bit vòng cũng được trình bày trong các nghiên cứu
-về kỹ thuật FIFO [2]. Trong đề tài này, nguyên tắc
+về kỹ thuật FIFO [4]. Trong đề tài này, nguyên tắc
 được áp dụng cho FIFO đồng bộ, không sử dụng cơ chế
 đồng bộ con trỏ giữa các miền xung nhịp khác nhau.
 
@@ -689,7 +689,7 @@ chế tạo chip thực tế hoặc xác nhận sign-off
 Quy trình RTL đến GDSII được hỗ trợ bởi các công
 cụ EDA mã nguồn mở, trong đó OpenLane cung cấp
 một môi trường tích hợp cho nhiều giai đoạn
-triển khai thiết kế số [3].
+triển khai thiết kế số [2].
 
 ## 2.8. Standard cell và PDK
 
@@ -730,7 +730,7 @@ tuyến và thực hiện các phép kiểm tra công nghệ.
 Trong đề tài, SKY130A được sử dụng làm nền tảng
 công nghệ cho quá trình triển khai hai kiến trúc
 FIFO. SKY130 là bộ công nghệ mở có tài liệu
-và dữ liệu phục vụ thiết kế vi mạch [6].
+và dữ liệu phục vụ thiết kế vi mạch [5].
 
 ### 2.8.3. Thư viện Liberty
 
@@ -820,7 +820,7 @@ FIFO sử dụng SRAM macro.
 
 Các đặc tính công nghệ và quy tắc thiết
 kế của SKY130 được công bố trong tài
-liệu PDK tương ứng [6].
+liệu PDK tương ứng [5].
 
 ## 2.9. Phân tích thời gian tĩnh (STA)
 
@@ -838,7 +838,7 @@ hiệu dựa trên mô hình thời gian của phần tử logic,
 
 STA được sử dụng trong nhiều giai đoạn của quy trình
 ASIC nhằm phát hiện các đường truyền có nguy cơ
-không đáp ứng yêu cầu thời gian [4].
+không đáp ứng yêu cầu thời gian [3].
 
 ### 2.9.2. Đường truyền thời gian và critical path
 
@@ -1012,7 +1012,7 @@ chỉ áp dụng cho cấu hình STA đã sử dụng.
 
 OpenSTA là công cụ phân tích thời gian tĩnh
 được sử dụng trong hệ sinh thái thiết kế
-ASIC mã nguồn mở [4].
+ASIC mã nguồn mở [3].
 
 ## 2.10. Các chỉ số PPA
 
@@ -1138,7 +1138,7 @@ công suất ở điều kiện đã lựa chọn.
 
 Phương pháp phân tích dựa trên dữ liệu
 hoạt động được hỗ trợ trong hệ sinh
-thái OpenSTA và OpenROAD [5].
+thái OpenSTA và OpenROAD [7].
 
 Kết quả này là ước tính dựa trên mô hình
 và dữ liệu mô phỏng, không phải kết quả
@@ -1268,7 +1268,7 @@ hoặc toàn bộ yêu cầu chế tạo đã được
 xác nhận đầy đủ.
 
 Các quy tắc thiết kế SKY130 được trình
-bày trong tài liệu công nghệ tương ứng [7].
+bày trong tài liệu công nghệ tương ứng [6].
 
 ### 2.11.3. Layout Versus Schematic
 
@@ -1401,4 +1401,3 @@ phạm vi công cụ,
 bộ quy tắc và điều
 kiện đã thực hiện.
 
-**Trạng thái: DRAFT – IN PROGRESS.**

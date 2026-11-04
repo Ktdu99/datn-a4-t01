@@ -1,0 +1,42 @@
+VCD info: dumpfile sim/waveforms/sync_fifo_count.vcd opened for output.
+
+[TEST T01] Reset
+
+[TEST T02-T04] Basic FIFO ordering
+
+[TEST T08] Underflow
+
+[TEST T05] Fill FIFO
+
+[TEST T06] Overflow
+
+[TEST T10] Simultaneous request at full
+
+[TEST T09] Normal simultaneous read/write
+
+[TEST T07] Drain FIFO
+
+[TEST T11] Simultaneous request at empty
+
+[TEST T12] Multiple pointer wrap-arounds
+
+[TEST T13] Reset while FIFO contains data
+
+[TEST T14] Random regression: cycles=2000 seed=69070
+
+============================================================
+FIFO ARCHITECTURE A VERIFICATION SUMMARY
+DATA_WIDTH             : 16
+DEPTH                  : 16
+Random seed            : 69070
+Cycles                 : 2171
+Checks                 : 6517
+Accepted writes        : 1037
+Accepted reads         : 1029
+Overflow events        : 52
+Underflow events       : 31
+Simultaneous events    : 463
+Errors                 : 0
+============================================================
+ALL TESTS PASSED
+/home/ktdung/ktdu-datn/datn-a4-t01/tb/tb_sync_fifo_count.sv:586: $finish called at 43591000 (1ps)

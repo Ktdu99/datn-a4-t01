@@ -27,7 +27,7 @@ thiết kế vật lý như floorplan, placement, clock tree synthesis và
 routing. Bên cạnh tính đúng đắn chức năng, các chỉ số về công suất tiêu
 thụ (Power), hiệu năng thời gian (Performance) và diện tích (Area),
 gọi chung là PPA, có vai trò quan trọng trong việc đánh giá chất lượng
-thiết kế [R2, R4].
+thiết kế [2], [3].
 
 Đối với cùng một chức năng FIFO, việc lựa chọn kiến trúc điều khiển có
 thể ảnh hưởng đến tài nguyên logic, đường truyền tín hiệu và các chỉ số
@@ -35,7 +35,7 @@ PPA sau khi triển khai. Chẳng hạn, một phương án thiết kế sử d�
 bộ đếm số phần tử để theo dõi mức sử dụng FIFO và xác định trạng thái
 đầy, rỗng [1].
 Một phương án khác sử dụng các con trỏ đọc, ghi mở rộng để phân biệt
-trạng thái đầy và rỗng [2]. Hai phương pháp có cùng mục tiêu chức năng
+trạng thái đầy và rỗng [4]. Hai phương pháp có cùng mục tiêu chức năng
 nhưng khác nhau về tổ chức logic điều khiển. Vì vậy, việc xây dựng và so sánh hai
 kiến trúc trong cùng điều kiện công nghệ và ràng buộc thời gian có ý
 nghĩa trong việc tìm hiểu mối liên hệ giữa lựa chọn kiến trúc RTL và
@@ -46,7 +46,7 @@ Bên cạnh đó, sự phát triển của các công cụ thiết kế điện 
 nghiên cứu và thực hành quy trình thiết kế ASIC từ RTL đến GDSII. Khi
 kết hợp với bộ công nghệ SKY130A, các công cụ này cho phép thực hiện
 những bước cơ bản của quy trình thiết kế vi mạch số, thu thập báo cáo
-kỹ thuật và phân tích kết quả mà không yêu cầu chế tạo chip thực tế [R2, R3].
+kỹ thuật và phân tích kết quả mà không yêu cầu chế tạo chip thực tế [2], [5].
 
 Xuất phát từ những cơ sở trên, đề tài “Thiết kế và đánh giá một IP FIFO
 số từ RTL đến GDSII bằng quy trình EDA mã nguồn mở” được lựa chọn nhằm
@@ -69,7 +69,7 @@ hợp, ràng buộc thời gian, tài nguyên phần cứng và tính hợp lệ
 quả thiết kế vật lý. Do đó, bài toán đặt ra không chỉ là xây dựng một
 bộ đệm FIFO hoạt động đúng nguyên tắc First-In, First-Out mà còn phải
 đánh giá được chất lượng của thiết kế sau khi trải qua các công đoạn
-từ RTL đến GDSII [3].
+từ RTL đến GDSII [2].
 
 Trước hết, về mặt chức năng, FIFO phải bảo đảm dữ liệu được đọc ra theo
 đúng thứ tự đã ghi vào. Các thao tác ghi, đọc, ghi và đọc đồng thời,
@@ -98,16 +98,16 @@ nhịp và định tuyến. Kết quả thiết kế cần được kiểm tra b
 pháp như Design Rule Checking (DRC), Layout Versus Schematic (LVS) và
 kiểm tra antenna. Các báo cáo sau triển khai phải cung cấp được thông
 tin phục vụ đánh giá thời gian, diện tích, tài nguyên định tuyến và các
-vấn đề chất lượng thiết kế còn tồn tại [R2, R5].
+vấn đề chất lượng thiết kế còn tồn tại [2], [6].
 
 Một vấn đề quan trọng khác là đánh giá các chỉ số Power, Performance
 và Area (PPA) một cách có cơ sở. Việc so sánh hai kiến trúc cần dựa
 trên cùng bộ công nghệ, thư viện standard cell, cấu hình FIFO và ràng
 buộc xung nhịp. Các số liệu về thời gian phải được phân biệt rõ giữa
 báo cáo thiết kế vật lý và kết quả phân tích thời gian tĩnh sau định
-tuyến [4]. Đối với công suất, kết quả ước lượng phụ thuộc vào hoạt động
+tuyến [3]. Đối với công suất, kết quả ước lượng phụ thuộc vào hoạt động
 chuyển mạch và điều kiện phân tích nên cần xác định rõ phạm vi áp dụng,
-tránh đồng nhất kết quả mô phỏng với công suất đo được trên chip thực tế [5].
+tránh đồng nhất kết quả mô phỏng với công suất đo được trên chip thực tế [7].
 
 Từ những vấn đề trên, đề tài tập trung giải quyết bài toán thiết kế,
 kiểm chứng và triển khai hai kiến trúc FIFO đồng bộ 16×8 trên công nghệ
@@ -469,4 +469,3 @@ trình tự từ cơ sở lý thuyết, thiết kế, kiểm chứng đến tri�
 lý và phân tích kết quả, giúp người đọc theo dõi được toàn bộ quá
 trình thực hiện đề tài.
 
-**Trạng thái: DRAFT – IN PROGRESS.**

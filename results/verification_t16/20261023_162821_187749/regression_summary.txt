@@ -1,0 +1,21 @@
+T16 FIFO PARAMETER MATRIX
+Architecture  Width  Depth  Seed      Cycles  Checks  Errors  Result
+A             8      8      1         2092    6280    0       PASS
+A             8      8      20260924  2084    6256    0       PASS
+A             8      16     1         2171    6517    0       PASS
+A             8      16     20260924  2156    6472    0       PASS
+A             8      32     1         2330    6994    0       PASS
+A             8      32     20260924  2300    6904    0       PASS
+A             16     16     1         2171    6517    0       PASS
+A             16     16     20260924  2156    6472    0       PASS
+B             8      8      1         2092    6280    0       PASS
+B             8      8      20260924  2084    6256    0       PASS
+B             8      16     1         2171    6517    0       PASS
+B             8      16     20260924  2156    6472    0       PASS
+B             8      32     1         2330    6994    0       PASS
+B             8      32     20260924  2300    6904    0       PASS
+B             16     16     1         2171    6517    0       PASS
+B             16     16     20260924  2156    6472    0       PASS
+
+OVERALL_RESULT=PASS
+TOTAL_RUNS=16

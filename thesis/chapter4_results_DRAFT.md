@@ -1,6 +1,5 @@
 # CHƯƠNG 4 – KẾT QUẢ THỰC NGHIỆM VÀ ĐÁNH GIÁ
 
-Trạng thái: DRAFT – đang hoàn thiện.
 
 Chương này trình bày kết quả thực nghiệm của
 hai kiến trúc FIFO đồng bộ 16 x 8 đã mô tả
@@ -2613,3 +2612,85 @@ Các kết quả là cơ sở
 để tổng kết đóng góp,
 giới hạn và hướng phát triển
 trong chương kết luận của luận văn.
+
+## 4.9. Kiểm thử mở rộng tham số và đối chiếu hai kiến trúc
+
+### 4.9.1. Mục tiêu và phương pháp
+
+Sau khi hoàn thành kiểm chứng cấu hình cơ sở FIFO 8 × 16,
+đề tài bổ sung hai nhóm kiểm thử T16 và T17.
+
+T16 kiểm tra độc lập hai kiến trúc FIFO A và FIFO B
+trên bốn cấu hình DATA_WIDTH × DEPTH:
+8 × 8, 8 × 16, 8 × 32 và 16 × 16.
+
+Mỗi cấu hình chạy với hai seed 1 và 20260924,
+bao gồm các directed tests và 2.000 chu kỳ random.
+
+T17 sử dụng một testbench chung để cấp cùng tín hiệu
+đầu vào cho hai kiến trúc tại cùng thời điểm.
+
+Năm đầu ra rd_data, full, empty, overflow và underflow
+được so sánh trực tiếp giữa FIFO A và FIFO B,
+đồng thời đối chiếu với mô hình FIFO tham chiếu.
+
+Các tình huống kiểm tra bao gồm FIFO đầy, FIFO rỗng,
+overflow, underflow, đọc/ghi đồng thời,
+wrap-around và reset khi FIFO đang chứa dữ liệu.
+
+### 4.9.2. Kết quả kiểm thử
+
+**Bảng 4.29. Tổng hợp kết quả kiểm thử mở rộng T16 và T17**
+
+| Chỉ tiêu | T16 | T17 | Tổng |
+|---|---:|---:|---:|
+| Lượt mô phỏng | 16 | 8 | 24 |
+| Chu kỳ mô phỏng | 34.920 | 17.383 | 52.303 |
+| Phép kiểm tra | 104.824 | 260.985 | 365.809 |
+| Lỗi phát hiện | 0 | 0 | 0 |
+| Kết quả | PASS | PASS | PASS |
+
+T16 hoàn thành 16/16 lượt kiểm thử, không phát hiện lỗi.
+Các lượt này bao gồm hai kiến trúc, bốn cấu hình
+và hai seed cho từng cấu hình.
+
+T17 hoàn thành 8/8 lượt mô phỏng, không phát hiện lỗi.
+Trong mỗi lượt, cả hai kiến trúc được kiểm tra đồng thời.
+
+Tổng cộng, hai nhóm thí nghiệm bổ sung thực hiện
+52.303 chu kỳ mô phỏng và 365.809 phép kiểm tra,
+không phát hiện sai lệch trong phạm vi thử nghiệm.
+
+### 4.9.3. Bằng chứng và giới hạn
+
+Script tái lập T16:
+`scripts/run_t16_parameter_matrix.py`.
+
+Script tái lập T17:
+`scripts/run_t17_equivalence_matrix.py`.
+
+Testbench đối chiếu trực tiếp hai kiến trúc:
+`tb/tb_fifo_equivalence.sv`.
+
+Báo cáo kiểm toán:
+`results/verification_summary/T16_T17_INDEPENDENT_AUDIT.md`.
+
+Các manifest, simulation log và waveform
+được lưu tại `results/verification_t16/`
+và `results/verification_t17/`.
+
+Các phép kiểm thử hỗ trợ kết luận hai thiết kế
+hoạt động đúng theo đặc tả trong các cấu hình
+và chuỗi kích thích đã khảo sát.
+
+T17 là kiểm chứng tương đương dựa trên mô phỏng
+và scoreboard, không phải chứng minh
+tương đương hình thức.
+
+Các kết quả này không thay thế STA, DRC, LVS
+hoặc kiểm tra signoff vật lý.
+
+Mặc dù đã kiểm thử chức năng ở bốn cấu hình,
+các kết quả so sánh PPA hiện tại vẫn chỉ áp dụng
+cho cấu hình FIFO 8 × 16 và điều kiện thực nghiệm
+được ghi nhận trong báo cáo vật lý.
