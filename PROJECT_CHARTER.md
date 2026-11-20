@@ -5,7 +5,7 @@
 **Sinh viên:** Khổng Thị Dung
 **Giảng viên hướng dẫn:** ThS. Đinh Văn Nam
 **Năm học:** 2026–2027
-**Ngày nhận đề tài (tuần 1 bắt đầu):** Chưa xác nhận
+**Ngày nhận đề tài (tuần 1 bắt đầu):**  07/09/2026
 
 ## Bài toán trong 3 câu
 
