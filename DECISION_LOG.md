@@ -1,4 +1,27 @@
-# Nhật ký
+# Nhật ký đồ án
+
+Tuần 1 bắt đầu ngày 07/09/2026. Mỗi tuần tính từ thứ Hai đến Chủ nhật.
+
+## Tóm tắt tiến độ tuần 1–11
+
+Cập nhật đến 20/11/2026 theo [báo cáo tiến độ](BAO_CAO_TIEN_DO_CAC_TUAN.md).
+
+| Tuần | Khoảng ngày | Công việc và kết quả | Bằng chứng hoặc trạng thái |
+|---:|---|---|---|
+| 1 | 07–13/09 | Tìm hiểu lý thuyết logic số, mạch tuần tự, FIFO đồng bộ, trạng thái đầy/rỗng, reset và thao tác đọc/ghi. | Nội dung lý thuyết theo xác nhận của sinh viên; ZIP không có nhật ký học riêng theo ngày. |
+| 2 | 14–20/09 | Tìm hiểu bộ đếm occupancy, con trỏ mở rộng, Verilog cơ bản và các bước RTL–synthesis–STA–physical design–GDSII. | Nội dung lý thuyết theo xác nhận của sinh viên; ZIP không có nhật ký học riêng theo ngày. |
+| 3 | 21–27/09 | Xác định cấu hình FIFO 8 bit × 16 phần tử, giao diện, yêu cầu chức năng và ca kiểm thử. | `docs/chang1_specification.md`, `docs/test_plan.md`. Tuần cụ thể được dựng lại theo trình tự công việc. |
+| 4 | 28/09–04/10 | Xây dựng kiến trúc A dùng bộ đếm occupancy; hiện thực RTL và testbench ban đầu. | `docs/chang2_architecture_a.md`, `docs/chang3_rtl_a.md`, `rtl/sync_fifo_count.v`, `tb/tb_sync_fifo_count.sv`. Tuần cụ thể được dựng lại theo trình tự công việc. |
+| 5 | 05–11/10 | Kiểm chứng FIFO A; chọn baseline synthesis 50 MHz, SKY130A, `sky130_fd_sc_hd`, AREA 0; kiểm tra khả năng tái lập netlist. | Nhật ký quyết định ngày 08/10; `results/synthesis_a/SYNTH_A_50MHZ/`, `results/synthesis_a/reproducibility_a.txt`. |
+| 6 | 12–18/10 | Chấp nhận physical FIFO A với QoR waiver; chọn FIFO B dùng con trỏ mở rộng, dùng chung golden model để verification và triển khai physical FIFO B đến GDSII. | Nhật ký ngày 15–16/10; `docs/chang7_architecture_b.md`, `docs/chang8_verification_b.md`, `results/physical_a/`, `results/physical_b/`. Mỗi kiến trúc còn 6 vi phạm clock max-fanout được ghi nhận bằng waiver. |
+| 7 | 19–25/10 | Regression A/B đạt 12/12 PASS; phân tích PPA, power streaming và STA sau routing. T16 đạt 16/16, T17 đạt 8/8 theo mô phỏng. | Nhật ký ngày 22/10 và bằng chứng T16/T17 ngày 23/10; `results/verification_summary/`, `results/power_summary/power_comparison.md`, `results/sta_summary/sta_comparison.md`, `results/ppa_summary/ppa_comparison.md`, `results/verification_summary/T16_T17_INDEPENDENT_AUDIT.md`. Power là ước lượng, T17 không phải formal equivalence. |
+| 8 | 26/10–01/11 | Hạng mục cần xác nhận: đưa kết quả kỹ thuật vào luận văn. | ZIP chưa có nhật ký tuần hoặc bằng chứng mang ngày trong khoảng này; cần bổ sung công việc thực tế nếu đã làm. |
+| 9 | 02–08/11 | Hạng mục cần xác nhận: rà soát bìa, phần đầu, trích dẫn và phân trang. | Báo cáo hoàn thiện luận văn còn nêu các mục cần xử lý; chưa có nhật ký tuần cụ thể trong ZIP để xác nhận hoàn thành. |
+| 10 | 09–15/11 | Hạng mục cần xác nhận: kiểm tra slide, demo và khả năng tái lập. | Trạng thái cuối cần được xác nhận bằng file/log tương ứng; ZIP chưa có nhật ký tuần cụ thể cho khoảng này. |
+| 11 — hiện tại | 16–22/11 (cập nhật đến 20/11) | Rà soát tài liệu tiến độ, hướng dẫn giảng viên, mẫu issue và các đường dẫn trong repository; dọn các bản backup đã chọn xóa. | Commit `4704cfe` ghi nhận đợt cập nhật repository ngày 20/11. |
+
+## Quyết định đã ghi nhận
+
 | Ngày | Tuần | Quyết định | Lý do (bằng chứng nào dẫn tới) | Ai quyết |
 | --- | --- | --- | --- | --- |
 | 2026-10-08 | 5 | Chọn FIFO kiến trúc A dùng bộ đếm làm baseline, với DATA_WIDTH=8 và DEPTH=16 | RTL đã vượt qua directed test, corner cases và regression nhiều seed trước synthesis | Sinh viên |
