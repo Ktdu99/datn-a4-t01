@@ -321,5 +321,5 @@ Repository cung cấp RTL, testbench, cấu hình ASIC và các báo cáo kỹ t
 
 ## Tài liệu xem nhanh cho giảng viên
 
-- [Hướng dẫn giảng viên xem đồ án](<HUONG DAN.md>)
-- [Báo cáo tiến độ đến mốc bằng chứng 23/10/2026](BAO_CAO_TIEN_DO_CAC_TUAN.md)
+- [Hướng dẫn giảng viên xem đồ án](HUONG%20DAN.md)
+- [Báo cáo tiến độ đồ án từ tuần 1 đến tuần 11](BAO_CAO_TIEN_DO_CAC_TUAN.md)

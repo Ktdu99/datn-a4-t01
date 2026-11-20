@@ -159,3 +159,5 @@ Số liệu T16/T17 và trạng thái trong bảng dựa trên báo cáo lưu tr
 ```bash
 git status --short --branch
 git log -1 --oneline
+
+```
