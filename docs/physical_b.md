@@ -225,7 +225,8 @@ Trong Ubuntu, mở OpenLane:
 
 Trong container, chạy với một run tag mới:
 
-`./flow.tcl -design /home/ktdung/ktdu-datn/datn-a4-t01/openlane/sync_fifo_pointer_phys -tag PHYS_B_50MHZ_REPRO`
+`cd /home/ktdung/ktdu-datn/datn-a4-t01`
+`/openlane/flow.tcl -design "$PWD/openlane/sync_fifo_pointer_phys" -tag PHYS_B_50MHZ_REPRO`
 
 Sau khi flow hoàn thành, thoát container và thu thập kết quả:
 

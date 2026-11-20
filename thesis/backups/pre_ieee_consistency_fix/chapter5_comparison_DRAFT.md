@@ -360,7 +360,7 @@ diện tích, timing và công suất.
 
 Hình 5.1 chuẩn hóa FIFO A bằng 100% và biểu diễn tỷ lệ tương ứng của FIFO B. Biểu đồ gồm die area, core area, synthesis cells, physical cells, wire length, via count và critical_path_ns theo báo cáo physical flow. Biểu đồ không bao gồm Fmax OpenSTA hoặc công suất ước lượng.
 
-![So sánh chuẩn hóa các chỉ tiêu vật lý FIFO A/B](../docs/figures/ppa_ab_normalized.png)
+![So sánh chuẩn hóa các chỉ tiêu vật lý FIFO A/B](../../../docs/figures/ppa_ab_normalized.png)
 
 **Hình 5.1. So sánh chuẩn hóa các chỉ tiêu vật lý FIFO A/B**
 

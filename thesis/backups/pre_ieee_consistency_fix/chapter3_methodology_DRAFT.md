@@ -451,7 +451,7 @@ bày trong Mục 3.6 và Mục 3.7.
 
 Sơ đồ kiến trúc FIFO A được trình bày ở Hình 3.1. Thiết kế sử dụng bộ nhớ 16 × 8 bit, hai con trỏ địa chỉ 4 bit và bộ đếm `data_count` 5 bit để xác định trạng thái `full` và `empty`. Các đường kết nối trong hình minh họa quan hệ chức năng giữa những khối RTL.
 
-![Hình 3.1. Sơ đồ khối kiến trúc FIFO A sử dụng bộ đếm số phần tử](../docs/figures/fifo_a_architecture.svg)
+![Hình 3.1. Sơ đồ khối kiến trúc FIFO A sử dụng bộ đếm số phần tử](../../../docs/figures/fifo_a_architecture.svg)
 
 **Hình 3.1. Sơ đồ khối kiến trúc FIFO A sử dụng bộ đếm số phần tử**
 
@@ -768,7 +768,7 @@ thực nghiệm thay vì suy đoán từ RTL.
 
 Sơ đồ kiến trúc FIFO B được trình bày ở Hình 3.2. Thiết kế sử dụng hai con trỏ mở rộng 5 bit, trong đó 4 bit thấp xác định địa chỉ bộ nhớ và bit cao nhất biểu diễn thông tin vòng. Trong hình, `wr_ptr` và `rd_ptr` là ký hiệu viết tắt của `write_pointer` và `read_pointer` trong RTL. Đây vẫn là FIFO đồng bộ sử dụng chung một xung nhịp.
 
-![Hình 3.2. Sơ đồ khối kiến trúc FIFO B sử dụng con trỏ mở rộng](../docs/figures/fifo_b_architecture.svg)
+![Hình 3.2. Sơ đồ khối kiến trúc FIFO B sử dụng con trỏ mở rộng](../../../docs/figures/fifo_b_architecture.svg)
 
 **Hình 3.2. Sơ đồ khối kiến trúc FIFO B sử dụng con trỏ mở rộng**
 

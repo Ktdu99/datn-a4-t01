@@ -540,7 +540,7 @@ chương phương pháp thiết kế.
 
 Hình 2.1 minh họa các giai đoạn chính của quy trình thiết kế ASIC số được áp dụng trong đề tài. Bên cạnh luồng triển khai từ RTL đến GDSII, sơ đồ thể hiện riêng hoạt động ước lượng công suất từ dữ liệu chuyển mạch và ký sinh, cũng như bước kiểm tra DRC độc lập bằng KLayout. Các hoạt động này được phân biệt với chuỗi triển khai vật lý chính.
 
-![Quy trình thiết kế ASIC RTL đến GDSII](../docs/figures/asic_rtl_to_gdsii_flow.svg)
+![Quy trình thiết kế ASIC RTL đến GDSII](../../../docs/figures/asic_rtl_to_gdsii_flow.svg)
 
 **Hình 2.1. Quy trình thiết kế ASIC số từ RTL đến GDSII**
 

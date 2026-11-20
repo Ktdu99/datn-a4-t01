@@ -199,7 +199,7 @@ Script phục vụ tái lập kết quả là:
 
 Hình 4.1 minh họa các tín hiệu trong quá trình kiểm chứng chức năng của kiến trúc Count-based.
 
-![Dạng sóng kiểm chứng chức năng FIFO A](../docs/figures/fifo_a_waveform.png)
+![Dạng sóng kiểm chứng chức năng FIFO A](../../../docs/figures/fifo_a_waveform.png)
 
 **Hình 4.1. Dạng sóng kiểm chứng chức năng FIFO A**
 
@@ -328,7 +328,7 @@ vào floorplan và quá trình triển khai vật lý.
 
 Biểu đồ Hình 4.2 tổng hợp 600 cell sau synthesis. Các nhóm buf_1, dfxtp_2, mux2_2 và mux4_2 được đối chiếu với báo cáo thống kê synthesis.
 
-![Phân bố standard cell FIFO A sau synthesis](../docs/figures/fifo_a_cell_distribution.png)
+![Phân bố standard cell FIFO A sau synthesis](../../../docs/figures/fifo_a_cell_distribution.png)
 
 **Hình 4.2. Phân bố standard cell FIFO A sau synthesis**
 
@@ -875,7 +875,7 @@ trong các mục tiếp theo.
 
 Hình 4.3 thể hiện ảnh layout đã lưu của kiến trúc A. File GDSII gốc được lưu trong kết quả physical design.
 
-![Ảnh layout GDSII của FIFO A](../docs/figures/fifo_a_layout.png)
+![Ảnh layout GDSII của FIFO A](../../../docs/figures/fifo_a_layout.png)
 
 **Hình 4.3. Ảnh layout GDSII của FIFO A**
 
@@ -1151,7 +1151,7 @@ trong quá trình triển khai ASIC.
 
 Hình 4.4 minh họa hoạt động kiểm chứng của kiến trúc Extended-pointer.
 
-![Dạng sóng kiểm chứng chức năng FIFO B](../docs/figures/fifo_b_waveform.png)
+![Dạng sóng kiểm chứng chức năng FIFO B](../../../docs/figures/fifo_b_waveform.png)
 
 **Hình 4.4. Dạng sóng kiểm chứng chức năng FIFO B**
 
@@ -1617,7 +1617,7 @@ và kết quả công suất ước lượng.
 
 Hình 4.5 thể hiện ảnh layout đã lưu của kiến trúc B. Kết quả này cần được đọc cùng các báo cáo physical design và physical verification tương ứng.
 
-![Ảnh layout GDSII của FIFO B](../docs/figures/fifo_b_layout.png)
+![Ảnh layout GDSII của FIFO B](../../../docs/figures/fifo_b_layout.png)
 
 **Hình 4.5. Ảnh layout GDSII của FIFO B**
 

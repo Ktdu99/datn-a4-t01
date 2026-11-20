@@ -51,7 +51,7 @@ def main():
         text=True
     ).strip()
 
-    assert branch == "improve/fifo-finalization"
+    print(f"Running on branch: {branch}")
 
     sources = [
         RTL_A,

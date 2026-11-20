@@ -1,74 +1,88 @@
 name: "📋 Báo cáo tuần"
-description: "Sinh viên mở mỗi tuần, chậm nhất 24h trước buổi gặp"
-title: "Tuần <N> — "
+description: "Sinh viên mở mỗi tuần, chậm nhất 24 giờ trước buổi gặp"
+title: "Tuần <N> — Báo cáo tiến độ"
 labels: ["báo cáo tuần"]
 body:
   - type: markdown
     attributes:
       value: |
-        **Mỗi mục bằng chứng phải là một link** tới commit, file, hình hoặc log trong repo này.
-        Câu "em đã đọc / em đã tìm hiểu / gần xong" không tính là bằng chứng — hãy biến nó thành một
-        ghi chú kỹ thuật nêu được *bài toán – đầu vào – đầu ra – phương pháp – chỗ chưa hiểu*.
+        **Mỗi mục bằng chứng cần có liên kết GitHub** tới commit, file, hình hoặc log trong repository.
+        Các đường dẫn trong ví dụ là đường dẫn tính từ thư mục gốc repository.
+        Câu "em đã đọc / em đã tìm hiểu / gần xong" chưa đủ làm bằng chứng.
+        Hãy ghi bài toán, đầu vào, đầu ra, phương pháp và điều chưa hiểu.
+
   - type: input
     id: tuan
     attributes:
       label: Tuần số / Gate đang hướng tới
-      placeholder: "Tuần 4 · đang hướng tới Gate 2 (hạn 11/10)"
+      placeholder: "Tuần <số> · Gate <số> · hạn dd/mm"
     validations:
       required: true
+
   - type: textarea
     id: muc-tieu
     attributes:
       label: Mục tiêu tuần trước đã chốt
-      placeholder: "1. Viết testbench cho FIFO · 2. Chạy pass 3 case biên"
+      placeholder: "1. Hoàn thiện testbench FIFO · 2. Kiểm tra các ca biên"
     validations:
       required: true
+
   - type: textarea
     id: bang-chung
     attributes:
-      label: Đã làm được — kèm bằng chứng (link)
-      description: "Mỗi dòng: đã làm gì → link tới commit/file/hình chứng minh"
+      label: Đã làm được — kèm bằng chứng
+      description: "Mỗi dòng ghi việc đã làm và liên kết GitHub tới bằng chứng."
       placeholder: |
-        - Testbench FIFO đầy đủ 3 case biên → commit a1b2c3d
-        - Waveform chứng minh không mất dữ liệu khi full → sim/wave_fifo_full.png
+        - Chạy testbench FIFO A → tb/tb_sync_fifo_count.sv
+        - Log FIFO A, seed 1 → sim/logs/sync_fifo_count_seed_1.log
+        - Waveform FIFO A → sim/waveforms/sync_fifo_count.vcd
+        - Ảnh waveform A/B → demo/screenshots/01_gtkwave_fifo_ab.png
     validations:
       required: true
+
   - type: textarea
     id: cai-gi-hong
     attributes:
-      label: Cái gì chưa chạy / đang hỏng
-      description: "Không có gì hỏng nhiều tuần liền là một tín hiệu đáng ngờ, không phải điều tốt"
-      placeholder: "Case ghi và đọc đồng thời ở cùng chu kỳ cho kết quả sai 1 phần tử"
+      label: Cái gì chưa chạy / đang lỗi
+      description: "Ghi ca lỗi, kết quả mong đợi, kết quả thực tế và cách tái hiện. Nếu chưa ghi nhận lỗi, hãy nêu điều đó."
+      placeholder: "Ví dụ: đọc và ghi đồng thời, kết quả thực tế lệch một phần tử ở chu kỳ ... "
     validations:
       required: true
+
   - type: textarea
     id: chan-doan
     attributes:
-      label: Chẩn đoán của em và đã thử gì để kiểm chứng
-      description: "Em định làm gì → kỳ vọng gì → thực tế ra gì → đã kiểm những gì → em nghĩ nguyên nhân là gì"
+      label: Chẩn đoán và cách đã kiểm chứng
+      description: "Ghi giả thuyết, cách kiểm tra, kết quả quan sát được và kết luận hiện tại."
       placeholder: |
-        Em nghĩ do con trỏ đọc cập nhật sớm một chu kỳ.
-        Đã thử: in giá trị con trỏ mỗi chu kỳ (sim/log_ptr.txt) → thấy lệch đúng ở chu kỳ 7.
+        Giả thuyết: ...
+        Đã thử: chạy FIFO B với seed 1; log: sim/logs/sync_fifo_pointer_seed_1.log
+        Kết quả: ...
     validations:
       required: true
+
   - type: textarea
     id: de-xuat
     attributes:
-      label: Đề xuất bước tiếp theo của em
-      description: "Đến buổi gặp với đề xuất của chính mình, thay vì hỏi 'em làm gì tiếp ạ'"
+      label: Đề xuất bước tiếp theo
+      description: "Nêu việc bạn đề xuất làm tiếp và kết quả dự kiến."
+      placeholder: "1. ... · 2. ..."
     validations:
       required: true
+
   - type: textarea
     id: cau-hoi
     attributes:
       label: Câu hỏi cho mentor
+      placeholder: "Ghi câu hỏi cụ thể hoặc ghi Không có."
     validations:
       required: false
+
   - type: textarea
     id: ai
     attributes:
       label: Đã dùng AI thế nào tuần này
-      description: "Dùng công cụ gì, để làm gì, và em đã kiểm chứng phần đó bằng cách nào"
-      placeholder: "Hỏi Claude giải thích cơ chế gray-code pointer; em tự viết lại và kiểm bằng testbench riêng."
+      description: "Ghi công cụ, mục đích sử dụng và cách bạn kiểm chứng kết quả."
+      placeholder: "Dùng ... để ...; đã kiểm chứng bằng ... . Nếu không dùng, ghi Không sử dụng."
     validations:
       required: true

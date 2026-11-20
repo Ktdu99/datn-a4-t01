@@ -6,8 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Đối chiếu bằng chứng với **đúng câu chữ tiêu chí** trong `06_Data/milestone_gates.json` — không nới ngầm.
-        Kết luận nằm lại đây vĩnh viễn, để không ai phải nhớ về sau.
+        Đối chiếu phạm vi phần lõi (MVT) và phần mở rộng trong `PROJECT_CHARTER.md`. Ghi rõ tiêu chí của Gate đang review; đối chiếu bằng chứng và ca kiểm thử liên quan trong `docs/test_plan.md`.
   - type: dropdown
     id: gate
     attributes:
@@ -33,7 +32,7 @@ body:
     attributes:
       label: Đối chiếu tiêu chí
       options:
-        - label: "Bằng chứng khớp đúng tiêu chí qua của gate này (không nới lỏng)"
+        - label: "Bằng chứng khớp đúng tiêu chí của Gate này (không nới lỏng)"
         - label: "Kết quả tái lập được: người khác chạy theo README ra kết quả tương tự"
         - label: "Sinh viên giải thích được mọi thành phần chính bằng lời của mình"
         - label: "MVT và Extension vẫn tách bạch đúng như charter"

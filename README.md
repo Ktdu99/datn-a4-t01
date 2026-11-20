@@ -318,3 +318,8 @@ Tài liệu kỹ thuật chính:
 Các hướng phát triển tiếp theo bao gồm tối ưu clock tree để xử lý max-fanout, mở rộng đánh giá STA sang nhiều corner, khảo sát Power với nhiều workload, bổ sung formal verification và thử nghiệm thêm các cấu hình DATA_WIDTH/DEPTH.
 
 Repository cung cấp RTL, testbench, cấu hình ASIC và các báo cáo kỹ thuật để phục vụ kiểm chứng, phân tích và mở rộng nghiên cứu.
+
+## Tài liệu xem nhanh cho giảng viên
+
+- [Hướng dẫn giảng viên xem đồ án](<HUONG DAN.md>)
+- [Báo cáo tiến độ đến mốc bằng chứng 23/10/2026](BAO_CAO_TIEN_DO_CAC_TUAN.md)

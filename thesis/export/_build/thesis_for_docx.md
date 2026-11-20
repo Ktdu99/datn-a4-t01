@@ -1013,7 +1013,7 @@ chương phương pháp thiết kế.
 
 Hình 2.1 minh họa các giai đoạn chính của quy trình thiết kế ASIC số được áp dụng trong đề tài. Bên cạnh luồng triển khai từ RTL đến GDSII, sơ đồ thể hiện riêng hoạt động ước lượng công suất từ dữ liệu chuyển mạch và ký sinh, cũng như bước kiểm tra DRC độc lập bằng KLayout. Các hoạt động này được phân biệt với chuỗi triển khai vật lý chính.
 
-![Quy trình thiết kế ASIC RTL đến GDSII](/home/ktdung/ktdu-datn/datn-a4-t01/thesis/export/_build/svg_png/asic_rtl_to_gdsii_flow.png)
+![Quy trình thiết kế ASIC RTL đến GDSII](svg_png/asic_rtl_to_gdsii_flow.png)
 
 **Hình 2.1. Quy trình thiết kế ASIC số từ RTL đến GDSII**
 
@@ -2329,7 +2329,7 @@ bày trong Mục 3.6 và Mục 3.7.
 
 Sơ đồ kiến trúc FIFO A được trình bày ở Hình 3.1. Thiết kế sử dụng bộ nhớ 16 × 8 bit, hai con trỏ địa chỉ 4 bit và bộ đếm `data_count` 5 bit để xác định trạng thái `full` và `empty`. Các đường kết nối trong hình minh họa quan hệ chức năng giữa những khối RTL.
 
-![Hình 3.1. Sơ đồ khối kiến trúc FIFO A sử dụng bộ đếm số phần tử](/home/ktdung/ktdu-datn/datn-a4-t01/thesis/export/_build/svg_png/fifo_a_architecture.png)
+![Hình 3.1. Sơ đồ khối kiến trúc FIFO A sử dụng bộ đếm số phần tử](svg_png/fifo_a_architecture.png)
 
 **Hình 3.1. Sơ đồ khối kiến trúc FIFO A sử dụng bộ đếm số phần tử**
 
@@ -2646,7 +2646,7 @@ thực nghiệm thay vì suy đoán từ RTL.
 
 Sơ đồ kiến trúc FIFO B được trình bày ở Hình 3.2. Thiết kế sử dụng hai con trỏ mở rộng 5 bit, trong đó 4 bit thấp xác định địa chỉ bộ nhớ và bit cao nhất biểu diễn thông tin vòng. Trong hình, `wr_ptr` và `rd_ptr` là ký hiệu viết tắt của `write_pointer` và `read_pointer` trong RTL. Đây vẫn là FIFO đồng bộ sử dụng chung một xung nhịp.
 
-![Hình 3.2. Sơ đồ khối kiến trúc FIFO B sử dụng con trỏ mở rộng](/home/ktdung/ktdu-datn/datn-a4-t01/thesis/export/_build/svg_png/fifo_b_architecture.png)
+![Hình 3.2. Sơ đồ khối kiến trúc FIFO B sử dụng con trỏ mở rộng](svg_png/fifo_b_architecture.png)
 
 **Hình 3.2. Sơ đồ khối kiến trúc FIFO B sử dụng con trỏ mở rộng**
 
@@ -4385,7 +4385,7 @@ Script phục vụ tái lập kết quả là:
 
 Hình 4.1 minh họa các tín hiệu trong quá trình kiểm chứng chức năng của kiến trúc Count-based.
 
-![Dạng sóng kiểm chứng chức năng FIFO A](/home/ktdung/ktdu-datn/datn-a4-t01/docs/figures/fifo_a_waveform.png)
+![Dạng sóng kiểm chứng chức năng FIFO A](../../../docs/figures/fifo_a_waveform.png)
 
 **Hình 4.1. Dạng sóng kiểm chứng chức năng FIFO A**
 
@@ -4514,7 +4514,7 @@ vào floorplan và quá trình triển khai vật lý.
 
 Biểu đồ Hình 4.2 tổng hợp 600 cell sau synthesis. Các nhóm buf_1, dfxtp_2, mux2_2 và mux4_2 được đối chiếu với báo cáo thống kê synthesis.
 
-![Phân bố standard cell FIFO A sau synthesis](/home/ktdung/ktdu-datn/datn-a4-t01/docs/figures/fifo_a_cell_distribution.png)
+![Phân bố standard cell FIFO A sau synthesis](../../../docs/figures/fifo_a_cell_distribution.png)
 
 **Hình 4.2. Phân bố standard cell FIFO A sau synthesis**
 
@@ -5061,7 +5061,7 @@ trong các mục tiếp theo.
 
 Hình 4.3 thể hiện ảnh layout đã lưu của kiến trúc A. File GDSII gốc được lưu trong kết quả physical design.
 
-![Ảnh layout GDSII của FIFO A](/home/ktdung/ktdu-datn/datn-a4-t01/docs/figures/fifo_a_layout.png)
+![Ảnh layout GDSII của FIFO A](../../../docs/figures/fifo_a_layout.png)
 
 **Hình 4.3. Ảnh layout GDSII của FIFO A**
 
@@ -5337,7 +5337,7 @@ trong quá trình triển khai ASIC.
 
 Hình 4.4 minh họa hoạt động kiểm chứng của kiến trúc Extended-pointer.
 
-![Dạng sóng kiểm chứng chức năng FIFO B](/home/ktdung/ktdu-datn/datn-a4-t01/docs/figures/fifo_b_waveform.png)
+![Dạng sóng kiểm chứng chức năng FIFO B](../../../docs/figures/fifo_b_waveform.png)
 
 **Hình 4.4. Dạng sóng kiểm chứng chức năng FIFO B**
 
@@ -5803,7 +5803,7 @@ và kết quả công suất ước lượng.
 
 Hình 4.5 thể hiện ảnh layout đã lưu của kiến trúc B. Kết quả này cần được đọc cùng các báo cáo physical design và physical verification tương ứng.
 
-![Ảnh layout GDSII của FIFO B](/home/ktdung/ktdu-datn/datn-a4-t01/docs/figures/fifo_b_layout.png)
+![Ảnh layout GDSII của FIFO B](../../../docs/figures/fifo_b_layout.png)
 
 **Hình 4.5. Ảnh layout GDSII của FIFO B**
 
@@ -7162,7 +7162,7 @@ diện tích, timing và công suất.
 
 Hình 5.1 chuẩn hóa FIFO A bằng 100% và biểu diễn tỷ lệ tương ứng của FIFO B. Biểu đồ gồm die area, core area, synthesis cells, physical cells, wire length, via count và critical_path_ns theo báo cáo physical flow. Biểu đồ không bao gồm Fmax OpenSTA hoặc công suất ước lượng.
 
-![So sánh chuẩn hóa các chỉ tiêu vật lý FIFO A/B](/home/ktdung/ktdu-datn/datn-a4-t01/docs/figures/ppa_ab_normalized.png)
+![So sánh chuẩn hóa các chỉ tiêu vật lý FIFO A/B](../../../docs/figures/ppa_ab_normalized.png)
 
 **Hình 5.1. So sánh chuẩn hóa các chỉ tiêu vật lý FIFO A/B**
 
