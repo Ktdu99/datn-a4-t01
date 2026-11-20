@@ -18,9 +18,9 @@
 | 5 | 05–11/10 | Kiểm chứng FIFO A; chọn baseline synthesis 50 MHz, SKY130A, `sky130_fd_sc_hd`, AREA 0; kiểm tra khả năng tái lập netlist. | Nhật ký quyết định ngày 08/10; `results/synthesis_a/SYNTH_A_50MHZ/`, `results/synthesis_a/reproducibility_a.txt`. |
 | 6 | 12–18/10 | Chấp nhận physical FIFO A với QoR waiver; chọn FIFO B dùng con trỏ mở rộng, dùng chung golden model để verification và triển khai physical FIFO B đến GDSII. | Nhật ký ngày 15–16/10; `docs/chang7_architecture_b.md`, `docs/chang8_verification_b.md`, `results/physical_a/`, `results/physical_b/`. Mỗi kiến trúc còn 6 vi phạm clock max-fanout được ghi nhận bằng waiver. |
 | 7 | 19–25/10 | Regression A/B đạt 12/12 PASS; phân tích PPA, power streaming và STA sau routing. T16 đạt 16/16, T17 đạt 8/8 theo mô phỏng. | Nhật ký ngày 22/10 và bằng chứng T16/T17 ngày 23/10; `results/verification_summary/`, `results/power_summary/power_comparison.md`, `results/sta_summary/sta_comparison.md`, `results/ppa_summary/ppa_comparison.md`, `results/verification_summary/T16_T17_INDEPENDENT_AUDIT.md`. Power là ước lượng, T17 không phải formal equivalence. |
-| 8 | 26/10–01/11 | Hạng mục cần xác nhận: đưa kết quả kỹ thuật vào luận văn. | ZIP chưa có nhật ký tuần hoặc bằng chứng mang ngày trong khoảng này; cần bổ sung công việc thực tế nếu đã làm. |
-| 9 | 02–08/11 | Hạng mục cần xác nhận: rà soát bìa, phần đầu, trích dẫn và phân trang. | Báo cáo hoàn thiện luận văn còn nêu các mục cần xử lý; chưa có nhật ký tuần cụ thể trong ZIP để xác nhận hoàn thành. |
-| 10 | 09–15/11 | Hạng mục cần xác nhận: kiểm tra slide, demo và khả năng tái lập. | Trạng thái cuối cần được xác nhận bằng file/log tương ứng; ZIP chưa có nhật ký tuần cụ thể cho khoảng này. |
+| 8 | 26/10–01/11 | Đưa kết quả kỹ thuật vào luận văn. | **Đã rà soát** theo ghi nhận của sinh viên. Chưa có bản luận văn có ngày để xác nhận đã cập nhật xong. |
+| 9 | 02–08/11 | Rà soát bìa, phần đầu, trích dẫn và phân trang luận văn. | **Đã rà soát** theo ghi nhận của sinh viên. Chưa có bản chỉnh sửa để đối chiếu. |
+| 10 | 09–15/11 | Kiểm tra slide, demo và khả năng tái lập. | **Đã rà soát** theo ghi nhận của sinh viên. Chưa có log chạy để xác nhận khả năng tái lập. |
 | 11 — hiện tại | 16–22/11 (cập nhật đến 20/11) | Rà soát tài liệu tiến độ, hướng dẫn giảng viên, mẫu issue và các đường dẫn trong repository; dọn các bản backup đã chọn xóa. | Commit `4704cfe` ghi nhận đợt cập nhật repository ngày 20/11. |
 
 ## Kết quả kỹ thuật chính đến 23/10/2026
