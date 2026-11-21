@@ -32,8 +32,4 @@
 | E28 | Script tái lập post-route STA | Lưu script chạy lại STA cho cả FIFO A/B nhằm kiểm tra setup, hold và minimum clock period trên các dữ liệu physical đã có | `scripts/run_postroute_sta.sh`; `scripts/run_postroute_sta.tcl`; `results/sta_summary/sta_comparison.md` | `scripts/run_postroute_sta.sh`; `scripts/run_postroute_sta.tcl` | `3af2ebc` | 2026-10-22 |
 | E29 | Hồ sơ và hướng dẫn tái lập đồ án | README tổng hợp kiến trúc, kết quả PPA, lệnh tái lập; PROJECT_CHARTER xác định phạm vi và tiêu chí đánh giá, chưa ghi nhận mentor phê duyệt | `README.md`; `PROJECT_CHARTER.md` | Biên soạn và đối chiếu với báo cáo kết quả | `bb9357d`, `ee6913a` | 2026-10-22 |
 
-## Ghi chú cập nhật bằng chứng E21–E23 (22/10/2026)
 
-- **E21–E22:** Các kết luận về `critical_path_ns` và biểu đồ chuẩn hóa phản ánh bộ metric vật lý được thu thập ngày 16/10/2026. Không được đồng nhất `critical_path_ns` với minimum clock period hoặc Fmax. Theo STA độc lập sau routing (E26), FIFO A có Fmax được báo cáo cao hơn FIFO B.
-- **E23:** Nhận định chưa có dữ liệu power phù hợp phản ánh trạng thái thực nghiệm ngày 16/10/2026. Đến ngày 22/10/2026, E25 đã bổ sung ước lượng công suất sử dụng gate-level zero-delay VCD với workload streaming 10000 chu kỳ và nominal SPEF.
-- **Giới hạn:** Kết quả STA và power được phân tích tại TT, 25°C, 1.8 V; chưa phải multi-corner sign-off hoặc phép đo trên silicon. Sáu clock max-fanout violations ở mỗi kiến trúc vẫn được ghi nhận bằng QoR waiver.
