@@ -1,48 +1,45 @@
-# Independent Audit — T16 and T17
+# Báo cáo kiểm toán độc lập T16 và T17
 
-## Scope
+## Phạm vi kiểm toán
 
-- T16: parameterized FIFO regression for A and B.
-- T17: cycle-by-cycle simulation comparison of A and B
-  with an independent FIFO reference scoreboard.
-- Tested configurations: 8x8, 8x16, 8x32, 16x16.
-- Seeds: 1 and 20260924.
-- RTL was not modified for these experiments.
+- **T16:** Kiểm thử hồi quy FIFO A và FIFO B với nhiều cấu hình tham số.
+- **T17:** So sánh kết quả mô phỏng của FIFO A và FIFO B theo từng chu kỳ, đồng thời đối chiếu với mô hình FIFO tham chiếu độc lập (scoreboard).
+- **Cấu hình đã kiểm thử** (độ rộng dữ liệu × số phần tử): 8 × 8, 8 × 16, 8 × 32 và 16 × 16.
+- **Giá trị khởi tạo ngẫu nhiên (seed):** `1` và `20260924`.
+- Mã RTL được giữ nguyên trong các thử nghiệm này.
 
-## Results
+## Kết quả
 
-| Test | Runs | Cycles | Checks | Errors |
+| Bài kiểm thử | Số lượt chạy | Số chu kỳ | Số phép kiểm tra | Số lỗi |
 |---|---:|---:|---:|---:|
-| T16 | 16 | 34920 | 104824 | 0 |
-| T17 | 8 | 17383 | 260985 | 0 |
-| Total | 24 | 52303 | 365809 | 0 |
+| T16 | 16 | 34.920 | 104.824 | 0 |
+| T17 | 8 | 17.383 | 260.985 | 0 |
+| **Tổng cộng** | **24** | **52.303** | **365.809** | **0** |
 
-## Evidence
+## Bằng chứng
 
 - T16: `results/verification_t16/20261023_162821_187749`
 - T17: `results/verification_t17/matrix_20261023_163641_700949`
 
-Both manifests, all simulation logs and all waveform files
-were checked for consistency and existence.
+Kiểm toán đã đối chiếu sự hiện diện và tính nhất quán của cả hai tệp kê khai kết quả (manifest), toàn bộ nhật ký mô phỏng và toàn bộ tệp dạng sóng.
 
-Source SHA-256 hashes in both manifests matched the
-current RTL, testbench and script files.
+Các mã băm SHA-256 trong hai tệp kê khai khớp với các tệp RTL, testbench và script tương ứng tại thời điểm kiểm toán.
 
-## Interpretation and limitations
+## Diễn giải và giới hạn
 
-- Results support functional correctness for the tested
-  configurations and stimuli.
-- T17 checks five output signals for both architectures:
-  read data, full, empty, overflow and underflow.
-- Coverage counters confirm that selected boundary cases
-  were exercised, but do not constitute full code coverage.
-- Simulation-based equivalence is not formal equivalence.
-- These tests do not replace post-layout timing or signoff.
-- PPA conclusions remain limited to the physical design
-  configurations and conditions actually evaluated.
+- Kết quả cho thấy FIFO hoạt động đúng trong các cấu hình và chuỗi kích thích đã kiểm thử.
+- T17 kiểm tra năm tín hiệu đầu ra của cả hai kiến trúc: dữ liệu đọc, cờ đầy (`full`), cờ rỗng (`empty`), cờ tràn (`overflow`) và cờ đọc khi rỗng (`underflow`).
+- Các bộ đếm độ bao phủ xác nhận những trường hợp biên được chọn đã được kiểm thử. Phạm vi này chưa bao quát toàn bộ mã nguồn.
+- Kết luận tương đương của T17 dựa trên các ca mô phỏng đã chạy. Chứng minh tương đương hình thức nằm ngoài phạm vi kiểm toán.
+- Việc xác nhận timing sau bố trí và đi dây, cũng như các kiểm tra sign-off, cần bằng chứng riêng.
+- Các kết luận về công suất, hiệu năng và diện tích (PPA) chỉ áp dụng cho những cấu hình và điều kiện triển khai vật lý đã được đánh giá.
 
-## Conclusion
+## Kết luận
 
+Cả T16 và T17 đều đạt kiểm toán. Tổng cộng có 24 lượt chạy, 365.809 phép kiểm tra và 0 lỗi được ghi nhận.
+
+```text
 T16_INDEPENDENT_AUDIT_PASS
 T17_INDEPENDENT_AUDIT_PASS
 COMBINED_VERIFICATION_AUDIT_PASS
+```
