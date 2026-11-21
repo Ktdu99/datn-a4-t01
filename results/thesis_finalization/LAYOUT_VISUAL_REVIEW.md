@@ -1,38 +1,38 @@
-# Layout Visual Review
+# Báo cáo rà soát bố cục bản Word của luận văn
 
-Date: 2026-10-23
+**Ngày rà soát:** 23/10/2026.
 
-## Source
+## 1. Tài liệu được rà soát
 
-- File: `thesis/export/thesis_fifo_T16_T17_PPA_LAYOUT_CHECK.docx`
-- Saved review copy: `thesis/export/thesis_fifo_LAYOUT_APPROVED_REVIEW.docx`
-- SHA256: `27f912516c7375a004e3a5a00cc6fde1a09a724b9a04761f2d3baafd2741cd0f`
+- **Tệp nguồn:** `thesis/export/thesis_fifo_T16_T17_PPA_LAYOUT_CHECK.docx`
+- **Bản đã rà soát được lưu tại:** `thesis/export/thesis_fifo_LAYOUT_APPROVED_REVIEW.docx`
+- **Mã băm SHA-256:** `27f912516c7375a004e3a5a00cc6fde1a09a724b9a04761f2d3baafd2741cd0f`
 
-## User-confirmed visual checks
+## 2. Kết quả kiểm tra trực quan do người dùng xác nhận
 
-- Word document displayed 144 pages.
-- Table of contents was updated and complete.
-- No abnormal blank pages were observed.
-- All 36 tables displayed correctly.
-- All 9 figures displayed correctly.
-- Tables 4.29, 5.6 and 5.7 were checked.
+- Bản Word hiển thị **144 trang**.
+- Mục lục đã được cập nhật và hiển thị đầy đủ.
+- Không phát hiện trang trắng bất thường.
+- Cả **36 bảng** và **9 hình** đều hiển thị đúng.
+- Đã kiểm tra các bảng **4.29**, **5.6** và **5.7**.
 
-## Automated checks
+## 3. Kết quả kiểm tra tự động
 
-- DOCX ZIP integrity: PASS
-- Tables: 36
-- Inline figures: 9
-- Sections 4.9 and 5.6.6: present
-- Source and review copy SHA256: identical
+| Hạng mục | Kết quả |
+|---|---|
+| Tính toàn vẹn của gói ZIP bên trong tệp DOCX | Đạt (`PASS`) |
+| Số bảng | 36 |
+| Số hình chèn cùng dòng với văn bản | 9 |
+| Các mục 4.9 và 5.6.6 | Có mặt |
+| Mã SHA-256 của tệp nguồn và bản lưu sau rà soát | Trùng khớp |
 
-## Remaining work
+## 4. Công việc còn lại tại thời điểm rà soát
 
-- Add institution-specific front matter and cover.
-- Check final pagination again after adding front matter.
-- Validate repository reproduction instructions.
-- Prepare defense slides and demonstration.
+- Bổ sung bìa và các trang đầu theo mẫu của trường.
+- Kiểm tra lại phân trang sau khi bổ sung các trang đầu.
+- Kiểm tra hướng dẫn tái lập kết quả trong kho mã nguồn.
+- Chuẩn bị slide bảo vệ và phần trình diễn.
 
-Note: 144 pages and visual layout checks are user-confirmed,
-not independently measured by this script.
+**Ghi chú:** Số trang 144 và các kết quả kiểm tra bố cục trực quan do người dùng xác nhận. Chương trình kiểm tra tự động chưa xác minh độc lập các mục này.
 
-LAYOUT_VISUAL_REVIEW_RECORDED_PASS
+`LAYOUT_VISUAL_REVIEW_RECORDED_PASS`
