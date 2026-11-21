@@ -1,38 +1,37 @@
-# Thesis Markdown Finalization Audit
+# Báo cáo kiểm tra bản luận văn Markdown
 
-## Thesis structure
+## 1. Cấu trúc luận văn
 
-- Chapters: 6
-- Tables: 36
-- Figures: 9
-- IEEE body citations: 33
-- IEEE references: 7
-- Section 4.9 and 5.6.6: present
+- Số chương: **6**.
+- Số bảng: **36**.
+- Số hình: **9**.
+- Số lượt trích dẫn trong nội dung theo chuẩn IEEE: **33**.
+- Số tài liệu trong danh mục tham khảo theo chuẩn IEEE: **7**.
+- Có đủ hai mục **4.9** và **5.6.6**.
 
-## Additional verification
+## 2. Kết quả kiểm thử bổ sung
 
-- T16: 16/16 PASS; 104824 checks
-- T17: 8/8 PASS; 260985 checks
-- Combined: 24 runs; 52303 cycles;
-  365809 checks; 0 errors
+| Bài kiểm thử | Số lượt đạt | Số phép kiểm tra |
+|---|---:|---:|
+| T16 | 16/16 | 104.824 |
+| T17 | 8/8 | 260.985 |
+| **Tổng cộng** | **24/24** | **365.809** |
 
-## PPA evidence
+Hai bài kiểm thử có tổng cộng **52.303 chu kỳ mô phỏng** và **0 lỗi được ghi nhận**.
 
-- FIFO A synthesis cells: 600
-- FIFO B synthesis cells: 573
-- FIFO A synthesis cell area: 7130.5888 um2
-- FIFO B synthesis cell area: 6904.1216 um2
-- FIFO A reported Fmax: 352.34 MHz
-- FIFO B reported Fmax: 331.60 MHz
+## 3. Bằng chứng về công suất, hiệu năng và diện tích (PPA)
 
-## Limitations
+| Chỉ số | FIFO A | FIFO B |
+|---|---:|---:|
+| Số cell sau tổng hợp | 600 | 573 |
+| Tổng diện tích cell sau tổng hợp (µm²) | 7.130,5888 | 6.904,1216 |
+| Tần số tối đa theo báo cáo STA (Fmax, MHz) | 352,34 | 331,60 |
 
-- The verified Markdown is not yet a
-  visually approved Word submission.
-- Simulation testing is not formal equivalence.
-- Physical PPA applies to the measured
-  baseline configuration only.
-- IEEE numbering consistency does not
-  independently verify citation relevance.
+## 4. Giới hạn của kết quả kiểm tra
 
-THESIS_MARKDOWN_FINAL_AUDIT_PASS
+- Báo cáo này xác nhận nội dung của bản Markdown. Việc duyệt bố cục bản Word để nộp cần thực hiện riêng.
+- Kết quả kiểm thử tương đương có giá trị trong phạm vi các ca mô phỏng đã chạy. Chứng minh tương đương hình thức nằm ngoài phạm vi kiểm thử.
+- Kết quả PPA sau triển khai vật lý chỉ áp dụng cho cấu hình cơ sở đã được đánh giá.
+- Việc kiểm tra tính nhất quán của số thứ tự trích dẫn IEEE chỉ xác nhận cách đánh số. Mức độ phù hợp của từng nguồn trích dẫn cần được đánh giá riêng.
+
+`THESIS_MARKDOWN_FINAL_AUDIT_PASS`
