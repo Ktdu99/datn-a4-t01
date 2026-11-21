@@ -1,7 +1,7 @@
 
 
 | ID | Hình/Bảng | Nói lên điều gì | Dữ liệu thô (đường dẫn) | Script sinh ra | Git commit | Tuần / khoảng thời gian |
-|---|---|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 | E01 | Cấu hình synthesis/STA kiến trúc A | Ghi lại PDK, thư viện, tham số FIFO và clock 50 MHz | `openlane/sync_fifo_count/config.json`; `results/synthesis_a/SYNTH_A_50MHZ/resolved_config.tcl` | `openlane/run_synth_sta_a.tcl` | `898b96b` |  Tuần 5 · 05/10/2026–11/10/2026 |
 | E02 | Bảng kết quả synthesis kiến trúc A | Netlist có 600 cell, diện tích cell 7130.588800 µm² | `results/synthesis_a/SYNTH_A_50MHZ/reports/1-synthesis.AREA_0.stat.rpt`; `results/synthesis_a/SYNTH_A_50MHZ/key_metrics.txt` | `scripts/collect_synth_sta_a.sh` | `898b96b` | Tuần 5 · 05/10/2026–11/10/2026 |
 | E03 | Bảng kết quả STA kiến trúc A | WNS/TNS bằng 0, setup slack +13.81 ns, hold slack +0.22 ns | `results/synthesis_a/SYNTH_A_50MHZ/logs/2-sta.full.txt`; `results/synthesis_a/SYNTH_A_50MHZ/key_metrics.txt` | `scripts/collect_synth_sta_a.sh` | `898b96b` | Tuần 5 · 05/10/2026–11/10/2026 |
