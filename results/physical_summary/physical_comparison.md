@@ -1,120 +1,102 @@
-# FIFO A/B Physical Design Comparison
+# So sánh kết quả triển khai vật lý FIFO A và FIFO B
 
-## 1. Experimental Setup
+## 1. Thiết lập thực nghiệm
 
-- Design: Synchronous FIFO 16x8
-- Architecture A: Count-based FIFO
-- Architecture B: Extended-pointer FIFO
-- Technology: Sky130A
-- Standard-cell library: sky130_fd_sc_hd
-- Target frequency: 50 MHz
-- Clock period: 20 ns
-- Flow: OpenLane / OpenROAD
-- Physical implementation: Floorplan, Placement, CTS, Routing, Sign-off
+- **Thiết kế:** FIFO đồng bộ, sâu 16 phần tử, mỗi phần tử rộng 8 bit.
+- **FIFO A:** Dùng bộ đếm số phần tử.
+- **FIFO B:** Dùng con trỏ mở rộng.
+- **Công nghệ:** SKY130A.
+- **Thư viện cell chuẩn:** `sky130_fd_sc_hd`.
+- **Tần số mục tiêu:** 50 MHz, tương ứng chu kỳ clock 20 ns.
+- **Công cụ:** OpenLane và OpenROAD.
+- **Các bước triển khai:** Quy hoạch mặt bằng (floorplan), bố trí cell (placement), tổng hợp cây clock (CTS), đi dây (routing) và kiểm tra cuối quy trình.
 
-## 2. Physical PPA Results
+## 2. Kết quả triển khai vật lý
 
-| Metric | FIFO A | FIFO B |
+| Chỉ số | FIFO A | FIFO B |
 |---|---:|---:|
-| Die area (mm2) | 0.025295 | 0.024573 |
-| Core area (um2) | 20169.344 | 19462.416 |
-| Placement utilization (%) | 36.68 | 36.83 |
-| Synthesis cell count | 600 | 573 |
-| Total physical cells | 2425 | 2345 |
-| Wire length (um) | 18677 | 18170 |
-| Via count | 4905 | 4609 |
-| Post-route WNS (ns) | 0.0 | 0.0 |
-| Post-route TNS (ns) | 0.0 | 0.0 |
-| Reported path delay (ns) | 2.37 | 2.34 |
+| Diện tích die (mm²) | 0,025295 | 0,024573 |
+| Diện tích core (µm²) | 20.169,344 | 19.462,416 |
+| Tỷ lệ sử dụng diện tích bố trí (%) | 36,68 | 36,83 |
+| Số cell sau tổng hợp | 600 | 573 |
+| Tổng số cell vật lý | 2.425 | 2.345 |
+| Tổng chiều dài dây (µm) | 18.677 | 18.170 |
+| Số via | 4.905 | 4.609 |
+| WNS sau đi dây (ns) | 0,0 | 0,0 |
+| TNS sau đi dây (ns) | 0,0 | 0,0 |
+| Độ trễ đường tín hiệu được báo cáo (ns) | 2,37 | 2,34 |
 
-## 3. Physical Verification
+## 3. Kết quả kiểm tra vật lý
 
-| Check | FIFO A | FIFO B |
-|---|---|---|
-| TritonRoute violations | 0 | 0 |
-| Magic DRC violations | 0 | 0 |
-| LVS errors | 0 | 0 |
-| LVS result | Circuits match uniquely | Circuits match uniquely |
-| Antenna net violations | 0 | 0 |
-| Antenna pin violations | 0 | 0 |
-| Max slew violations | 0 | 0 |
-| Max capacitance violations | 0 | 0 |
-| Max fanout violations | 6 | 6 |
+| Hạng mục kiểm tra | FIFO A | FIFO B |
+|---|---:|---:|
+| Số vi phạm đi dây do TritonRoute báo cáo | 0 | 0 |
+| Số vi phạm DRC do Magic báo cáo | 0 | 0 |
+| Số lỗi LVS | 0 | 0 |
+| Kết quả đối chiếu LVS | Mạch khớp duy nhất | Mạch khớp duy nhất |
+| Số vi phạm antenna trên net | 0 | 0 |
+| Số vi phạm antenna trên chân | 0 | 0 |
+| Số vi phạm giới hạn slew | 0 | 0 |
+| Số vi phạm giới hạn điện dung | 0 | 0 |
+| Số vi phạm giới hạn fanout | 6 | 6 |
 
-## 4. Timing Assessment
+## 4. Đánh giá thời gian
 
-Both implementations completed the physical-design flow
-with a target clock period of 20 ns.
+Cả hai thiết kế đã hoàn thành quy trình triển khai vật lý với chu kỳ clock mục tiêu **20 ns**, tương ứng **50 MHz**.
 
-The recorded post-route WNS and TNS are both 0.0 ns.
-The post-route checks report found no negative-slack
-setup paths under the applied constraints.
+Báo cáo sau đi dây ghi nhận WNS và TNS đều bằng **0,0 ns**. Báo cáo kiểm tra sau đi dây không ghi nhận đường setup có slack âm dưới các ràng buộc đã áp dụng.
 
-The reported path delays are:
-- FIFO A: 2.37 ns, endpoint empty
-- FIFO B: 2.34 ns, endpoint full
+Độ trễ đường tín hiệu được báo cáo:
 
-These path delays should not be interpreted directly
-as the minimum achievable clock period or maximum
-operating frequency.
+- **FIFO A:** 2,37 ns, với điểm cuối là cổng `empty`.
+- **FIFO B:** 2,34 ns, với điểm cuối là cổng `full`.
 
-Separate hold WNS/TNS evidence has not yet been
-established by the archived reports.
+Các giá trị trên là độ trễ của những đường tín hiệu được nêu trong báo cáo vật lý. Để xác định chu kỳ clock tối thiểu và Fmax, xem [báo cáo STA độc lập](../sta_summary/sta_comparison.md).
 
-## 5. Max Fanout Assessment
+Bộ báo cáo triển khai vật lý lưu trữ dùng cho tài liệu này chưa cung cấp riêng số liệu hold WNS và hold TNS. Kết quả hold được trình bày trong báo cáo STA độc lập.
 
-Both implementations use:
+## 5. Đánh giá vi phạm max-fanout
 
-MAX_FANOUT_CONSTRAINT = 10
+Cả hai thiết kế dùng cùng ràng buộc:
 
-Each implementation has six max-fanout violations
-reported on the clock distribution network.
+`MAX_FANOUT_CONSTRAINT = 10`
 
-The archived key_metrics.txt files classify these
-as ACCEPTED_QOR_WAIVER.
+Mỗi thiết kế có **6 vi phạm max-fanout** trên mạng phân phối clock. Tệp `key_metrics.txt` của mỗi phương án ghi nhận các vi phạm này dưới mã `ACCEPTED_QOR_WAIVER`, tức ngoại lệ chất lượng kết quả đã được chấp nhận. Sáu vi phạm vẫn tồn tại trên mỗi thiết kế.
 
-This waiver does not mean the violations have been
-physically eliminated.
+Báo cáo `postroute_checks.rpt` không ghi nhận vi phạm giới hạn slew hoặc điện dung.
 
-No max slew or max capacitance violations were
-reported in postroute_checks.rpt.
+## 6. So sánh FIFO B với FIFO A
 
-## 6. Comparison
+| Chỉ số | Mức giảm của FIFO B so với FIFO A |
+|---|---:|
+| Diện tích die | 2,85% |
+| Diện tích core | 3,50% |
+| Số cell sau tổng hợp | 4,50% |
+| Tổng số cell vật lý | 3,30% |
+| Tổng chiều dài dây | 2,71% |
+| Số via | 6,03% |
 
-Compared with FIFO A, FIFO B has approximately:
+Trong các lần chạy SKY130A đã lưu, FIFO B sử dụng ít cell hơn và có diện tích die, diện tích core nhỏ hơn FIFO A. Tổng chiều dài dây và số via cũng giảm trong cấu hình được đánh giá.
 
-- 2.85% lower die area
-- 3.50% lower core area
-- 4.50% fewer synthesis cells
-- 3.30% fewer total physical cells
-- 2.71% shorter total wire length
-- 6.03% fewer vias
+## 7. Tệp bằng chứng
 
-These results describe the archived physical-design
-runs and should not be generalized to all configurations.
+Các tệp sau được lưu trong thư mục `A/` và `B/` tương ứng:
 
-## 7. Evidence
+- `key_metrics.txt`: Tổng hợp các chỉ số chính.
+- `metrics.csv`: Bảng số liệu triển khai vật lý.
+- `magic_drc.rpt`: Báo cáo kiểm tra quy tắc thiết kế.
+- `lvs.txt`: Kết quả đối chiếu layout với netlist.
+- `antenna.txt`: Kết quả kiểm tra antenna.
+- `postroute_checks.rpt`: Báo cáo kiểm tra sau đi dây.
 
-Each architecture has the following archived files:
+Mã băm của hai tệp GDSII được lưu trong `gds_sha256.txt`. Có thể mở các tệp GDSII bằng KLayout:
 
-- key_metrics.txt
-- metrics.csv
-- magic_drc.rpt
-- lvs.txt
-- antenna.txt
-- postroute_checks.rpt
+- [GDSII của FIFO A](../physical_a/PHYS_A_50MHZ/final/gds/sync_fifo_count.gds)
+- [GDSII của FIFO B](../physical_b/PHYS_B_50MHZ/final/gds/sync_fifo_pointer.gds)
 
-GDSII file hashes are recorded in gds_sha256.txt.
+## 8. Giới hạn của kết quả
 
-The GDSII files themselves are retained in the
-original physical-design result directories.
-
-## 8. Limitations
-
-- Only the archived Sky130A physical-design runs
-  are evaluated.
-- Max fanout violations remain as documented waivers.
-- Separate hold timing sign-off requires further
-  evidence.
-- Timing and physical metrics depend on the
-  applied constraints, library, and PVT conditions.
+- Phạm vi đánh giá là các lần triển khai vật lý SKY130A đã lưu.
+- Mỗi mạng clock vẫn còn 6 vi phạm max-fanout được ghi nhận dưới dạng ngoại lệ.
+- Để đánh giá hold, cần đọc thêm báo cáo STA độc lập.
+- Các chỉ số thời gian và bố trí vật lý phụ thuộc vào ràng buộc, thư viện cell và điều kiện công nghệ, điện áp, nhiệt độ (PVT) của lần phân tích.
