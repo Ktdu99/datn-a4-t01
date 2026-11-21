@@ -5,7 +5,7 @@
 - **Sinh viên:** Khổng Thị Dung
 - **Branch trong repository:** `feature/fifo-ip`
 
-> Tuần 1 bắt đầu ngày 07/09/2026; mỗi tuần tính từ thứ Hai đến Chủ nhật. Nhật ký có ngày cụ thể trong DECISION_LOG.md từ 08/10 đến 22/10; bằng chứng kỹ thuật mới nhất là 23/10/2026.
+> Tuần 1 bắt đầu ngày 07/09/2026; mỗi tuần tính từ thứ Hai đến Chủ nhật. Nhật ký có ngày cụ thể trong DECISION_LOG.md.
 
 ## Tiến độ theo tuần
 
