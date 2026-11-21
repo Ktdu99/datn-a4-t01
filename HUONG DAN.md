@@ -1,4 +1,4 @@
-# Hướng dẫn giảng viên xem đồ án FIFO
+# Hướng dẫn xem đồ án FIFO
 
 ## 1. Thông tin phiên bản
 
